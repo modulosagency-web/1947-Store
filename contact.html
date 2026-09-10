@@ -1,1 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact 1947 Clothing Store — MG Road, Ernakulam. WhatsApp: +91 85909 88090">
+<title>Contact Us — 1947 Clothing Store</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ═══════════════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════════════ */
+* { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+
+:root {
+  --red:#d32f2f;
+  --red-dark:#b71c1c;
+  --red-light:#f44336;
+  --green:#25D366;
+  --green-dark:#128C7E;
+  --dark:#1a1a1a;
+  --gray:#666;
+  --light-gray:#f7f7f7;
+  --border:#e5e5e5;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:#fff;
+  color:#333;
+  line-height:1.6;
+  font-size:15px;
+}
+
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+button { font-family:inherit; cursor:pointer; }
+
+/* ANNOUNCEMENT */
+.announcement {
+  background:var(--dark);
+  color:#fff;
+  text-align:center;
+  padding:10px 15px;
+  font-size:13px;
+  letter-spacing:0.3px;
+}
+.announcement i { color:var(--red-light); margin-right:6px; }
+
+/* HEADER */
+header {
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.header-inner {
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo {
+  font-size:24px;
+  font-weight:900;
+  color:var(--dark);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.logo-badge {
+  background:var(--red);
+  color:#fff;
+  padding:3px 8px;
+  border-radius:4px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.logo-text { font-weight:800; }
+.logo-text span { color:var(--red); }
+.nav-links { display:flex; list-style:none; gap:32px; }
+.nav-links a {
+  font-size:14px;
+  font-weight:500;
+  color:#555;
+  transition:color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color:var(--red); }
+.header-actions { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  background:none;
+  border:none;
+  width:40px;
+  height:40px;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  color:var(--dark);
+  font-size:16px;
+  transition:background 0.2s;
+}
+.icon-btn:hover { background:var(--light-gray); }
+.cart-btn {
+  position:relative;
+  background:var(--dark);
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:background 0.2s;
+}
+.cart-btn:hover { background:var(--red); }
+.cart-count {
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  background:var(--red);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  min-width:20px;
+  height:20px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 5px;
+}
+.mobile-toggle {
+  display:none;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:var(--dark);
+  cursor:pointer;
+}
+
+/* PAGE HEADER */
+.page-header {
+  background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
+  color:#fff;
+  padding:70px 20px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.page-header::before {
+  content:'';
+  position:absolute;
+  top:-50%;
+  right:-10%;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle, rgba(211,47,47,0.3) 0%, transparent 70%);
+  border-radius:50%;
+}
+.page-header-inner {
+  max-width:1200px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+.page-header h1 {
+  font-size:44px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  margin-bottom:14px;
+}
+.page-header h1 span { color:var(--red-light); }
+.page-header p {
+  font-size:16px;
+  color:#bbb;
+  max-width:600px;
+  margin:0 auto;
+}
+.breadcrumb {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:13px;
+  color:#888;
+  margin-top:18px;
+}
+.breadcrumb a { color:#888; transition:color 0.2s; }
+.breadcrumb a:hover { color:var(--red-light); }
+.breadcrumb i { font-size:10px; }
+.breadcrumb .current { color:var(--red-light); }
+
+/* CONTAINER */
+.container {
+  max-width:1200px;
+  margin:0 auto;
+  padding:60px 20px;
+}
+
+/* CONTACT CARDS */
+.contact-cards {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+  margin-bottom:60px;
+}
+.contact-card {
+  padding:32px 26px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  text-align:center;
+  transition:all 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.contact-card::before {
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg,var(--red),var(--red-light));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.4s;
+}
+.contact-card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 20px 45px rgba(0,0,0,0.1);
+  border-color:transparent;
+}
+.contact-card:hover::before { transform:scaleX(1); }
+
+.contact-card-icon {
+  width:70px;
+  height:70px;
+  margin:0 auto 20px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+.icon-whatsapp { background:linear-gradient(135deg,#25D366,#128C7E); }
+.icon-phone { background:linear-gradient(135deg,var(--red),var(--red-dark)); }
+.icon-location { background:linear-gradient(135deg,#1a1a1a,#2a2a2a); }
+
+.contact-card h3 {
+  font-size:18px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:8px;
+  letter-spacing:-0.3px;
+}
+.contact-card p {
+  font-size:14px;
+  color:var(--gray);
+  margin-bottom:16px;
+  line-height:1.6;
+}
+.contact-card-link {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--red);
+  padding:10px 20px;
+  border-radius:8px;
+  border:2px solid var(--red);
+  transition:all 0.2s;
+  background:transparent;
+}
+.contact-card-link:hover {
+  background:var(--red);
+  color:#fff;
+}
+
+/* MAIN LAYOUT */
+.contact-main {
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:40px;
+  margin-bottom:60px;
+}
+
+/* FORM */
+.form-box {
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:40px;
+}
+.form-box h2 {
+  font-size:26px;
+  font-weight:900;
+  color:var(--dark);
+  margin-bottom:8px;
+  letter-spacing:-0.5px;
+}
+.form-box h2 span { color:var(--red); }
+.form-box > p {
+  font-size:14px;
+  color:var(--gray);
+  margin-bottom:28px;
+}
+
+.form-group { margin-bottom:18px; }
+.form-label {
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  color:var(--gray);
+  margin-bottom:7px;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.form-input, .form-textarea, .form-select {
+  width:100%;
+  padding:14px 16px;
+  background:var(--light-gray);
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--dark);
+  font-size:14px;
+  font-family:inherit;
+  outline:none;
+  transition:all 0.2s;
+}
+.form-textarea {
+  resize:vertical;
+  min-height:120px;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color:var(--red);
+  background:#fff;
+  box-shadow:0 0 0 4px rgba(211,47,47,0.1);
+}
+
+.form-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.submit-btn {
+  width:100%;
+  padding:16px;
+  background:linear-gradient(135deg,var(--red),var(--red-dark));
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  letter-spacing:0.3px;
+  transition:all 0.2s;
+  box-shadow:0 4px 14px rgba(211,47,47,0.3);
+}
+.submit-btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(211,47,47,0.4);
+}
+.submit-btn:active {
+  transform:translateY(0);
+}
+
+/* INFO PANEL */
+.info-panel {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.info-box {
+  background:var(--light-gray);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:28px;
+}
+.info-box h3 {
+  font-size:17px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.info-box h3 i {
+  width:34px;
+  height:34px;
+  background:var(--red);
+  color:#fff;
+  border-radius:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+}
+
+.info-list { list-style:none; }
+.info-list li {
+  display:flex;
+  gap:14px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  font-size:14px;
+  color:#555;
+}
+.info-list li:last-child { border-bottom:none; padding-bottom:0; }
+.info-list li i {
+  color:var(--red);
+  font-size:16px;
+  flex-shrink:0;
+  margin-top:2px;
+}
+.info-list li strong {
+  color:var(--dark);
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:2px;
+  text-transform:uppercase;
+  letter-spacing:0.3px;
+}
+.info-list li a { color:var(--red); font-weight:600; }
+.info-list li a:hover { text-decoration:underline; }
+
+/* HOURS */
+.hours-list { list-style:none; }
+.hours-list li {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  font-size:14px;
+}
+.hours-list li:last-child { border-bottom:none; }
+.hours-list .day { color:var(--dark); font-weight:600; }
+.hours-list .time { color:var(--gray); font-weight:500; }
+.hours-list .closed { color:var(--red); font-weight:700; }
+
+/* MAP */
+.map-section {
+  margin-bottom:60px;
+}
+.map-section h2 {
+  font-size:26px;
+  font-weight:900;
+  color:var(--dark);
+  margin-bottom:20px;
+  letter-spacing:-0.5px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.map-section h2::before {
+  content:'';
+  width:5px;
+  height:26px;
+  background:var(--red);
+  border-radius:2px;
+}
+.map-wrap {
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  height:400px;
+  position:relative;
+}
+.map-wrap iframe {
+  width:100%;
+  height:100%;
+  border:none;
+  display:block;
+}
+
+/* FAQ */
+.faq-section {
+  margin-bottom:60px;
+}
+.faq-section h2 {
+  font-size:26px;
+  font-weight:900;
+  color:var(--dark);
+  margin-bottom:24px;
+  letter-spacing:-0.5px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.faq-section h2::before {
+  content:'';
+  width:5px;
+  height:26px;
+  background:var(--red);
+  border-radius:2px;
+}
+
+.faq-item {
+  border:1px solid var(--border);
+  border-radius:12px;
+  margin-bottom:12px;
+  overflow:hidden;
+  transition:all 0.2s;
+}
+.faq-item.open { border-color:var(--red); box-shadow:0 8px 20px rgba(211,47,47,0.08); }
+
+.faq-question {
+  width:100%;
+  padding:20px 24px;
+  background:#fff;
+  border:none;
+  text-align:left;
+  font-size:15px;
+  font-weight:700;
+  color:var(--dark);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  font-family:inherit;
+}
+.faq-question:hover { background:var(--light-gray); }
+.faq-question i {
+  color:var(--red);
+  font-size:14px;
+  transition:transform 0.3s;
+  flex-shrink:0;
+}
+.faq-item.open .faq-question i { transform:rotate(180deg); }
+
+.faq-answer {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.35s ease;
+  background:var(--light-gray);
+}
+.faq-item.open .faq-answer { max-height:300px; }
+.faq-answer p {
+  padding:0 24px 20px;
+  font-size:14px;
+  color:#555;
+  line-height:1.8;
+}
+
+/* FOOTER */
+footer {
+  background:var(--dark);
+  color:#bbb;
+  padding:60px 20px 20px;
+  margin-top:0;
+}
+.footer-inner {
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+  padding-bottom:40px;
+  border-bottom:1px solid #333;
+}
+.footer-col h4 {
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:18px;
+  letter-spacing:0.3px;
+}
+.footer-brand {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+}
+.footer-brand-badge {
+  background:var(--red);
+  color:#fff;
+  padding:3px 8px;
+  border-radius:4px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.footer-brand-text {
+  font-size:20px;
+  font-weight:800;
+  color:#fff;
+}
+.footer-brand-text span { color:var(--red-light); }
+.footer-col p {
+  font-size:13px;
+  line-height:1.7;
+  color:#999;
+}
+.footer-col ul { list-style:none; }
+.footer-col ul li { margin-bottom:10px; }
+.footer-col ul a {
+  font-size:13px;
+  color:#999;
+  transition:color 0.2s;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.footer-col ul a:hover { color:var(--red-light); }
+.social-links {
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+}
+.social-links a {
+  width:38px;
+  height:38px;
+  background:#2a2a2a;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#bbb;
+  font-size:14px;
+  transition:all 0.2s;
+}
+.social-links a:hover {
+  background:var(--red);
+  color:#fff;
+  transform:translateY(-2px);
+}
+.footer-bottom {
+  max-width:1200px;
+  margin:20px auto 0;
+  text-align:center;
+  font-size:13px;
+  color:#777;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.footer-bottom strong { color:#fff; }
+.footer-bottom a { color:var(--red-light); }
+
+/* CART DRAWER */
+.cart-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.3s;
+  z-index:150;
+}
+.cart-overlay.open { opacity:1; visibility:visible; }
+.cart-drawer {
+  position:fixed;
+  top:0;
+  right:-400px;
+  width:400px;
+  max-width:100%;
+  height:100%;
+  background:#fff;
+  z-index:200;
+  transition:right 0.35s ease;
+  display:flex;
+  flex-direction:column;
+}
+.cart-drawer.open { right:0; }
+.cart-header {
+  padding:22px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.cart-header h3 {
+  font-size:18px;
+  font-weight:800;
+  color:var(--dark);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.cart-header h3 i { color:var(--red); }
+.cart-close {
+  background:none;
+  border:none;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--gray);
+  padding:4px 8px;
+  border-radius:4px;
+}
+.cart-close:hover { background:var(--light-gray); color:var(--red); }
+.cart-items { flex:1; overflow-y:auto; padding:20px; }
+.cart-empty {
+  text-align:center;
+  padding:60px 20px;
+  color:var(--gray);
+}
+.cart-empty i {
+  font-size:50px;
+  margin-bottom:14px;
+  color:#ddd;
+  display:block;
+}
+.cart-item {
+  display:flex;
+  gap:12px;
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+.cart-item img {
+  width:72px;
+  height:72px;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+.cart-item-info { flex:1; min-width:0; }
+.cart-item-info h4 {
+  font-size:14px;
+  font-weight:600;
+  color:var(--dark);
+  margin-bottom:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.cart-item-price {
+  color:var(--red);
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:8px;
+}
+.qty-mini {
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+}
+.qty-mini button {
+  width:28px;
+  height:28px;
+  border:none;
+  background:#fff;
+  cursor:pointer;
+  font-size:14px;
+}
+.qty-mini button:hover { background:var(--light-gray); color:var(--red); }
+.qty-mini span {
+  min-width:32px;
+  text-align:center;
+  font-size:13px;
+  font-weight:700;
+}
+.cart-footer {
+  padding:22px 20px;
+  border-top:1px solid var(--border);
+  background:#fafafa;
+}
+.cart-total {
+  display:flex;
+  justify-content:space-between;
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:16px;
+  color:var(--dark);
+}
+.cart-total span:last-child { color:var(--red); }
+.checkout-btn {
+  width:100%;
+  padding:15px;
+  background:var(--green);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.checkout-btn:hover { background:var(--green-dark); }
+.checkout-btn:disabled { background:#ccc; cursor:not-allowed; }
+
+/* RESPONSIVE */
+@media (max-width:960px) {
+  .contact-cards { grid-template-columns:1fr; }
+  .contact-main { grid-template-columns:1fr; }
+  .footer-inner { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:768px) {
+  .header-inner { padding:14px 16px; }
+  .nav-links {
+    position:fixed;
+    top:0;
+    left:-100%;
+    width:260px;
+    height:100vh;
+    background:#fff;
+    flex-direction:column;
+    padding:80px 30px;
+    gap:20px;
+    transition:left 0.3s;
+    box-shadow:2px 0 20px rgba(0,0,0,0.1);
+    z-index:200;
+  }
+  .nav-links.open { left:0; }
+  .nav-links a { font-size:16px; }
+  .mobile-toggle { display:block; order:-1; }
+  .cart-btn { padding:8px 14px; font-size:13px; }
+  .cart-btn .btn-text { display:none; }
+  .cart-drawer { width:100%; right:-100%; }
+  .container { padding:40px 16px; }
+  .page-header { padding:50px 16px; }
+  .page-header h1 { font-size:28px; }
+  .form-box { padding:28px 22px; }
+  .form-row { grid-template-columns:1fr; }
+  .map-wrap { height:300px; }
+}
+@media (max-width:500px) {
+  .footer-inner { grid-template-columns:1fr; gap:24px; }
+  .footer-bottom { flex-direction:column; }
+  .contact-card { padding:26px 20px; }
+  .info-box { padding:22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  <i class="fa-brands fa-whatsapp"></i>
+  Free shipping on orders above ₹999 — Order directly on WhatsApp
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    <a href="index.html" class="logo">
+      <span class="logo-badge">1947</span>
+      <span class="logo-text">Clothing<span>Store</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="header-actions">
+      <button class="icon-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="cart-btn" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="btn-text">Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <h1>Get in <span>Touch</span></h1>
+    <p>We'd love to hear from you. Reach out via WhatsApp, phone, or visit our store.</p>
+    <div class="breadcrumb">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span class="current">Contact</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- CONTACT CARDS -->
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="contact-card-icon icon-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <h3>WhatsApp</h3>
+      <p>Fastest way to order<br>or ask about products</p>
+      <a href="https://wa.me/918590988090" target="_blank" rel="noopener" class="contact-card-link">
+        <i class="fa-solid fa-comment-dots"></i>
+        Chat Now
+      </a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-icon icon-phone">
+        <i class="fa-solid fa-phone"></i>
+      </div>
+      <h3>Call Us</h3>
+      <p>Talk to our team<br>for assistance</p>
+      <a href="tel:+918590988090" class="contact-card-link">
+        <i class="fa-solid fa-phone-volume"></i>
+        +91 85909 88090
+      </a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-icon icon-location">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+      <h3>Visit Store</h3>
+      <p>MG Road, Ernakulam<br>Kerala, India</p>
+      <a href="https://maps.google.com/?q=MG+Road+Ernakulam" target="_blank" rel="noopener" class="contact-card-link">
+        <i class="fa-solid fa-directions"></i>
+        Get Directions
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN: FORM + INFO -->
+  <div class="contact-main">
+
+    <!-- FORM -->
+    <div class="form-box">
+      <h2>Send us a <span>Message</span></h2>
+      <p>Fill the form below and we'll get back to you on WhatsApp immediately.</p>
+
+      <form id="contactForm" onsubmit="sendContactWhatsApp(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input type="text" id="cName" class="form-input" placeholder="Enter your name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone / WhatsApp *</label>
+            <input type="tel" id="cPhone" class="form-input" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email (Optional)</label>
+          <input type="email" id="cEmail" class="form-input" placeholder="you@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Subject *</label>
+          <select id="cSubject" class="form-select" required>
+            <option value="">Select a topic</option>
+            <option value="Order Enquiry">Order Enquiry</option>
+            <option value="Product Information">Product Information</option>
+            <option value="Pre-Order Request">Pre-Order Request</option>
+            <option value="Imported Brands">Imported Brands</option>
+            <option value="Bulk Order">Bulk Order</option>
+            <option value="Feedback">Feedback</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message *</label>
+          <textarea id="cMessage" class="form-textarea" placeholder="Type your message here..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          Send on WhatsApp
+        </button>
+      </form>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="info-panel">
+
+      <!-- Store Info -->
+      <div class="info-box">
+        <h3><i class="fa-solid fa-store"></i> Store Information</h3>
+        <ul class="info-list">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Address</strong>
+              MG Road, Ernakulam<br>Kerala, India - 682035
+            </div>
+          </li>
+          <li>
+            <i class="fa-brands fa-whatsapp"></i>
+            <div>
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/918590988090" target="_blank" rel="noopener">+91 85909 88090</a>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <strong>Email</strong>
+              <a href="mailto:hello@1947clothingstore.com">hello@1947clothingstore.com</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Hours -->
+      <div class="info-box">
+        <h3><i class="fa-solid fa-clock"></i> Store Hours</h3>
+        <ul class="hours-list">
+          <li>
+            <span class="day">Monday - Friday</span>
+            <span class="time">10:00 AM - 9:00 PM</span>
+          </li>
+          <li>
+            <span class="day">Saturday</span>
+            <span class="time">10:00 AM - 9:30 PM</span>
+          </li>
+          <li>
+            <span class="day">Sunday</span>
+            <span class="time">11:00 AM - 8:00 PM</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <h2>Find Us on Map</h2>
+    <div class="map-wrap">
+      <iframe 
+        src="https://www.google.com/maps?q=MG+Road+Ernakulam+Kerala&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I place an order?
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Simply browse our collection, click "Order" on any product, and you'll be redirected to WhatsApp with the product details pre-filled. Just send the message and we'll confirm your order instantly.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can I pre-order premium or imported brands?
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Yes! We offer pre-order services for any premium or imported brand. Just send us the product details on WhatsApp, and we'll arrange it for you. Pre-order timelines depend on the brand and availability.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Do you offer free shipping?
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Yes, we offer free shipping on orders above ₹999. For orders below that, a small shipping charge applies based on your location.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What is your return policy?
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>We offer a 7-day return policy on all products (except pre-orders and personalized items). The product must be in original condition with tags intact. Contact us on WhatsApp to initiate a return.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Are your products authentic?
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">
+        <p>Absolutely. We deal exclusively in premium and luxury products from authentic brands. Every item is verified and sourced directly. We've been trusted by the Indian film industry for our commitment to authenticity.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">
+        <span class="footer-brand-badge">1947</span>
+        <span class="footer-brand-text">Clothing<span>Store</span></span>
+      </div>
+      <p>Your trusted fashion destination since our journey began. Premium quality clothing at the best prices.</p>
+      <div class="social-links">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://wa.me/918590988090" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> All Products</a></li>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> New Arrivals</a></li>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> Best Sellers</a></li>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Shipping Info</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Returns</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Privacy Policy</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 <strong>1947 Clothing Store</strong>. All rights reserved. | MG Road, Ernakulam</p>
+    <p>
+      WhatsApp: <a href="https://wa.me/918590988090">+91 85909 88090</a>
+    </p>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3><i class="fa-solid fa-bag-shopping"></i> Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="checkout-btn" id="checkoutBtn" onclick="checkoutWhatsApp()">
+      <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  /* FAQ Toggle */
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    item.classList.toggle('open');
+  }
+
+  /* Contact Form → WhatsApp */
+  function sendContactWhatsApp(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('cName').value.trim();
+    const phone = document.getElementById('cPhone').value.trim();
+    const email = document.getElementById('cEmail').value.trim();
+    const subject = document.getElementById('cSubject').value;
+    const message = document.getElementById('cMessage').value.trim();
+
+    if (!name || !phone || !subject || !message) {
+      alert('Please fill all required fields.');
+      return;
+    }
+
+    // Get WhatsApp number from products.js (or use fixed)
+    const waNumber = (typeof WHATSAPP_NUMBER !== 'undefined') ? WHATSAPP_NUMBER : '918590988090';
+
+    const msg =
+`📩 *New Contact Message*
+
+👤 *Name:* ${name}
+📱 *Phone:* ${phone}
+${email ? `📧 *Email:* ${email}\n` : ''}📌 *Subject:* ${subject}
+
+💬 *Message:*
+${message}
+
+—
+Sent from 1947 Clothing Store website`;
+
+    const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+
+    // Reset form
+    document.getElementById('contactForm').reset();
+  }
+</script>
+
+</body>
+</html>
