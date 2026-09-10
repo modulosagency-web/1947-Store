@@ -1,1 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About 1947 Clothing Store — Premium and luxury fashion since our journey began in Ernakulam. Trusted by the Indian film industry.">
+<title>About Us — 1947 Clothing Store</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ═══════════════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════════════ */
+* { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
+
+:root {
+  --red:#d32f2f;
+  --red-dark:#b71c1c;
+  --red-light:#f44336;
+  --green:#25D366;
+  --green-dark:#128C7E;
+  --dark:#1a1a1a;
+  --gray:#666;
+  --light-gray:#f7f7f7;
+  --border:#e5e5e5;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:#fff;
+  color:#333;
+  line-height:1.7;
+  font-size:15px;
+}
+
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+button { font-family:inherit; cursor:pointer; }
+
+/* ═══════════════════════════════════════════════
+   ANNOUNCEMENT
+═══════════════════════════════════════════════ */
+.announcement {
+  background:var(--dark);
+  color:#fff;
+  text-align:center;
+  padding:10px 15px;
+  font-size:13px;
+  letter-spacing:0.3px;
+}
+.announcement i { color:var(--red-light); margin-right:6px; }
+
+/* ═══════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════ */
+header {
+  background:#fff;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.header-inner {
+  max-width:1200px;
+  margin:0 auto;
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo {
+  font-size:24px;
+  font-weight:900;
+  color:var(--dark);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.logo-badge {
+  background:var(--red);
+  color:#fff;
+  padding:3px 8px;
+  border-radius:4px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.logo-text { font-weight:800; }
+.logo-text span { color:var(--red); }
+
+.nav-links { display:flex; list-style:none; gap:32px; }
+.nav-links a {
+  font-size:14px;
+  font-weight:500;
+  color:#555;
+  transition:color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color:var(--red); }
+
+.header-actions { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  background:none;
+  border:none;
+  width:40px;
+  height:40px;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  color:var(--dark);
+  font-size:16px;
+  transition:background 0.2s;
+}
+.icon-btn:hover { background:var(--light-gray); }
+.cart-btn {
+  position:relative;
+  background:var(--dark);
+  color:#fff;
+  border:none;
+  padding:10px 18px;
+  border-radius:6px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:background 0.2s;
+}
+.cart-btn:hover { background:var(--red); }
+.cart-count {
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  background:var(--red);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  min-width:20px;
+  height:20px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 5px;
+}
+.mobile-toggle {
+  display:none;
+  background:none;
+  border:none;
+  font-size:22px;
+  color:var(--dark);
+  cursor:pointer;
+}
+
+/* ═══════════════════════════════════════════════
+   PAGE HEADER
+═══════════════════════════════════════════════ */
+.page-header {
+  background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
+  color:#fff;
+  padding:70px 20px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.page-header::before {
+  content:'1947';
+  position:absolute;
+  right:-40px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:280px;
+  font-weight:900;
+  color:rgba(211,47,47,0.08);
+  letter-spacing:-15px;
+  user-select:none;
+  pointer-events:none;
+}
+.page-header-inner {
+  max-width:1200px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+.page-header h1 {
+  font-size:44px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  margin-bottom:14px;
+}
+.page-header h1 span { color:var(--red-light); }
+.page-header p {
+  font-size:16px;
+  color:#bbb;
+  max-width:600px;
+  margin:0 auto;
+}
+.breadcrumb {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:13px;
+  color:#888;
+  margin-top:18px;
+}
+.breadcrumb a { color:#888; transition:color 0.2s; }
+.breadcrumb a:hover { color:var(--red-light); }
+.breadcrumb i { font-size:10px; }
+.breadcrumb .current { color:var(--red-light); }
+
+/* ═══════════════════════════════════════════════
+   CONTAINER
+═══════════════════════════════════════════════ */
+.container {
+  max-width:1200px;
+  margin:0 auto;
+  padding:60px 20px;
+}
+
+/* ═══════════════════════════════════════════════
+   STORY SECTION
+═══════════════════════════════════════════════ */
+.story-section {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+  margin-bottom:70px;
+}
+.story-text h2 {
+  font-size:32px;
+  font-weight:900;
+  color:var(--dark);
+  margin-bottom:18px;
+  letter-spacing:-1px;
+  line-height:1.2;
+}
+.story-text h2 span { color:var(--red); }
+.story-text p {
+  font-size:15px;
+  color:#555;
+  line-height:1.9;
+  margin-bottom:16px;
+}
+.story-text p strong { color:var(--dark); }
+
+.story-visual {
+  position:relative;
+  height:420px;
+}
+.visual-card {
+  position:absolute;
+  border-radius:14px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:44px;
+  color:#fff;
+}
+.visual-card:nth-child(1) {
+  width:65%;
+  height:80%;
+  top:0;
+  left:0;
+  background:linear-gradient(135deg,var(--red),var(--red-dark));
+}
+.visual-card:nth-child(2) {
+  width:55%;
+  height:65%;
+  bottom:0;
+  right:0;
+  background:linear-gradient(135deg,#1a1a1a,#2a2a2a);
+  border:2px solid var(--red);
+}
+.visual-badge {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;
+  color:var(--dark);
+  padding:14px 22px;
+  border-radius:50px;
+  font-size:14px;
+  font-weight:800;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:2;
+  white-space:nowrap;
+}
+.visual-badge i { color:var(--red); }
+
+/* ═══════════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════════ */
+.stats-bar {
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:20px;
+  padding:36px 30px;
+  background:linear-gradient(135deg,#1a1a1a,#2a1010);
+  border-radius:16px;
+  margin-bottom:70px;
+  position:relative;
+  overflow:hidden;
+}
+.stats-bar::before {
+  content:'';
+  position:absolute;
+  top:-50%;
+  right:-10%;
+  width:400px;
+  height:400px;
+  background:radial-gradient(circle, rgba(211,47,47,0.3) 0%, transparent 70%);
+  border-radius:50%;
+}
+.stat-item {
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+.stat-number {
+  font-size:36px;
+  font-weight:900;
+  color:var(--red-light);
+  margin-bottom:6px;
+  letter-spacing:-1px;
+}
+.stat-label {
+  font-size:13px;
+  color:#bbb;
+  font-weight:600;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+}
+
+/* ═══════════════════════════════════════════════
+   VALUE CARDS
+═══════════════════════════════════════════════ */
+.section-head {
+  text-align:center;
+  margin-bottom:46px;
+}
+.section-head h2 {
+  font-size:32px;
+  font-weight:900;
+  color:var(--dark);
+  letter-spacing:-1px;
+  margin-bottom:10px;
+}
+.section-head h2 span { color:var(--red); }
+.section-head p {
+  font-size:15px;
+  color:var(--gray);
+  max-width:560px;
+  margin:0 auto;
+}
+
+.values-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:24px;
+  margin-bottom:70px;
+}
+.value-card {
+  padding:32px 26px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  transition:all 0.3s;
+  background:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.value-card::before {
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:4px;
+  background:linear-gradient(90deg,var(--red),var(--red-light));
+  transition:width 0.4s;
+}
+.value-card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.1);
+  border-color:transparent;
+}
+.value-card:hover::before { width:100%; }
+
+.value-icon {
+  width:60px;
+  height:60px;
+  background:linear-gradient(135deg,rgba(211,47,47,0.1),rgba(244,67,54,0.1));
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  color:var(--red);
+  margin-bottom:20px;
+}
+.value-card h3 {
+  font-size:18px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:10px;
+  letter-spacing:-0.3px;
+}
+.value-card p {
+  font-size:14px;
+  color:var(--gray);
+  line-height:1.7;
+}
+
+/* ═══════════════════════════════════════════════
+   SPECIAL HIGHLIGHT
+═══════════════════════════════════════════════ */
+.highlight-box {
+  background:linear-gradient(135deg,var(--red),var(--red-dark));
+  color:#fff;
+  padding:50px 40px;
+  border-radius:16px;
+  margin-bottom:70px;
+  display:flex;
+  align-items:center;
+  gap:30px;
+  position:relative;
+  overflow:hidden;
+}
+.highlight-box::before {
+  content:'1947';
+  position:absolute;
+  right:-30px;
+  bottom:-60px;
+  font-size:200px;
+  font-weight:900;
+  color:rgba(255,255,255,0.08);
+  letter-spacing:-10px;
+  user-select:none;
+}
+.highlight-icon {
+  width:80px;
+  height:80px;
+  background:rgba(255,255,255,0.15);
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:36px;
+  flex-shrink:0;
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.2);
+}
+.highlight-content {
+  position:relative;
+  z-index:1;
+}
+.highlight-content h3 {
+  font-size:26px;
+  font-weight:900;
+  margin-bottom:10px;
+  letter-spacing:-0.5px;
+}
+.highlight-content p {
+  font-size:15px;
+  color:rgba(255,255,255,0.9);
+  line-height:1.7;
+}
+
+/* ═══════════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════════ */
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:24px;
+  margin-bottom:70px;
+}
+.service-card {
+  display:flex;
+  gap:20px;
+  padding:26px;
+  background:var(--light-gray);
+  border-radius:12px;
+  border:1px solid transparent;
+  transition:all 0.3s;
+}
+.service-card:hover {
+  border-color:var(--red);
+  background:#fff;
+  transform:translateX(4px);
+}
+.service-icon {
+  width:54px;
+  height:54px;
+  background:#fff;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:var(--red);
+  flex-shrink:0;
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
+.service-body h4 {
+  font-size:16px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:6px;
+}
+.service-body p {
+  font-size:14px;
+  color:var(--gray);
+  line-height:1.7;
+}
+
+/* ═══════════════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════════════ */
+.cta-section {
+  text-align:center;
+  padding:60px 40px;
+  background:var(--light-gray);
+  border-radius:16px;
+  border:1px solid var(--border);
+}
+.cta-icon {
+  width:70px;
+  height:70px;
+  background:var(--green);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin:0 auto 20px;
+  box-shadow:0 10px 30px rgba(37,211,102,0.35);
+}
+.cta-section h2 {
+  font-size:28px;
+  font-weight:900;
+  color:var(--dark);
+  margin-bottom:12px;
+  letter-spacing:-0.5px;
+}
+.cta-section p {
+  font-size:15px;
+  color:var(--gray);
+  max-width:520px;
+  margin:0 auto 30px;
+}
+.cta-buttons {
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.btn-wa {
+  background:var(--green);
+  color:#fff;
+  padding:15px 32px;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:all 0.2s;
+  border:none;
+}
+.btn-wa:hover {
+  background:var(--green-dark);
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(37,211,102,0.35);
+}
+.btn-shop {
+  background:var(--dark);
+  color:#fff;
+  padding:15px 32px;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:all 0.2s;
+}
+.btn-shop:hover {
+  background:var(--red);
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(211,47,47,0.35);
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background:var(--dark);
+  color:#bbb;
+  padding:60px 20px 20px;
+  margin-top:60px;
+}
+.footer-inner {
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+  padding-bottom:40px;
+  border-bottom:1px solid #333;
+}
+.footer-col h4 {
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:18px;
+  letter-spacing:0.3px;
+}
+.footer-brand {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+}
+.footer-brand-badge {
+  background:var(--red);
+  color:#fff;
+  padding:3px 8px;
+  border-radius:4px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.footer-brand-text {
+  font-size:20px;
+  font-weight:800;
+  color:#fff;
+}
+.footer-brand-text span { color:var(--red-light); }
+.footer-col p {
+  font-size:13px;
+  line-height:1.7;
+  color:#999;
+}
+.footer-col ul { list-style:none; }
+.footer-col ul li { margin-bottom:10px; }
+.footer-col ul a {
+  font-size:13px;
+  color:#999;
+  transition:color 0.2s;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.footer-col ul a:hover { color:var(--red-light); }
+.social-links {
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+}
+.social-links a {
+  width:38px;
+  height:38px;
+  background:#2a2a2a;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#bbb;
+  font-size:14px;
+  transition:all 0.2s;
+}
+.social-links a:hover {
+  background:var(--red);
+  color:#fff;
+  transform:translateY(-2px);
+}
+.footer-bottom {
+  max-width:1200px;
+  margin:20px auto 0;
+  text-align:center;
+  font-size:13px;
+  color:#777;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.footer-bottom strong { color:#fff; }
+.footer-bottom a { color:var(--red-light); }
+
+/* ═══════════════════════════════════════════════
+   CART DRAWER
+═══════════════════════════════════════════════ */
+.cart-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.3s;
+  z-index:150;
+}
+.cart-overlay.open { opacity:1; visibility:visible; }
+.cart-drawer {
+  position:fixed;
+  top:0;
+  right:-400px;
+  width:400px;
+  max-width:100%;
+  height:100%;
+  background:#fff;
+  z-index:200;
+  transition:right 0.35s ease;
+  display:flex;
+  flex-direction:column;
+}
+.cart-drawer.open { right:0; }
+.cart-header {
+  padding:22px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.cart-header h3 {
+  font-size:18px;
+  font-weight:800;
+  color:var(--dark);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.cart-header h3 i { color:var(--red); }
+.cart-close {
+  background:none;
+  border:none;
+  font-size:22px;
+  cursor:pointer;
+  color:var(--gray);
+  padding:4px 8px;
+  border-radius:4px;
+}
+.cart-close:hover { background:var(--light-gray); color:var(--red); }
+.cart-items { flex:1; overflow-y:auto; padding:20px; }
+.cart-empty {
+  text-align:center;
+  padding:60px 20px;
+  color:var(--gray);
+}
+.cart-empty i {
+  font-size:50px;
+  margin-bottom:14px;
+  color:#ddd;
+  display:block;
+}
+.cart-item {
+  display:flex;
+  gap:12px;
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+.cart-item img {
+  width:72px;
+  height:72px;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+.cart-item-info { flex:1; min-width:0; }
+.cart-item-info h4 {
+  font-size:14px;
+  font-weight:600;
+  color:var(--dark);
+  margin-bottom:4px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.cart-item-price {
+  color:var(--red);
+  font-weight:700;
+  font-size:15px;
+  margin-bottom:8px;
+}
+.qty-mini {
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+}
+.qty-mini button {
+  width:28px;
+  height:28px;
+  border:none;
+  background:#fff;
+  cursor:pointer;
+  font-size:14px;
+}
+.qty-mini button:hover { background:var(--light-gray); color:var(--red); }
+.qty-mini span {
+  min-width:32px;
+  text-align:center;
+  font-size:13px;
+  font-weight:700;
+}
+.cart-footer {
+  padding:22px 20px;
+  border-top:1px solid var(--border);
+  background:#fafafa;
+}
+.cart-total {
+  display:flex;
+  justify-content:space-between;
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:16px;
+  color:var(--dark);
+}
+.cart-total span:last-child { color:var(--red); }
+.checkout-btn {
+  width:100%;
+  padding:15px;
+  background:var(--green);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.checkout-btn:hover { background:var(--green-dark); }
+.checkout-btn:disabled { background:#ccc; cursor:not-allowed; }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width:960px) {
+  .story-section { grid-template-columns:1fr; gap:30px; }
+  .story-visual { height:340px; }
+  .values-grid { grid-template-columns:repeat(2, 1fr); }
+  .stats-bar { grid-template-columns:repeat(2, 1fr); gap:30px; }
+  .page-header h1 { font-size:34px; }
+  .page-header::before { font-size:200px; }
+  .highlight-box { flex-direction:column; text-align:center; padding:40px 26px; }
+  .services-grid { grid-template-columns:1fr; }
+  .footer-inner { grid-template-columns:1fr 1fr; }
+}
+
+@media (max-width:768px) {
+  .header-inner { padding:14px 16px; }
+  .nav-links {
+    position:fixed;
+    top:0;
+    left:-100%;
+    width:260px;
+    height:100vh;
+    background:#fff;
+    flex-direction:column;
+    padding:80px 30px;
+    gap:20px;
+    transition:left 0.3s;
+    box-shadow:2px 0 20px rgba(0,0,0,0.1);
+    z-index:200;
+  }
+  .nav-links.open { left:0; }
+  .nav-links a { font-size:16px; }
+  .mobile-toggle { display:block; order:-1; }
+  .cart-btn { padding:8px 14px; font-size:13px; }
+  .cart-btn .btn-text { display:none; }
+  .cart-drawer { width:100%; right:-100%; }
+  .container { padding:40px 16px; }
+  .page-header { padding:50px 16px; }
+  .page-header h1 { font-size:28px; }
+  .story-text h2 { font-size:24px; }
+  .section-head h2 { font-size:24px; }
+  .values-grid { grid-template-columns:1fr; }
+}
+
+@media (max-width:500px) {
+  .footer-inner { grid-template-columns:1fr; gap:24px; }
+  .footer-bottom { flex-direction:column; }
+  .stats-bar { padding:26px 20px; }
+  .stat-number { font-size:28px; }
+  .cta-buttons { flex-direction:column; }
+  .cta-buttons a, .cta-buttons button { width:100%; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  <i class="fa-brands fa-whatsapp"></i>
+  Free shipping on orders above ₹999 — Order directly on WhatsApp
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    <a href="index.html" class="logo">
+      <span class="logo-badge">1947</span>
+      <span class="logo-text">Clothing<span>Store</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="header-actions">
+      <button class="icon-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="cart-btn" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="btn-text">Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="page-header-inner">
+    <h1>About <span>Our Story</span></h1>
+    <p>Premium fashion, timeless quality — crafted for those who value the finest.</p>
+    <div class="breadcrumb">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span class="current">About</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- STORY -->
+  <section class="story-section">
+    <div class="story-text">
+      <h2>A Journey of <span>Premium Fashion</span></h2>
+      <p>
+        <strong>1947 Clothing Store</strong> began its journey 9 years ago as a beloved offline store on 
+        <strong>MG Road, Ernakulam</strong>. What started as a passion for premium fashion has grown into 
+        a trusted name among discerning customers across Kerala.
+      </p>
+      <p>
+        From the very beginning, we dedicated ourselves to dealing exclusively in 
+        <strong>premium and luxury products</strong>. Our commitment to quality caught the attention of 
+        the <strong>Indian film industry</strong>, and today we proudly supply premium attire to 
+        renowned actors and celebrities.
+      </p>
+      <p>
+        Every piece in our collection reflects our core philosophy — 
+        <strong>best quality at the best price, with no compromise on craftsmanship</strong>.
+      </p>
+    </div>
+    <div class="story-visual">
+      <div class="visual-card"><i class="fa-solid fa-crown"></i></div>
+      <div class="visual-card"><i class="fa-solid fa-shirt"></i></div>
+      <div class="visual-badge">
+        <i class="fa-solid fa-award"></i>
+        Trusted Since Day One
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-number">9+</div>
+      <div class="stat-label">Years of Trust</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1000+</div>
+      <div class="stat-label">Happy Customers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Authentic Products</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">WhatsApp Support</div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="section-head">
+    <h2>Why Choose <span>1947</span></h2>
+    <p>What sets us apart in the world of premium fashion</p>
+  </div>
+
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-icon"><i class="fa-solid fa-gem"></i></div>
+      <h3>Premium & Luxury</h3>
+      <p>We deal exclusively in premium and luxury products sourced from the finest brands worldwide.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon"><i class="fa-solid fa-medal"></i></div>
+      <h3>No Compromise</h3>
+      <p>Quality is our top priority. Every item is handpicked and verified to meet the highest standards.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon"><i class="fa-solid fa-tags"></i></div>
+      <h3>Best Prices</h3>
+      <p>Premium quality need not be expensive. We deliver the best price for the finest products.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon"><i class="fa-solid fa-film"></i></div>
+      <h3>Celebrity Choice</h3>
+      <p>Trusted by renowned actors from the Indian film industry for their premium wardrobe needs.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon"><i class="fa-solid fa-globe"></i></div>
+      <h3>Imported Collection</h3>
+      <p>Exclusive imported pieces and unique collections that you won't find anywhere else.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+      <h3>Pre-Order Service</h3>
+      <p>Looking for something special? Pre-order any premium or imported brand through us.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight-box">
+    <div class="highlight-icon"><i class="fa-solid fa-star"></i></div>
+    <div class="highlight-content">
+      <h3>Trusted by the Indian Film Industry</h3>
+      <p>
+        Our reputation for exceptional quality and exclusive collections has made us the preferred 
+        choice for film industry professionals. From red carpet events to daily premium wear, we 
+        deliver attire that matches the highest standards of style and quality.
+      </p>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section-head">
+    <h2>What We <span>Offer</span></h2>
+    <p>Exclusive services designed for premium fashion lovers</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-gem"></i></div>
+      <div class="service-body">
+        <h4>Luxury Brands</h4>
+        <p>Curated collection of premium and luxury fashion brands under one roof — from designer wear to iconic labels.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-plane-arrival"></i></div>
+      <div class="service-body">
+        <h4>Imported Collection</h4>
+        <p>Unique imported pieces sourced globally. Discover exclusive fashion that makes a statement.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-solid fa-cart-plus"></i></div>
+      <div class="service-body">
+        <h4>Pre-Order Service</h4>
+        <p>Can't find it? Pre-order any premium or imported brand and we'll get it delivered to you.</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i class="fa-brands fa-whatsapp"></i></div>
+      <div class="service-body">
+        <h4>WhatsApp Ordering</h4>
+        <p>Order directly via WhatsApp — quick, convenient, and personal. No complex checkout required.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-icon"><i class="fa-brands fa-whatsapp"></i></div>
+    <h2>Ready to Experience Premium?</h2>
+    <p>
+      Explore our exclusive collection or get in touch on WhatsApp for personalized assistance, 
+      pre-orders, and queries about imported brands.
+    </p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/918590988090" class="btn-wa" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+        Chat on WhatsApp
+      </a>
+      <a href="shop.html" class="btn-shop">
+        <i class="fa-solid fa-bag-shopping"></i>
+        Browse Collection
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand">
+        <span class="footer-brand-badge">1947</span>
+        <span class="footer-brand-text">Clothing<span>Store</span></span>
+      </div>
+      <p>Your trusted fashion destination since our journey began. Premium quality clothing at the best prices.</p>
+      <div class="social-links">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://wa.me/918590988090" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> All Products</a></li>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> New Arrivals</a></li>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> Best Sellers</a></li>
+        <li><a href="shop.html"><i class="fa-solid fa-angle-right"></i> Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Shipping Info</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Returns</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Privacy Policy</a></li>
+        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 <strong>1947 Clothing Store</strong>. All rights reserved. | MG Road, Ernakulam</p>
+    <p>
+      WhatsApp: <a href="https://wa.me/918590988090">+91 85909 88090</a>
+    </p>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3><i class="fa-solid fa-bag-shopping"></i> Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="checkout-btn" id="checkoutBtn" onclick="checkoutWhatsApp()">
+      <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="js/products.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
