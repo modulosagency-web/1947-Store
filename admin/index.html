@@ -1,1 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- 🔒 SECURITY META -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+
+<title>404 Not Found</title>
+
+<!-- 🎨 FONT AWESOME 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   🎨 RESET & VARIABLES
+═══════════════════════════════════════════════════════ */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-glow: rgba(99, 102, 241, 0.5);
+  --accent: #ec4899;
+  --accent-glow: rgba(236, 72, 153, 0.5);
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.5);
+  --danger: #ef4444;
+  --warning: #f59e0b;
+
+  --bg-1: #0a0a1a;
+  --text-1: #ffffff;
+  --text-2: #b8b8d4;
+  --text-3: #7a7a9a;
+}
+
+/* ═══════════════════════════════════════════════════════
+   🌌 ANIMATED BACKGROUND
+═══════════════════════════════════════════════════════ */
+html, body {
+  min-height: 100vh;
+  background: var(--bg-1);
+  color: var(--text-1);
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(139, 92, 246, 0.25) 0%, transparent 50%);
+  z-index: -2;
+  animation: bgShift 20s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: -1;
+  animation: gridMove 30s linear infinite;
+}
+
+@keyframes bgShift {
+  0%   { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.15) rotate(6deg); }
+}
+
+@keyframes gridMove {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   📦 CONTAINER
+═══════════════════════════════════════════════════════ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   🔐 LOGIN FORM
+═══════════════════════════════════════════════════════ */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  perspective: 1200px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 45px 35px;
+  background: linear-gradient(145deg, rgba(30, 30, 60, 0.85), rgba(15, 15, 35, 0.95));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(99, 102, 241, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  transform-style: preserve-3d;
+  animation: boxFloat 6s ease-in-out infinite;
+  position: relative;
+}
+
+.login-box::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+  border-radius: 26px;
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(15px);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes boxFloat {
+  0%, 100% { transform: translateY(0) rotateX(0deg); }
+  50%      { transform: translateY(-8px) rotateX(1deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.8; }
+}
+
+.login-icon {
+  width: 80px; height: 80px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  color: #fff;
+  box-shadow:
+    0 10px 30px var(--primary-glow),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3);
+  transform: rotate(-5deg);
+  transition: transform 0.3s;
+}
+
+.login-box:hover .login-icon {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.login-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #b8b8d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 13px;
+  margin-bottom: 30px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   🎯 INPUT FIELDS
+═══════════════════════════════════════════════════════ */
+.field {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.field-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: var(--text-3);
+  pointer-events: none;
+  transition: color 0.3s;
+}
+
+.field input {
+  width: 100%;
+  padding: 16px 18px 16px 50px;
+  background: rgba(10, 10, 26, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  color: var(--text-1);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.field input::placeholder { color: var(--text-3); }
+
+.field input:focus {
+  border-color: var(--primary);
+  background: rgba(10, 10, 26, 0.9);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    0 0 0 4px rgba(99, 102, 241, 0.15),
+    0 0 25px rgba(99, 102, 241, 0.3);
+}
+
+.field:focus-within .field-icon {
+  color: var(--primary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   🚀 3D BUTTONS
+═══════════════════════════════════════════════════════ */
+.btn-3d {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow:
+    0 8px 0 var(--primary-dark),
+    0 12px 25px rgba(99, 102, 241, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.15s ease;
+  transform: translateY(0);
+}
+
+.btn-3d:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 0 var(--primary-dark),
+    0 16px 35px rgba(99, 102, 241, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-3d:active:not(:disabled) {
+  transform: translateY(6px);
+  box-shadow:
+    0 2px 0 var(--primary-dark),
+    0 4px 15px rgba(99, 102, 241, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-3d:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: 0 4px 0 #333, 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-3d::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.btn-3d:hover:not(:disabled)::before { left: 100%; }
+
+.btn-success {
+  background: linear-gradient(135deg, var(--success), #059669);
+  box-shadow:
+    0 8px 0 #047857,
+    0 12px 25px var(--success-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn-success:hover:not(:disabled) {
+  box-shadow:
+    0 10px 0 #047857,
+    0 16px 35px var(--success-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn-success:active:not(:disabled) {
+  box-shadow:
+    0 2px 0 #047857,
+    0 4px 15px var(--success-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════
+   ⚠️ ALERTS
+═══════════════════════════════════════════════════════ */
+.alert {
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  animation: slideDown 0.4s ease;
+  border: 1px solid transparent;
+}
+
+.alert.show { display: flex; }
+
+.alert-error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.3);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+.alert-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 20px var(--success-glow);
+}
+.alert-warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.3);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+.alert-loading {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.alert i { font-size: 16px; flex-shrink: 0; }
+
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   📋 ADMIN PANEL
+═══════════════════════════════════════════════════════ */
+.panel { display: none; animation: fadeInUp 0.6s ease; }
+.panel.active { display: block; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 28px;
+  background: linear-gradient(145deg, rgba(30, 30, 60, 0.7), rgba(15, 15, 35, 0.85));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  margin-bottom: 26px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  box-shadow:
+    0 8px 20px var(--primary-glow),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  transform: rotate(-3deg);
+}
+
+.brand-text h1 {
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #fff, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.brand-text p {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.btn-logout {
+  padding: 10px 18px;
+  background: linear-gradient(135deg, var(--danger), #b91c1c);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow:
+    0 5px 0 #991b1b,
+    0 8px 20px rgba(239, 68, 68, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.15s;
+}
+
+.btn-logout:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 7px 0 #991b1b,
+    0 12px 25px rgba(239, 68, 68, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-logout:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 2px 0 #991b1b,
+    0 4px 10px rgba(239, 68, 68, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════
+   📦 SECTIONS (CARDS)
+═══════════════════════════════════════════════════════ */
+.section {
+  padding: 28px;
+  background: linear-gradient(145deg, rgba(30, 30, 60, 0.65), rgba(15, 15, 35, 0.8));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  margin-bottom: 22px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.section:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(99, 102, 241, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.section-title-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(236, 72, 153, 0.25));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #a5b4fc;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════
+   🎯 FORM ELEMENTS
+═══════════════════════════════════════════════════════ */
+.form-group { margin-bottom: 16px; }
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(10, 10, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: var(--text-1);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--text-3); }
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--primary);
+  background: rgba(10, 10, 26, 0.9);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    0 0 0 4px rgba(99, 102, 241, 0.15),
+    0 0 25px rgba(99, 102, 241, 0.25);
+}
+
+.row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 640px) {
+  .row-2 { grid-template-columns: 1fr; }
+}
+
+.help-text {
+  font-size: 12px;
+  color: var(--text-3);
+  margin-top: 6px;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.help-text a { color: var(--primary); text-decoration: none; }
+.help-text a:hover { text-decoration: underline; }
+
+/* ═══════════════════════════════════════════════════════
+   📦 PRODUCT LIST
+═══════════════════════════════════════════════════════ */
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(10, 10, 26, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.product-item:hover {
+  background: rgba(10, 10, 26, 0.8);
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateX(4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.product-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  background: rgba(10, 10, 26, 0.8);
+}
+
+.product-info { flex: 1; min-width: 0; }
+
+.product-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+
+.product-price {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.product-old {
+  color: var(--text-3);
+  text-decoration: line-through;
+  font-size: 12px;
+}
+
+.product-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 20px;
+  font-size: 11px;
+  color: #a5b4fc;
+  font-weight: 500;
+}
+
+.btn-delete {
+  padding: 10px 14px;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(185, 28, 28, 0.9));
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  box-shadow:
+    0 4px 0 rgba(127, 29, 29, 1),
+    0 6px 15px rgba(239, 68, 68, 0.3);
+}
+
+.btn-delete:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 rgba(127, 29, 29, 1),
+    0 10px 20px rgba(239, 68, 68, 0.4);
+}
+
+.btn-delete:active {
+  transform: translateY(2px);
+  box-shadow:
+    0 2px 0 rgba(127, 29, 29, 1),
+    0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-3);
+}
+
+.empty-state-icon {
+  font-size: 48px;
+  opacity: 0.4;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+/* ═══════════════════════════════════════════════════════
+   📊 COUNT BADGE
+═══════════════════════════════════════════════════════ */
+.count-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+/* ═══════════════════════════════════════════════════════
+   📱 RESPONSIVE
+═══════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .container { padding: 16px 12px; }
+  .header-bar { padding: 16px 18px; }
+  .brand-text h1 { font-size: 16px; }
+  .brand-icon { width: 42px; height: 42px; font-size: 18px; }
+  .btn-logout { padding: 8px 14px; font-size: 12px; }
+  .btn-logout span { display: none; }
+  .section { padding: 20px; }
+  .section-title { font-size: 15px; }
+  .login-box { padding: 35px 24px; }
+  .product-item { padding: 12px; gap: 12px; }
+  .product-img { width: 52px; height: 52px; }
+  .product-info h4 { font-size: 14px; }
+  .btn-delete span { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     🔐 LOGIN SCREEN
+═══════════════════════════════════════════════════════ -->
+<div class="login-wrapper" id="loginWrapper">
+  <div class="login-box">
+    <div class="login-icon">
+      <i class="fa-solid fa-shield-halved"></i>
+    </div>
+    <h1 class="login-title">Admin Access</h1>
+    <p class="login-subtitle">Authorized personnel only</p>
+
+    <div class="alert alert-error" id="errorMsg">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="errorText"></span>
+    </div>
+    <div class="alert alert-warning" id="lockMsg">
+      <i class="fa-solid fa-lock"></i>
+      <span id="lockText"></span>
+    </div>
+
+    <div class="field">
+      <input type="text" id="adminUser" placeholder="Username" autocomplete="off" spellcheck="false">
+      <i class="fa-solid fa-user field-icon"></i>
+    </div>
+
+    <div class="field">
+      <input type="password" id="adminPass" placeholder="Password" autocomplete="off"
+             onkeypress="if(event.key==='Enter')login()">
+      <i class="fa-solid fa-lock field-icon"></i>
+    </div>
+
+    <button class="btn-3d" id="loginBtn" onclick="login()">
+      <i class="fa-solid fa-right-to-bracket"></i>
+      <span>Sign In</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ⚙️ ADMIN PANEL
+═══════════════════════════════════════════════════════ -->
+<div class="container" style="display:none;" id="panelWrapper">
+  <div class="panel" id="panel">
+
+    <!-- Header -->
+    <div class="header-bar">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="brand-text">
+          <h1>Admin Panel</h1>
+          <p>Manage your store</p>
+        </div>
+      </div>
+      <button class="btn-logout" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+
+    <!-- GitHub Settings -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title-icon"><i class="fa-brands fa-github"></i></span>
+        <span>GitHub Settings</span>
+      </div>
+
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" id="ghUser" class="form-input" placeholder="github-username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Repository</label>
+          <input type="text" id="ghRepo" class="form-input" placeholder="repo-name">
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Branch</label>
+          <input type="text" id="ghBranch" class="form-input" value="main">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Personal Access Token</label>
+          <input type="password" id="ghToken" class="form-input" placeholder="ghp_...">
+        </div>
+      </div>
+
+      <p class="help-text">
+        <i class="fa-solid fa-shield-halved"></i>
+        Token aapke browser me hi safe rehta hai — GitHub pe kabhi nahi jata.
+      </p>
+
+      <div style="margin-top:18px;">
+        <button class="btn-3d" onclick="saveSettings()">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>Save Settings</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Add Product -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title-icon"><i class="fa-solid fa-plus"></i></span>
+        <span>Add New Product</span>
+      </div>
+
+      <div class="alert" id="status">
+        <i id="statusIcon" class="fa-solid fa-circle-info"></i>
+        <span id="statusText"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Product Title *</label>
+        <input type="text" id="pName" class="form-input" placeholder="e.g. Wireless Headphones">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description *</label>
+        <textarea id="pDesc" class="form-textarea" placeholder="Premium sound quality with 20 hours battery life..."></textarea>
+      </div>
+
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Selling Price (₹) *</label>
+          <input type="number" id="pPrice" class="form-input" placeholder="1499">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Old Price (₹)</label>
+          <input type="number" id="pOldPrice" class="form-input" placeholder="2499 (optional)">
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <input type="text" id="pCategory" class="form-input" value="General">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Image URL *</label>
+          <input type="url" id="pImage" class="form-input" placeholder="https://...">
+        </div>
+      </div>
+
+      <p class="help-text">
+        <i class="fa-solid fa-circle-info"></i>
+        Image ke liye
+        <a href="https://imgbb.com" target="_blank">ImgBB</a> ya
+        <a href="https://unsplash.com" target="_blank">Unsplash</a> use karo.
+      </p>
+
+      <div style="margin-top:18px;">
+        <button class="btn-3d btn-success" id="publishBtn" onclick="addProduct()">
+          <i class="fa-solid fa-rocket"></i>
+          <span>Publish to GitHub</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Product List -->
+    <div class="section">
+      <div class="section-title">
+        <span class="section-title-icon"><i class="fa-solid fa-box"></i></span>
+        <span>Products</span>
+        <span class="count-badge" id="prodCount">0</span>
+      </div>
+      <div id="productList"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   🔒 SECURITY CONFIG
+═══════════════════════════════════════════════════════ */
+const _u = "admin";
+const _p = "1947@store";
+
+const MAX_ATTEMPTS = 3;
+const LOCK_TIME = 5 * 60 * 1000;
+const SESSION_TIME = 30 * 60 * 1000;
+const STORAGE_KEY = 'adminSession_v3';
+
+/* ═══════════════════════════════════════════════════════
+   🔐 SHA-256 HASH
+═══════════════════════════════════════════════════════ */
+async function sha256(text) {
+  const buf = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash))
+    .map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/* ═══════════════════════════════════════════════════════
+   🚫 SECURITY BLOCKS
+═══════════════════════════════════════════════════════ */
+document.addEventListener('contextmenu', e => {
+  if (!isLoggedIn()) e.preventDefault();
+});
+
+document.addEventListener('keydown', e => {
+  if (!isLoggedIn()) {
+    if (e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) ||
+        (e.ctrlKey && ['U','S'].includes(e.key.toUpperCase()))) {
+      e.preventDefault();
+      return false;
+    }
+  }
+});
+
+document.addEventListener('selectstart', e => {
+  if (!isLoggedIn()) e.preventDefault();
+});
+
+document.addEventListener('copy', e => {
+  if (!isLoggedIn()) e.preventDefault();
+});
+
+/* ═══════════════════════════════════════════════════════
+   🔑 AUTH
+═══════════════════════════════════════════════════════ */
+function isLoggedIn() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    if (!s.expires || Date.now() > s.expires) {
+      localStorage.removeItem(STORAGE_KEY);
+      return false;
+    }
+    return s.auth === true;
+  } catch { return false; }
+}
+
+function getAttempts() {
+  return parseInt(localStorage.getItem('adminAttempts_v3') || '0');
+}
+function getLockUntil() {
+  return parseInt(localStorage.getItem('adminLockUntil_v3') || '0');
+}
+
+function showAlert(id, textId, msg, type) {
+  const el = document.getElementById(id);
+  document.getElementById(textId).textContent = msg;
+  el.className = 'alert alert-' + type + ' show';
+  if (type !== 'loading') {
+    setTimeout(() => el.classList.remove('show'), 4500);
+  }
+}
+
+async function login() {
+  const user = document.getElementById('adminUser').value.trim();
+  const pass = document.getElementById('adminPass').value;
+  const btn = document.getElementById('loginBtn');
+
+  const lockUntil = getLockUntil();
+  if (lockUntil > Date.now()) {
+    const mins = Math.ceil((lockUntil - Date.now()) / 60000);
+    showAlert('lockMsg', 'lockText', `Locked. Try again in ${mins} min.`, 'warning');
+    return;
+  }
+
+  if (!user || !pass) {
+    showAlert('errorMsg', 'errorText', 'Username aur password dono daalo.', 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Verifying...</span>';
+
+  const inputHash = await sha256(user + ':' + pass);
+  const expectedHash = await sha256(_u + ':' + _p);
+
+  if (inputHash === expectedHash) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      auth: true,
+      expires: Date.now() + SESSION_TIME,
+      u: user
+    }));
+    localStorage.removeItem('adminAttempts_v3');
+    localStorage.removeItem('adminLockUntil_v3');
+    showPanel();
+  } else {
+    const attempts = getAttempts() + 1;
+    localStorage.setItem('adminAttempts_v3', attempts);
+
+    if (attempts >= MAX_ATTEMPTS) {
+      localStorage.setItem('adminLockUntil_v3', Date.now() + LOCK_TIME);
+      localStorage.removeItem('adminAttempts_v3');
+      showAlert('lockMsg', 'lockText', `${MAX_ATTEMPTS} galat attempts. 5 min lock.`, 'warning');
+    } else {
+      showAlert('errorMsg', 'errorText', `Galat credentials! ${MAX_ATTEMPTS - attempts} attempts bache.`, 'error');
+    }
+    document.getElementById('adminPass').value = '';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i><span>Sign In</span>';
+  }
+}
+
+function logout() {
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
+function showPanel() {
+  document.getElementById('loginWrapper').style.display = 'none';
+  document.getElementById('panelWrapper').style.display = 'block';
+  document.getElementById('panel').classList.add('active');
+  loadSettings();
+  loadProducts();
+
+  setTimeout(() => {
+    if (!isLoggedIn()) return;
+    alert('Session expired. Login again.');
+    logout();
+  }, SESSION_TIME);
+}
+
+/* ═══════════════════════════════════════════════════════
+   ⚙️ GITHUB LOGIC
+═══════════════════════════════════════════════════════ */
+const PRODUCTS_FILE_PATH = "js/products.js";
+let settings = JSON.parse(localStorage.getItem('ghSettings') || '{}');
+let productsData = [];
+
+function saveSettings() {
+  settings = {
+    user: document.getElementById('ghUser').value.trim(),
+    repo: document.getElementById('ghRepo').value.trim(),
+    branch: document.getElementById('ghBranch').value.trim() || 'main',
+    token: document.getElementById('ghToken').value.trim()
+  };
+  if (!settings.user || !settings.repo || !settings.token) {
+    showStatus('error', 'Saare GitHub fields bharein!');
+    return;
+  }
+  localStorage.setItem('ghSettings', JSON.stringify(settings));
+  showStatus('success', 'Settings saved successfully!');
+}
+
+function loadSettings() {
+  if (settings.user) document.getElementById('ghUser').value = settings.user;
+  if (settings.repo) document.getElementById('ghRepo').value = settings.repo;
+  if (settings.branch) document.getElementById('ghBranch').value = settings.branch;
+  if (settings.token) document.getElementById('ghToken').value = settings.token;
+}
+
+async function loadProducts() {
+  if (!settings.user || !settings.repo || !settings.token) return;
+  try {
+    const url = `https://api.github.com/repos/${settings.user}/${settings.repo}/contents/${PRODUCTS_FILE_PATH}?ref=${settings.branch}&t=${Date.now()}`;
+    const res = await fetch(url, {
+      headers: { 'Authorization': `token ${settings.token}` }
+    });
+    if (!res.ok) return;
+    const data = await res.json();
+    const content = decodeURIComponent(escape(atob(data.content)));
+    const match = content.match(/window\.PRODUCTS_DATA\s*=\s*(\[[\s\S]*?\]);/);
+    if (match) productsData = JSON.parse(match[1]);
+    renderProductList();
+  } catch (e) { console.warn(e); }
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, m => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[m]);
+}
+
+function renderProductList() {
+  const box = document.getElementById('productList');
+  document.getElementById('prodCount').textContent = productsData.length;
+
+  if (productsData.length === 0) {
+    box.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon"><i class="fa-solid fa-box-open"></i></div>
+        <p>Koi product nahi hai. Upar form se add karo!</p>
+      </div>`;
+    return;
+  }
+
+  const fallback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23334155' width='100' height='100'/><text x='50' y='60' text-anchor='middle' fill='%2394a3b8' font-size='40'>📦</text></svg>";
+
+  box.innerHTML = productsData.map(p => `
+    <div class="product-item">
+      <img class="product-img" src="${escapeHtml(p.image)}" alt="" onerror="this.src='${fallback}'">
+      <div class="product-info">
+        <h4>${escapeHtml(p.name)}</h4>
+        <div class="product-meta">
+          <span class="product-price">₹${p.price}</span>
+          ${p.oldPrice ? `<span class="product-old">₹${p.oldPrice}</span>` : ''}
+          <span class="product-tag">
+            <i class="fa-solid fa-tag"></i>
+            ${escapeHtml(p.category || 'General')}
+          </span>
+        </div>
+      </div>
+      <button class="btn-delete" onclick="deleteProduct(${p.id})">
+        <i class="fa-solid fa-trash"></i>
+        <span>Delete</span>
+      </button>
+    </div>
+  `).join('');
+}
+
+function showStatus(type, msg) {
+  const iconMap = {
+    'error': 'fa-circle-exclamation',
+    'success': 'fa-circle-check',
+    'warning': 'fa-triangle-exclamation',
+    'loading': 'fa-spinner fa-spin'
+  };
+  document.getElementById('statusIcon').className = 'fa-solid ' + iconMap[type];
+  showAlert('status', 'statusText', msg, type);
+}
+
+async function addProduct() {
+  const name = document.getElementById('pName').value.trim();
+  const desc = document.getElementById('pDesc').value.trim();
+  const price = parseInt(document.getElementById('pPrice').value);
+  const oldPrice = parseInt(document.getElementById('pOldPrice').value) || 0;
+  const category = document.getElementById('pCategory').value.trim() || 'General';
+  const image = document.getElementById('pImage').value.trim();
+
+  if (!name || !desc || !price || !image) {
+    showStatus('error', 'Title, Description, Price aur Image required hain!');
+    return;
+  }
+  if (!settings.user || !settings.repo || !settings.token) {
+    showStatus('error', 'Pehle GitHub settings save karo!');
+    return;
+  }
+
+  const newProduct = {
+    id: Date.now(),
+    name, price, oldPrice, image,
+    description: desc,
+    category
+  };
+  const updated = [newProduct, ...productsData];
+
+  try {
+    document.getElementById('publishBtn').disabled = true;
+    showStatus('loading', 'GitHub pe upload ho raha hai...');
+    await pushToGitHub(updated);
+    productsData = updated;
+    renderProductList();
+    showStatus('success', 'Product live ho gaya! 1-2 min me website pe ayega.');
+    ['pName','pDesc','pPrice','pOldPrice','pImage'].forEach(id =>
+      document.getElementById(id).value = ''
+    );
+  } catch (e) {
+    showStatus('error', 'Upload fail: ' + e.message);
+  } finally {
+    document.getElementById('publishBtn').disabled = false;
+  }
+}
+
+async function deleteProduct(id) {
+  if (!confirm('Ye product delete karna hai?')) return;
+  const updated = productsData.filter(p => p.id !== id);
+  try {
+    showStatus('loading', 'Delete ho raha hai...');
+    await pushToGitHub(updated);
+    productsData = updated;
+    renderProductList();
+    showStatus('success', 'Delete ho gaya!');
+  } catch (e) {
+    showStatus('error', 'Delete fail: ' + e.message);
+  }
+}
+
+async function pushToGitHub(productsArr) {
+  const apiBase = `https://api.github.com/repos/${settings.user}/${settings.repo}/contents/${PRODUCTS_FILE_PATH}`;
+  const headers = {
+    'Authorization': `token ${settings.token}`,
+    'Accept': 'application/vnd.github.v3+json',
+    'Content-Type': 'application/json'
+  };
+
+  let sha = null;
+  try {
+    const getRes = await fetch(`${apiBase}?ref=${settings.branch}&t=${Date.now()}`, { headers });
+    if (getRes.ok) sha = (await getRes.json()).sha;
+  } catch (e) {}
+
+  const fileContent =
+`// ⚠️ Auto-generated by admin panel
+// Last update: ${new Date().toISOString()}
+
+const WHATSAPP_NUMBER = "919999999999";
+
+window.PRODUCTS_DATA = ${JSON.stringify(productsArr, null, 2)};
+
+const products = window.PRODUCTS_DATA;
+`;
+
+  const encoded = btoa(unescape(encodeURIComponent(fileContent)));
+  const body = {
+    message: `Admin: Update products (${productsArr.length} items)`,
+    content: encoded,
+    branch: settings.branch
+  };
+  if (sha) body.sha = sha;
+
+  const putRes = await fetch(apiBase, {
+    method: 'PUT', headers, body: JSON.stringify(body)
+  });
+  if (!putRes.ok) {
+    const err = await putRes.json();
+    throw new Error(err.message || 'GitHub API error');
+  }
+  return await putRes.json();
+}
+
+/* ═══════════════════════════════════════════════════════
+   🚀 INIT
+═══════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  if (isLoggedIn()) {
+    showPanel();
+  } else {
+    const lockUntil = getLockUntil();
+    if (lockUntil > Date.now()) {
+      const mins = Math.ceil((lockUntil - Date.now()) / 60000);
+      showAlert('lockMsg', 'lockText', `Locked. Try again in ${mins} min.`, 'warning');
+    }
+  }
+  loadSettings();
+});
+</script>
+
+</body>
+</html>
