@@ -9,13 +9,15 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
 :root {
-  --red:#d32f2f; --red-dark:#b71c1c; --green:#25D366; --green-dark:#128C7E;
+  --red:#d32f2f; --red-dark:#b71c1c; --red-light:#f44336;
+  --green:#25D366; --green-dark:#128C7E;
   --dark:#1a1a1a; --gray:#666; --light-gray:#f7f7f7; --border:#e5e5e5;
 }
 body { background:var(--light-gray); color:#333; line-height:1.6; font-size:15px; min-height:100vh; }
 button { font-family:inherit; cursor:pointer; }
 img { max-width:100%; display:block; }
 
+/* LOGIN */
 .login-wrap {
   min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
   background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
@@ -60,6 +62,7 @@ img { max-width:100%; display:block; }
 .btn-green { background:var(--green); }
 .btn-green:hover:not(:disabled) { background:var(--green-dark); }
 
+/* PANEL */
 .panel-wrap { display:none; }
 .panel-wrap.active { display:block; }
 .topbar {
@@ -255,43 +258,6 @@ img { max-width:100%; display:block; }
 
     <div class="section">
       <div class="section-title">
-        <i class="fa-brands fa-github"></i><span>GitHub Settings</span>
-      </div>
-
-      <div class="row-2">
-        <div class="form-group">
-          <label class="form-label">Username</label>
-          <input type="text" id="ghUser" class="form-input" placeholder="modulosagency-web">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Repository</label>
-          <input type="text" id="ghRepo" class="form-input" placeholder="e-commerce">
-        </div>
-      </div>
-
-      <div class="row-2">
-        <div class="form-group">
-          <label class="form-label">Branch</label>
-          <input type="text" id="ghBranch" class="form-input" value="main">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Personal Access Token</label>
-          <input type="password" id="ghToken" class="form-input" placeholder="github_pat_...">
-        </div>
-      </div>
-
-      <p class="help-text">
-        <i class="fa-solid fa-circle-info"></i>
-        Token sirf browser me save hota hai. Server pe kabhi nahi jata.
-      </p>
-
-      <button class="btn-primary" style="margin-top:12px;" onclick="saveSettings()">
-        <i class="fa-solid fa-floppy-disk"></i><span>Save Settings</span>
-      </button>
-    </div>
-
-    <div class="section">
-      <div class="section-title">
         <i class="fa-solid fa-plus"></i><span>Add New Product</span>
       </div>
 
@@ -369,22 +335,44 @@ img { max-width:100%; display:block; }
 </div>
 
 <script>
-/* ═══ CONFIG ═══ */
-const _u = "admin";
-const _p = "1947@store";
-const MAX_ATTEMPTS = 3;
-const LOCK_TIME = 5 * 60 * 1000;
-const SESSION_TIME = 30 * 60 * 1000;
-const STORAGE_KEY = 'adminSession_v5';
-const PRODUCTS_FILE_PATH = 'js/products.js';
-const IMAGES_FOLDER = 'images';
-const WHATSAPP_NUMBER = "919999999999";  // ← APNA NUMBER YAHAN DAALO
+/* ═══════════════════════════════════════════════════════
+   🔧 FIXED CONFIG — SAB YAHIN SET HAI
+   Bas yahan apne values daalo, aur bas.
+═══════════════════════════════════════════════════════ */
+const CONFIG = {
+  // 🔐 Admin login credentials
+  adminUser: "admin",
+  adminPass: "1947@store",
 
-let settings = JSON.parse(localStorage.getItem('ghSettings') || '{}');
+  // 📱 WhatsApp number (country code ke sath, without +)
+  whatsappNumber: "919999999999",  // ← APNA NUMBER YAHAN DAALO
+
+  // 🐙 GitHub credentials (FIXED — website se set nahi karna)
+  githubUser: "modulosagency-web",      // ← GitHub username
+  githubRepo: "1947-Store",             // ← Repository name
+  githubBranch: "main",                 // ← Branch name
+  githubToken: "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",  // ← GitHub PAT paste karo
+
+  // 📁 File paths (change mat karo)
+  productsFilePath: "js/products.js",
+  imagesFolder: "images",
+
+  // 🔐 Security
+  maxAttempts: 3,
+  lockTime: 5 * 60 * 1000,
+  sessionTime: 30 * 60 * 1000,
+  storageKey: 'adminSession_v6'
+};
+
+/* ═══════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════ */
 let productsData = [];
 let selectedPhotos = [];
 
-/* ═══ AUTH ═══ */
+/* ═══════════════════════════════════════════════════════
+   🔐 AUTH
+═══════════════════════════════════════════════════════ */
 async function sha256(text) {
   const buf = new TextEncoder().encode(text);
   const hash = await crypto.subtle.digest('SHA-256', buf);
@@ -393,14 +381,17 @@ async function sha256(text) {
 
 function isLoggedIn() {
   try {
-    const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    if (!s.expires || Date.now() > s.expires) { localStorage.removeItem(STORAGE_KEY); return false; }
+    const s = JSON.parse(localStorage.getItem(CONFIG.storageKey) || '{}');
+    if (!s.expires || Date.now() > s.expires) {
+      localStorage.removeItem(CONFIG.storageKey);
+      return false;
+    }
     return s.auth === true;
   } catch { return false; }
 }
 
-function getAttempts() { return parseInt(localStorage.getItem('adminAtt_v5') || '0'); }
-function getLockUntil() { return parseInt(localStorage.getItem('adminLock_v5') || '0'); }
+function getAttempts() { return parseInt(localStorage.getItem('adminAtt_v6') || '0'); }
+function getLockUntil() { return parseInt(localStorage.getItem('adminLock_v6') || '0'); }
 
 function showAlertBox(id, textId, msg) {
   const el = document.getElementById(id);
@@ -430,24 +421,25 @@ async function login() {
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Verifying...</span>';
 
   const inputHash = await sha256(user + ':' + pass);
-  const expectedHash = await sha256(_u + ':' + _p);
+  const expectedHash = await sha256(CONFIG.adminUser + ':' + CONFIG.adminPass);
 
   if (inputHash === expectedHash) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      auth: true, expires: Date.now() + SESSION_TIME
+    localStorage.setItem(CONFIG.storageKey, JSON.stringify({
+      auth: true,
+      expires: Date.now() + CONFIG.sessionTime
     }));
-    localStorage.removeItem('adminAtt_v5');
-    localStorage.removeItem('adminLock_v5');
+    localStorage.removeItem('adminAtt_v6');
+    localStorage.removeItem('adminLock_v6');
     showPanel();
   } else {
     const attempts = getAttempts() + 1;
-    localStorage.setItem('adminAtt_v5', attempts);
-    if (attempts >= MAX_ATTEMPTS) {
-      localStorage.setItem('adminLock_v5', Date.now() + LOCK_TIME);
-      localStorage.removeItem('adminAtt_v5');
-      showAlertBox('loginLock', 'loginLockText', `${MAX_ATTEMPTS} galat attempts. 5 min lock.`);
+    localStorage.setItem('adminAtt_v6', attempts);
+    if (attempts >= CONFIG.maxAttempts) {
+      localStorage.setItem('adminLock_v6', Date.now() + CONFIG.lockTime);
+      localStorage.removeItem('adminAtt_v6');
+      showAlertBox('loginLock', 'loginLockText', `${CONFIG.maxAttempts} galat attempts. 5 min lock.`);
     } else {
-      showAlertBox('loginError', 'loginErrorText', `Galat! ${MAX_ATTEMPTS - attempts} attempts bache.`);
+      showAlertBox('loginError', 'loginErrorText', `Galat! ${CONFIG.maxAttempts - attempts} attempts bache.`);
     }
     document.getElementById('adminPass').value = '';
     btn.disabled = false;
@@ -456,47 +448,24 @@ async function login() {
 }
 
 function logout() {
-  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(CONFIG.storageKey);
   location.reload();
 }
 
 function showPanel() {
   document.getElementById('loginWrap').style.display = 'none';
   document.getElementById('panelWrap').classList.add('active');
-  loadSettings();
   loadProducts();
   setTimeout(() => {
     if (!isLoggedIn()) return;
     alert('Session expired.');
     logout();
-  }, SESSION_TIME);
+  }, CONFIG.sessionTime);
 }
 
-/* ═══ SETTINGS ═══ */
-function saveSettings() {
-  settings = {
-    user: document.getElementById('ghUser').value.trim(),
-    repo: document.getElementById('ghRepo').value.trim(),
-    branch: document.getElementById('ghBranch').value.trim() || 'main',
-    token: document.getElementById('ghToken').value.trim()
-  };
-  if (!settings.user || !settings.repo || !settings.token) {
-    showStatus('error', 'Saare GitHub fields bharein!');
-    return;
-  }
-  localStorage.setItem('ghSettings', JSON.stringify(settings));
-  showStatus('success', 'Settings saved!');
-  loadProducts();
-}
-
-function loadSettings() {
-  if (settings.user) document.getElementById('ghUser').value = settings.user;
-  if (settings.repo) document.getElementById('ghRepo').value = settings.repo;
-  if (settings.branch) document.getElementById('ghBranch').value = settings.branch;
-  if (settings.token) document.getElementById('ghToken').value = settings.token;
-}
-
-/* ═══ PHOTO UPLOAD UI ═══ */
+/* ═══════════════════════════════════════════════════════
+   📸 PHOTO UPLOAD UI
+═══════════════════════════════════════════════════════ */
 document.getElementById('photoInput').addEventListener('change', handleFiles);
 
 const uploadZone = document.getElementById('uploadZone');
@@ -555,22 +524,24 @@ function removePhoto(i) {
   renderPreview();
 }
 
-/* ═══ GITHUB API ═══ */
+/* ═══════════════════════════════════════════════════════
+   🐙 GITHUB API (Using CONFIG)
+═══════════════════════════════════════════════════════ */
 function ghHeaders() {
   return {
-    'Authorization': `token ${settings.token}`,
+    'Authorization': `token ${CONFIG.githubToken}`,
     'Accept': 'application/vnd.github.v3+json',
     'Content-Type': 'application/json'
   };
 }
 
 function apiBase() {
-  return `https://api.github.com/repos/${settings.user}/${settings.repo}/contents`;
+  return `https://api.github.com/repos/${CONFIG.githubUser}/${CONFIG.githubRepo}/contents`;
 }
 
 async function getFileSHA(path) {
   try {
-    const url = `${apiBase()}/${path}?ref=${settings.branch}&t=${Date.now()}`;
+    const url = `${apiBase()}/${path}?ref=${CONFIG.githubBranch}&t=${Date.now()}`;
     const res = await fetch(url, { headers: ghHeaders() });
     if (!res.ok) return null;
     const data = await res.json();
@@ -579,7 +550,7 @@ async function getFileSHA(path) {
 }
 
 async function uploadFileToGitHub(path, base64Content, message, sha = null) {
-  const body = { message, content: base64Content, branch: settings.branch };
+  const body = { message, content: base64Content, branch: CONFIG.githubBranch };
   if (sha) body.sha = sha;
 
   const res = await fetch(`${apiBase()}/${path}`, {
@@ -595,7 +566,6 @@ async function uploadFileToGitHub(path, base64Content, message, sha = null) {
   return await res.json();
 }
 
-/* Image compress */
 function compressImage(file, maxWidth = 800, quality = 0.82) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -626,25 +596,28 @@ function dataUrlToBase64(dataUrl) {
   return dataUrl.split(',')[1];
 }
 
-/* ═══ LOAD PRODUCTS ═══ */
+/* ═══════════════════════════════════════════════════════
+   📦 LOAD PRODUCTS
+═══════════════════════════════════════════════════════ */
 async function loadProducts() {
-  if (!settings.user || !settings.repo || !settings.token) {
-    if (window.PRODUCTS_DATA) {
-      productsData = window.PRODUCTS_DATA;
-      renderProductList();
-    }
-    return;
-  }
   try {
-    const url = `${apiBase()}/${PRODUCTS_FILE_PATH}?ref=${settings.branch}&t=${Date.now()}`;
+    const url = `${apiBase()}/${CONFIG.productsFilePath}?ref=${CONFIG.githubBranch}&t=${Date.now()}`;
     const res = await fetch(url, { headers: ghHeaders() });
-    if (!res.ok) return;
+    if (!res.ok) {
+      productsData = window.PRODUCTS_DATA || [];
+      renderProductList();
+      return;
+    }
     const data = await res.json();
     const content = decodeURIComponent(escape(atob(data.content)));
     const match = content.match(/window\.PRODUCTS_DATA\s*=\s*(\[[\s\S]*?\]);/);
     if (match) productsData = JSON.parse(match[1]);
     renderProductList();
-  } catch (e) { console.warn(e); }
+  } catch (e) {
+    console.warn(e);
+    productsData = window.PRODUCTS_DATA || [];
+    renderProductList();
+  }
 }
 
 function escapeHtml(s) {
@@ -678,7 +651,7 @@ function renderProductList() {
         <div class="product-row-thumbs">${thumbs}${extra}</div>
         <div class="product-row-info">
           <h4>${escapeHtml(p.name)}</h4>
-          <p>₹${p.price} ${p.oldPrice ? `<s>₹${p.oldPrice}</s>` : ''} • ${escapeHtml(p.category || 'General')}</p>
+          <p>₹${p.price} ${p.oldPrice ? `<s>₹${p.oldPrice}</s>` : ''} • ${escapeHtml(p.category || 'General')} • ${imgs.length} photos</p>
         </div>
         <button class="btn-delete" onclick="deleteProduct(${p.id})">
           <i class="fa-solid fa-trash"></i><span>Delete</span>
@@ -688,7 +661,9 @@ function renderProductList() {
   }).join('');
 }
 
-/* ═══ STATUS + PROGRESS ═══ */
+/* ═══════════════════════════════════════════════════════
+   📊 STATUS + PROGRESS
+═══════════════════════════════════════════════════════ */
 function showStatus(type, msg) {
   const iconMap = {
     'error': 'fa-circle-exclamation',
@@ -715,7 +690,11 @@ function setProgress(percent, text) {
   txt.textContent = text;
 }
 
-/* ═══ ADD PRODUCT (MAIN FLOW) ═══ */
+/* ═══════════════════════════════════════════════════════
+   🚀 ADD PRODUCT — GROUP ID SYSTEM
+   File naming: {productId}.{number}.jpg
+   Example: 1789037550081.1.jpg, 1789037550081.2.jpg
+═══════════════════════════════════════════════════════ */
 async function addProduct() {
   const name = document.getElementById('pName').value.trim();
   const desc = document.getElementById('pDesc').value.trim();
@@ -731,55 +710,49 @@ async function addProduct() {
     showStatus('error', 'Kam se kam 1 photo upload karo!');
     return;
   }
-  if (!settings.user || !settings.repo || !settings.token) {
-    showStatus('error', 'Pehle GitHub settings save karo!');
-    return;
-  }
 
   const btn = document.getElementById('publishBtn');
   btn.disabled = true;
 
-  // Unique product ID
+  // 🎯 UNIQUE GROUP ID — same product ki sab images me SAME
   const productId = Date.now();
-  const totalSteps = selectedPhotos.length + 1; // photos + products.js
+  const totalSteps = selectedPhotos.length + 1;
   let doneSteps = 0;
 
   try {
-    // STEP 1: Upload each photo
     const photoUrls = [];
 
+    // STEP 1: Upload each photo with SAME productId
     for (let i = 0; i < selectedPhotos.length; i++) {
       const photo = selectedPhotos[i];
       showStatus('loading', `Photo ${i + 1}/${selectedPhotos.length} upload ho raha hai...`);
 
-      // Compress
       const compressedDataUrl = await compressImage(photo.file, 800, 0.82);
       const base64 = dataUrlToBase64(compressedDataUrl);
 
-      // File path in GitHub
-      const fileName = `p${productId}_${i + 1}.jpg`;
-      const filePath = `${IMAGES_FOLDER}/${fileName}`;
+      // 🎯 NEW NAMING: {productId}.{number}.jpg
+      const photoNumber = i + 1;
+      const fileName = `${productId}.${photoNumber}.jpg`;
+      const filePath = `${CONFIG.imagesFolder}/${fileName}`;
 
-      // Upload
       await uploadFileToGitHub(
         filePath,
         base64,
-        `Upload ${fileName} for product: ${name}`
+        `Upload photo ${photoNumber} for product ${productId}`
       );
 
-      // Public URL (raw.githubusercontent.com)
-      const rawUrl = `https://raw.githubusercontent.com/${settings.user}/${settings.repo}/${settings.branch}/${filePath}`;
+      const rawUrl = `https://raw.githubusercontent.com/${CONFIG.githubUser}/${CONFIG.githubRepo}/${CONFIG.githubBranch}/${filePath}`;
       photoUrls.push(rawUrl);
 
       selectedPhotos[i].uploaded = true;
       renderPreview();
 
       doneSteps++;
-      setProgress((doneSteps / totalSteps) * 100, `Photo ${i + 1}/${selectedPhotos.length} uploaded`);
+      setProgress((doneSteps / totalSteps) * 100, `Photo ${photoNumber}/${selectedPhotos.length} uploaded`);
     }
 
-    // STEP 2: Add product to products.js
-    showStatus('loading', 'Product details update ho rahi hain...');
+    // STEP 2: Save product to products.js
+    showStatus('loading', 'Product details save ho rahi hain...');
 
     const newProduct = {
       id: productId,
@@ -788,20 +761,19 @@ async function addProduct() {
       price,
       oldPrice,
       category,
-      image: photoUrls[0],        // Main image
-      images: photoUrls,           // All images
+      image: photoUrls[0],       // Main image
+      images: photoUrls,          // All images (grouped by productId)
+      photoCount: photoUrls.length,
       date: new Date().toISOString()
     };
 
-    // Add new product at top
     const updatedProducts = [newProduct, ...productsData];
 
-    // Build new products.js file
     const fileContent =
-`// ⚠️ Auto-generated by admin panel
+`// ⚠️ Auto-generated by 1947 Admin Panel
 // Last update: ${new Date().toISOString()}
 
-const WHATSAPP_NUMBER = "${WHATSAPP_NUMBER}";
+const WHATSAPP_NUMBER = "${CONFIG.whatsappNumber}";
 
 window.PRODUCTS_DATA = ${JSON.stringify(updatedProducts, null, 2)};
 
@@ -809,23 +781,22 @@ const products = window.PRODUCTS_DATA;
 `;
 
     const encoded = btoa(unescape(encodeURIComponent(fileContent)));
-    const existingSHA = await getFileSHA(PRODUCTS_FILE_PATH);
+    const existingSHA = await getFileSHA(CONFIG.productsFilePath);
 
     await uploadFileToGitHub(
-      PRODUCTS_FILE_PATH,
+      CONFIG.productsFilePath,
       encoded,
-      `Add product: ${name} (ID: ${productId})`,
+      `Add product: ${name} (${productId}) with ${photoUrls.length} photos`,
       existingSHA
     );
 
     doneSteps++;
     setProgress(100, 'Done!');
 
-    // Update local data
     productsData = updatedProducts;
     renderProductList();
 
-    showStatus('success', `Product "${name}" successfully live ho gaya! 1-2 min me website pe ayega.`);
+    showStatus('success', `"${name}" with ${photoUrls.length} photos live ho gaya! 1-2 min me website pe ayega.`);
 
     // Reset form
     document.getElementById('pName').value = '';
@@ -846,7 +817,9 @@ const products = window.PRODUCTS_DATA;
   }
 }
 
-/* ═══ DELETE PRODUCT ═══ */
+/* ═══════════════════════════════════════════════════════
+   🗑️ DELETE PRODUCT
+═══════════════════════════════════════════════════════ */
 async function deleteProduct(id) {
   if (!confirm('Ye product delete karna hai? (Photos GitHub pe rahengi)')) return;
 
@@ -857,10 +830,10 @@ async function deleteProduct(id) {
     showStatus('loading', 'Delete ho raha hai...');
 
     const fileContent =
-`// ⚠️ Auto-generated by admin panel
+`// ⚠️ Auto-generated by 1947 Admin Panel
 // Last update: ${new Date().toISOString()}
 
-const WHATSAPP_NUMBER = "${WHATSAPP_NUMBER}";
+const WHATSAPP_NUMBER = "${CONFIG.whatsappNumber}";
 
 window.PRODUCTS_DATA = ${JSON.stringify(updated, null, 2)};
 
@@ -868,10 +841,10 @@ const products = window.PRODUCTS_DATA;
 `;
 
     const encoded = btoa(unescape(encodeURIComponent(fileContent)));
-    const existingSHA = await getFileSHA(PRODUCTS_FILE_PATH);
+    const existingSHA = await getFileSHA(CONFIG.productsFilePath);
 
     await uploadFileToGitHub(
-      PRODUCTS_FILE_PATH,
+      CONFIG.productsFilePath,
       encoded,
       `Delete product ID: ${id}`,
       existingSHA
@@ -885,7 +858,9 @@ const products = window.PRODUCTS_DATA;
   }
 }
 
-/* ═══ INIT ═══ */
+/* ═══════════════════════════════════════════════════════
+   🚀 INIT
+═══════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   if (isLoggedIn()) {
     showPanel();
@@ -896,7 +871,6 @@ document.addEventListener('DOMContentLoaded', () => {
       showAlertBox('loginLock', 'loginLockText', `Locked. Try again in ${mins} min.`);
     }
   }
-  loadSettings();
 });
 </script>
 
