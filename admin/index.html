@@ -17,7 +17,6 @@ body { background:var(--light-gray); color:#333; line-height:1.6; font-size:15px
 button { font-family:inherit; cursor:pointer; }
 img { max-width:100%; display:block; }
 
-/* LOGIN */
 .login-wrap {
   min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
   background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
@@ -62,7 +61,6 @@ img { max-width:100%; display:block; }
 .btn-green { background:var(--green); }
 .btn-green:hover:not(:disabled) { background:var(--green-dark); }
 
-/* PANEL */
 .panel-wrap { display:none; }
 .panel-wrap.active { display:block; }
 .topbar {
@@ -310,7 +308,7 @@ img { max-width:100%; display:block; }
 
       <p class="help-text">
         <i class="fa-solid fa-circle-info"></i>
-        Pehli photo "MAIN" hogi. Baaki gallery me dikhengi.
+        Pehli photo "MAIN" hogi. Baaki gallery me slide hongi (Amazon style).
       </p>
 
       <button class="btn-primary btn-green" id="publishBtn" style="margin-top:16px;" onclick="addProduct()">
@@ -336,24 +334,23 @@ img { max-width:100%; display:block; }
 
 <script>
 /* ═══════════════════════════════════════════════════════
-   🔧 FIXED CONFIG — SAB YAHIN SET HAI
-   Bas yahan apne values daalo, aur bas.
+   🔧 CONFIG — SAB YAHIN SET HAI
 ═══════════════════════════════════════════════════════ */
 const CONFIG = {
-  // 🔐 Admin login credentials
+  // 🔐 Admin login
   adminUser: "admin",
   adminPass: "1947@store",
 
-  // 📱 WhatsApp number (country code ke sath, without +)
-  whatsappNumber: "919999999999",  // ← APNA NUMBER YAHAN DAALO
+  // 📱 WhatsApp number (country code without +)
+  whatsappNumber: "918590988090",  // ✅ Updated to your real number
 
-  // 🐙 GitHub credentials (FIXED — website se set nahi karna)
-  githubUser: "modulosagency-web",      // ← GitHub username
-  githubRepo: "1947-Store",             // ← Repository name
-  githubBranch: "main",                 // ← Branch name
-  githubToken: "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",  // ← GitHub PAT paste karo
+  // 🐙 GitHub
+  githubUser: "modulosagency-web",
+  githubRepo: "1947-Store",
+  githubBranch: "main",
+  githubToken: "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",  // ⚠️ SECURITY: kabhi kisi ko na do
 
-  // 📁 File paths (change mat karo)
+  // 📁 File paths
   productsFilePath: "js/products.js",
   imagesFolder: "images",
 
@@ -364,9 +361,6 @@ const CONFIG = {
   storageKey: 'adminSession_v6'
 };
 
-/* ═══════════════════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════════════════ */
 let productsData = [];
 let selectedPhotos = [];
 
@@ -525,7 +519,7 @@ function removePhoto(i) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   🐙 GITHUB API (Using CONFIG)
+   🐙 GITHUB API
 ═══════════════════════════════════════════════════════ */
 function ghHeaders() {
   return {
@@ -714,7 +708,7 @@ async function addProduct() {
   const btn = document.getElementById('publishBtn');
   btn.disabled = true;
 
-  // 🎯 UNIQUE GROUP ID — same product ki sab images me SAME
+  // 🎯 UNIQUE GROUP ID
   const productId = Date.now();
   const totalSteps = selectedPhotos.length + 1;
   let doneSteps = 0;
@@ -722,7 +716,7 @@ async function addProduct() {
   try {
     const photoUrls = [];
 
-    // STEP 1: Upload each photo with SAME productId
+    // STEP 1: Upload each photo
     for (let i = 0; i < selectedPhotos.length; i++) {
       const photo = selectedPhotos[i];
       showStatus('loading', `Photo ${i + 1}/${selectedPhotos.length} upload ho raha hai...`);
@@ -730,7 +724,7 @@ async function addProduct() {
       const compressedDataUrl = await compressImage(photo.file, 800, 0.82);
       const base64 = dataUrlToBase64(compressedDataUrl);
 
-      // 🎯 NEW NAMING: {productId}.{number}.jpg
+      // 🎯 NAMING: {productId}.{number}.jpg
       const photoNumber = i + 1;
       const fileName = `${productId}.${photoNumber}.jpg`;
       const filePath = `${CONFIG.imagesFolder}/${fileName}`;
@@ -751,7 +745,7 @@ async function addProduct() {
       setProgress((doneSteps / totalSteps) * 100, `Photo ${photoNumber}/${selectedPhotos.length} uploaded`);
     }
 
-    // STEP 2: Save product to products.js
+    // STEP 2: Save to products.js
     showStatus('loading', 'Product details save ho rahi hain...');
 
     const newProduct = {
@@ -762,7 +756,7 @@ async function addProduct() {
       oldPrice,
       category,
       image: photoUrls[0],       // Main image
-      images: photoUrls,          // All images (grouped by productId)
+      images: photoUrls,          // All images
       photoCount: photoUrls.length,
       date: new Date().toISOString()
     };
@@ -798,7 +792,7 @@ const products = window.PRODUCTS_DATA;
 
     showStatus('success', `"${name}" with ${photoUrls.length} photos live ho gaya! 1-2 min me website pe ayega.`);
 
-    // Reset form
+    // Reset
     document.getElementById('pName').value = '';
     document.getElementById('pDesc').value = '';
     document.getElementById('pPrice').value = '';
