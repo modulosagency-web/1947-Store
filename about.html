@@ -3,15 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="About 1947 Clothing Store — Premium and luxury fashion since our journey began in Ernakulam. Trusted by the Indian film industry.">
+<meta name="description" content="About 1947 Clothing Store — Premium and imported fashion since 2013. Trusted by the Indian film industry. Worldwide customers.">
 <title>About Us — 1947 Clothing Store</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ═══════════════════════════════════════════════
-   RESET & VARIABLES
-═══════════════════════════════════════════════ */
 * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
 
 :root {
@@ -39,9 +36,20 @@ a { text-decoration:none; color:inherit; }
 img { max-width:100%; display:block; }
 button { font-family:inherit; cursor:pointer; }
 
-/* ═══════════════════════════════════════════════
-   ANNOUNCEMENT
-═══════════════════════════════════════════════ */
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes pulse {
+  0%, 100% { transform:scale(1); }
+  50% { transform:scale(1.05); }
+}
+@keyframes shimmer {
+  0% { left:-100%; }
+  100% { left:100%; }
+}
+
 .announcement {
   background:var(--dark);
   color:#fff;
@@ -49,14 +57,24 @@ button { font-family:inherit; cursor:pointer; }
   padding:10px 15px;
   font-size:13px;
   letter-spacing:0.3px;
+  position:relative;
+  overflow:hidden;
+}
+.announcement::after {
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation:shimmer 5s infinite;
 }
 .announcement i { color:var(--red-light); margin-right:6px; }
 
-/* ═══════════════════════════════════════════════
-   HEADER
-═══════════════════════════════════════════════ */
 header {
-  background:#fff;
+  background:rgba(255,255,255,0.98);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
@@ -78,7 +96,9 @@ header {
   display:flex;
   align-items:center;
   gap:8px;
+  transition:transform 0.3s;
 }
+.logo:hover { transform:scale(1.03); }
 .logo-badge {
   background:var(--red);
   color:#fff;
@@ -97,7 +117,21 @@ header {
   font-weight:500;
   color:#555;
   transition:color 0.2s;
+  position:relative;
+  padding-bottom:4px;
 }
+.nav-links a::after {
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:0;
+  height:2px;
+  background:var(--red);
+  transition:width 0.3s;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { width:100%; }
 .nav-links a:hover,
 .nav-links a.active { color:var(--red); }
 
@@ -114,9 +148,9 @@ header {
   cursor:pointer;
   color:var(--dark);
   font-size:16px;
-  transition:background 0.2s;
+  transition:all 0.3s;
 }
-.icon-btn:hover { background:var(--light-gray); }
+.icon-btn:hover { background:var(--light-gray); transform:scale(1.08); }
 .cart-btn {
   position:relative;
   background:var(--dark);
@@ -130,9 +164,9 @@ header {
   display:inline-flex;
   align-items:center;
   gap:8px;
-  transition:background 0.2s;
+  transition:all 0.3s;
 }
-.cart-btn:hover { background:var(--red); }
+.cart-btn:hover { background:var(--red); transform:translateY(-1px); }
 .cart-count {
   position:absolute;
   top:-6px;
@@ -158,9 +192,6 @@ header {
   cursor:pointer;
 }
 
-/* ═══════════════════════════════════════════════
-   PAGE HEADER
-═══════════════════════════════════════════════ */
 .page-header {
   background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
   color:#fff;
@@ -187,6 +218,7 @@ header {
   margin:0 auto;
   position:relative;
   z-index:1;
+  animation:fadeInUp 0.8s ease-out both;
 }
 .page-header h1 {
   font-size:44px;
@@ -215,24 +247,19 @@ header {
 .breadcrumb i { font-size:10px; }
 .breadcrumb .current { color:var(--red-light); }
 
-/* ═══════════════════════════════════════════════
-   CONTAINER
-═══════════════════════════════════════════════ */
 .container {
   max-width:1200px;
   margin:0 auto;
   padding:60px 20px;
 }
 
-/* ═══════════════════════════════════════════════
-   STORY SECTION
-═══════════════════════════════════════════════ */
 .story-section {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:50px;
   align-items:center;
   margin-bottom:70px;
+  animation:fadeInUp 0.8s ease-out both;
 }
 .story-text h2 {
   font-size:32px;
@@ -264,6 +291,7 @@ header {
   justify-content:center;
   font-size:44px;
   color:#fff;
+  transition:transform 0.4s;
 }
 .visual-card:nth-child(1) {
   width:65%;
@@ -280,6 +308,8 @@ header {
   background:linear-gradient(135deg,#1a1a1a,#2a2a2a);
   border:2px solid var(--red);
 }
+.story-visual:hover .visual-card:nth-child(1) { transform:translate(-4px,-4px); }
+.story-visual:hover .visual-card:nth-child(2) { transform:translate(4px,4px); }
 .visual-badge {
   position:absolute;
   top:50%;
@@ -297,12 +327,10 @@ header {
   gap:10px;
   z-index:2;
   white-space:nowrap;
+  animation:pulse 3s ease-in-out infinite;
 }
 .visual-badge i { color:var(--red); }
 
-/* ═══════════════════════════════════════════════
-   STATS BAR
-═══════════════════════════════════════════════ */
 .stats-bar {
   display:grid;
   grid-template-columns:repeat(4, 1fr);
@@ -328,7 +356,9 @@ header {
   text-align:center;
   position:relative;
   z-index:1;
+  transition:transform 0.3s;
 }
+.stat-item:hover { transform:translateY(-4px); }
 .stat-number {
   font-size:36px;
   font-weight:900;
@@ -344,9 +374,6 @@ header {
   text-transform:uppercase;
 }
 
-/* ═══════════════════════════════════════════════
-   VALUE CARDS
-═══════════════════════════════════════════════ */
 .section-head {
   text-align:center;
   margin-bottom:46px;
@@ -392,7 +419,7 @@ header {
   transition:width 0.4s;
 }
 .value-card:hover {
-  transform:translateY(-5px);
+  transform:translateY(-6px);
   box-shadow:0 16px 40px rgba(0,0,0,0.1);
   border-color:transparent;
 }
@@ -409,7 +436,9 @@ header {
   font-size:24px;
   color:var(--red);
   margin-bottom:20px;
+  transition:transform 0.3s;
 }
+.value-card:hover .value-icon { transform:scale(1.1) rotate(-5deg); }
 .value-card h3 {
   font-size:18px;
   font-weight:800;
@@ -423,9 +452,6 @@ header {
   line-height:1.7;
 }
 
-/* ═══════════════════════════════════════════════
-   SPECIAL HIGHLIGHT
-═══════════════════════════════════════════════ */
 .highlight-box {
   background:linear-gradient(135deg,var(--red),var(--red-dark));
   color:#fff;
@@ -478,9 +504,6 @@ header {
   line-height:1.7;
 }
 
-/* ═══════════════════════════════════════════════
-   SERVICES
-═══════════════════════════════════════════════ */
 .services-grid {
   display:grid;
   grid-template-columns:repeat(2, 1fr);
@@ -500,6 +523,7 @@ header {
   border-color:var(--red);
   background:#fff;
   transform:translateX(4px);
+  box-shadow:0 10px 30px rgba(211,47,47,0.1);
 }
 .service-icon {
   width:54px;
@@ -526,9 +550,6 @@ header {
   line-height:1.7;
 }
 
-/* ═══════════════════════════════════════════════
-   CTA SECTION
-═══════════════════════════════════════════════ */
 .cta-section {
   text-align:center;
   padding:60px 40px;
@@ -548,6 +569,7 @@ header {
   font-size:30px;
   margin:0 auto 20px;
   box-shadow:0 10px 30px rgba(37,211,102,0.35);
+  animation:pulse 2s ease-in-out infinite;
 }
 .cta-section h2 {
   font-size:28px;
@@ -604,9 +626,6 @@ header {
   box-shadow:0 10px 25px rgba(211,47,47,0.35);
 }
 
-/* ═══════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════ */
 footer {
   background:var(--dark);
   color:#bbb;
@@ -703,9 +722,6 @@ footer {
 .footer-bottom strong { color:#fff; }
 .footer-bottom a { color:var(--red-light); }
 
-/* ═══════════════════════════════════════════════
-   CART DRAWER
-═══════════════════════════════════════════════ */
 .cart-overlay {
   position:fixed;
   inset:0;
@@ -851,9 +867,6 @@ footer {
 .checkout-btn:hover { background:var(--green-dark); }
 .checkout-btn:disabled { background:#ccc; cursor:not-allowed; }
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════ */
 @media (max-width:960px) {
   .story-section { grid-template-columns:1fr; gap:30px; }
   .story-visual { height:340px; }
@@ -908,13 +921,11 @@ footer {
 </head>
 <body>
 
-<!-- ANNOUNCEMENT -->
 <div class="announcement">
   <i class="fa-brands fa-whatsapp"></i>
   Free shipping on orders above ₹999 — Order directly on WhatsApp
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
     <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
@@ -939,11 +950,10 @@ footer {
   </div>
 </header>
 
-<!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
     <h1>About <span>Our Story</span></h1>
-    <p>Premium fashion, timeless quality — crafted for those who value the finest.</p>
+    <p>Premium and imported fashion, timeless quality — crafted for those who value the finest.</p>
     <div class="breadcrumb">
       <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
       <i class="fa-solid fa-chevron-right"></i>
@@ -954,23 +964,22 @@ footer {
 
 <div class="container">
 
-  <!-- STORY -->
   <section class="story-section">
     <div class="story-text">
       <h2>A Journey of <span>Premium Fashion</span></h2>
       <p>
-        <strong>1947 Clothing Store</strong> began its journey 9 years ago as a beloved offline store on 
-        <strong>MG Road, Ernakulam</strong>. What started as a passion for premium fashion has grown into 
-        a trusted name among discerning customers across Kerala.
+        <strong>1947 Clothing Store</strong> began its journey in <strong>2013</strong> as a beloved offline store on
+        <strong>MG Road, Ernakulam</strong>. What started as a passion for premium fashion has grown into
+        a trusted name among discerning customers across <strong>the world</strong>.
       </p>
       <p>
-        From the very beginning, we dedicated ourselves to dealing exclusively in 
-        <strong>premium and luxury products</strong>. Our commitment to quality caught the attention of 
-        the <strong>Indian film industry</strong>, and today we proudly supply premium attire to 
+        From the very beginning, we dedicated ourselves to dealing exclusively in
+        <strong>premium and imported products</strong>. Our commitment to quality caught the attention of
+        the <strong>Indian film industry</strong>, and today we proudly supply premium attire to
         renowned actors and celebrities.
       </p>
       <p>
-        Every piece in our collection reflects our core philosophy — 
+        Every piece in our collection reflects our core philosophy —
         <strong>best quality at the best price, with no compromise on craftsmanship</strong>.
       </p>
     </div>
@@ -979,15 +988,14 @@ footer {
       <div class="visual-card"><i class="fa-solid fa-shirt"></i></div>
       <div class="visual-badge">
         <i class="fa-solid fa-award"></i>
-        Trusted Since Day One
+        Trusted Since 2013
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
   <div class="stats-bar">
     <div class="stat-item">
-      <div class="stat-number">9+</div>
+      <div class="stat-number">12+</div>
       <div class="stat-label">Years of Trust</div>
     </div>
     <div class="stat-item">
@@ -1004,17 +1012,16 @@ footer {
     </div>
   </div>
 
-  <!-- VALUES -->
   <div class="section-head">
     <h2>Why Choose <span>1947</span></h2>
-    <p>What sets us apart in the world of premium fashion</p>
+    <p>What sets us apart in the world of premium and imported fashion</p>
   </div>
 
   <div class="values-grid">
     <div class="value-card">
       <div class="value-icon"><i class="fa-solid fa-gem"></i></div>
-      <h3>Premium & Luxury</h3>
-      <p>We deal exclusively in premium and luxury products sourced from the finest brands worldwide.</p>
+      <h3>Premium &amp; Imported</h3>
+      <p>We deal exclusively in premium and imported products sourced from the finest brands worldwide.</p>
     </div>
     <div class="value-card">
       <div class="value-icon"><i class="fa-solid fa-medal"></i></div>
@@ -1033,8 +1040,8 @@ footer {
     </div>
     <div class="value-card">
       <div class="value-icon"><i class="fa-solid fa-globe"></i></div>
-      <h3>Imported Collection</h3>
-      <p>Exclusive imported pieces and unique collections that you won't find anywhere else.</p>
+      <h3>Worldwide Customers</h3>
+      <p>Our trusted name has reached discerning customers across the world who value premium fashion.</p>
     </div>
     <div class="value-card">
       <div class="value-icon"><i class="fa-solid fa-clipboard-list"></i></div>
@@ -1043,30 +1050,28 @@ footer {
     </div>
   </div>
 
-  <!-- HIGHLIGHT -->
   <div class="highlight-box">
     <div class="highlight-icon"><i class="fa-solid fa-star"></i></div>
     <div class="highlight-content">
       <h3>Trusted by the Indian Film Industry</h3>
       <p>
-        Our reputation for exceptional quality and exclusive collections has made us the preferred 
-        choice for film industry professionals. From red carpet events to daily premium wear, we 
+        Our reputation for exceptional quality and exclusive collections has made us the preferred
+        choice for film industry professionals. From red carpet events to daily premium wear, we
         deliver attire that matches the highest standards of style and quality.
       </p>
     </div>
   </div>
 
-  <!-- SERVICES -->
   <div class="section-head">
     <h2>What We <span>Offer</span></h2>
-    <p>Exclusive services designed for premium fashion lovers</p>
+    <p>Exclusive services designed for premium and imported fashion lovers</p>
   </div>
 
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon"><i class="fa-solid fa-gem"></i></div>
       <div class="service-body">
-        <h4>Luxury Brands</h4>
+        <h4>Premium Brands</h4>
         <p>Curated collection of premium and luxury fashion brands under one roof — from designer wear to iconic labels.</p>
       </div>
     </div>
@@ -1093,12 +1098,11 @@ footer {
     </div>
   </div>
 
-  <!-- CTA -->
   <div class="cta-section">
     <div class="cta-icon"><i class="fa-brands fa-whatsapp"></i></div>
     <h2>Ready to Experience Premium?</h2>
     <p>
-      Explore our exclusive collection or get in touch on WhatsApp for personalized assistance, 
+      Explore our exclusive collection or get in touch on WhatsApp for personalized assistance,
       pre-orders, and queries about imported brands.
     </p>
     <div class="cta-buttons">
@@ -1115,7 +1119,6 @@ footer {
 
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
@@ -1123,7 +1126,7 @@ footer {
         <span class="footer-brand-badge">1947</span>
         <span class="footer-brand-text">Clothing<span>Store</span></span>
       </div>
-      <p>Your trusted fashion destination since our journey began. Premium quality clothing at the best prices.</p>
+      <p>Your trusted fashion destination since 2013. Premium and imported clothing at the best prices. Worldwide customers.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -1167,7 +1170,6 @@ footer {
   </div>
 </footer>
 
-<!-- CART DRAWER -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-header">
@@ -1186,7 +1188,6 @@ footer {
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script>
@@ -1197,4 +1198,3 @@ footer {
 
 </body>
 </html>
- 
