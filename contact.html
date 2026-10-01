@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ═══════════════════════════════════════════════
-   RESET & VARIABLES
-═══════════════════════════════════════════════ */
 * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
 
 :root {
@@ -39,7 +36,19 @@ a { text-decoration:none; color:inherit; }
 img { max-width:100%; display:block; }
 button { font-family:inherit; cursor:pointer; }
 
-/* ANNOUNCEMENT */
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { transform:scale(1); }
+  50% { transform:scale(1.05); }
+}
+@keyframes shimmer {
+  0% { left:-100%; }
+  100% { left:100%; }
+}
+
 .announcement {
   background:var(--dark);
   color:#fff;
@@ -47,12 +56,24 @@ button { font-family:inherit; cursor:pointer; }
   padding:10px 15px;
   font-size:13px;
   letter-spacing:0.3px;
+  position:relative;
+  overflow:hidden;
+}
+.announcement::after {
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation:shimmer 5s infinite;
 }
 .announcement i { color:var(--red-light); margin-right:6px; }
 
-/* HEADER */
 header {
-  background:#fff;
+  background:rgba(255,255,255,0.98);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
@@ -74,7 +95,9 @@ header {
   display:flex;
   align-items:center;
   gap:8px;
+  transition:transform 0.3s;
 }
+.logo:hover { transform:scale(1.03); }
 .logo-badge {
   background:var(--red);
   color:#fff;
@@ -92,7 +115,21 @@ header {
   font-weight:500;
   color:#555;
   transition:color 0.2s;
+  position:relative;
+  padding-bottom:4px;
 }
+.nav-links a::after {
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:0;
+  height:2px;
+  background:var(--red);
+  transition:width 0.3s;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { width:100%; }
 .nav-links a:hover,
 .nav-links a.active { color:var(--red); }
 .header-actions { display:flex; align-items:center; gap:12px; }
@@ -108,9 +145,9 @@ header {
   cursor:pointer;
   color:var(--dark);
   font-size:16px;
-  transition:background 0.2s;
+  transition:all 0.3s;
 }
-.icon-btn:hover { background:var(--light-gray); }
+.icon-btn:hover { background:var(--light-gray); transform:scale(1.08); }
 .cart-btn {
   position:relative;
   background:var(--dark);
@@ -124,9 +161,9 @@ header {
   display:inline-flex;
   align-items:center;
   gap:8px;
-  transition:background 0.2s;
+  transition:all 0.3s;
 }
-.cart-btn:hover { background:var(--red); }
+.cart-btn:hover { background:var(--red); transform:translateY(-1px); }
 .cart-count {
   position:absolute;
   top:-6px;
@@ -152,7 +189,6 @@ header {
   cursor:pointer;
 }
 
-/* PAGE HEADER */
 .page-header {
   background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
   color:#fff;
@@ -176,6 +212,7 @@ header {
   margin:0 auto;
   position:relative;
   z-index:1;
+  animation:fadeInUp 0.8s ease-out both;
 }
 .page-header h1 {
   font-size:44px;
@@ -204,14 +241,12 @@ header {
 .breadcrumb i { font-size:10px; }
 .breadcrumb .current { color:var(--red-light); }
 
-/* CONTAINER */
 .container {
   max-width:1200px;
   margin:0 auto;
   padding:60px 20px;
 }
 
-/* CONTACT CARDS */
 .contact-cards {
   display:grid;
   grid-template-columns:repeat(3, 1fr);
@@ -258,7 +293,9 @@ header {
   font-size:28px;
   color:#fff;
   box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:transform 0.3s;
 }
+.contact-card:hover .contact-card-icon { transform:scale(1.1) rotate(-5deg); }
 .icon-whatsapp { background:linear-gradient(135deg,#25D366,#128C7E); }
 .icon-phone { background:linear-gradient(135deg,var(--red),var(--red-dark)); }
 .icon-location { background:linear-gradient(135deg,#1a1a1a,#2a2a2a); }
@@ -292,22 +329,23 @@ header {
 .contact-card-link:hover {
   background:var(--red);
   color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(211,47,47,0.3);
 }
 
-/* MAIN LAYOUT */
 .contact-main {
   display:grid;
-  grid-template-columns:1.2fr 1fr;
+  grid-template-columns:1.3fr 1fr;
   gap:40px;
   margin-bottom:60px;
 }
 
-/* FORM */
 .form-box {
   background:#fff;
   border:1px solid var(--border);
   border-radius:16px;
   padding:40px;
+  animation:fadeInUp 0.8s ease-out both;
 }
 .form-box h2 {
   font-size:26px;
@@ -387,11 +425,11 @@ header {
   transform:translateY(0);
 }
 
-/* INFO PANEL */
 .info-panel {
   display:flex;
   flex-direction:column;
   gap:20px;
+  animation:fadeInUp 0.8s ease-out 0.2s both;
 }
 .info-box {
   background:var(--light-gray);
@@ -448,58 +486,6 @@ header {
 .info-list li a { color:var(--red); font-weight:600; }
 .info-list li a:hover { text-decoration:underline; }
 
-/* HOURS */
-.hours-list { list-style:none; }
-.hours-list li {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 0;
-  border-bottom:1px solid var(--border);
-  font-size:14px;
-}
-.hours-list li:last-child { border-bottom:none; }
-.hours-list .day { color:var(--dark); font-weight:600; }
-.hours-list .time { color:var(--gray); font-weight:500; }
-.hours-list .closed { color:var(--red); font-weight:700; }
-
-/* MAP */
-.map-section {
-  margin-bottom:60px;
-}
-.map-section h2 {
-  font-size:26px;
-  font-weight:900;
-  color:var(--dark);
-  margin-bottom:20px;
-  letter-spacing:-0.5px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.map-section h2::before {
-  content:'';
-  width:5px;
-  height:26px;
-  background:var(--red);
-  border-radius:2px;
-}
-.map-wrap {
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-  height:400px;
-  position:relative;
-}
-.map-wrap iframe {
-  width:100%;
-  height:100%;
-  border:none;
-  display:block;
-}
-
-/* FAQ */
 .faq-section {
   margin-bottom:60px;
 }
@@ -526,7 +512,7 @@ header {
   border-radius:12px;
   margin-bottom:12px;
   overflow:hidden;
-  transition:all 0.2s;
+  transition:all 0.3s;
 }
 .faq-item.open { border-color:var(--red); box-shadow:0 8px 20px rgba(211,47,47,0.08); }
 
@@ -545,6 +531,7 @@ header {
   justify-content:space-between;
   gap:16px;
   font-family:inherit;
+  transition:background 0.2s;
 }
 .faq-question:hover { background:var(--light-gray); }
 .faq-question i {
@@ -569,7 +556,6 @@ header {
   line-height:1.8;
 }
 
-/* FOOTER */
 footer {
   background:var(--dark);
   color:#bbb;
@@ -644,7 +630,7 @@ footer {
   justify-content:center;
   color:#bbb;
   font-size:14px;
-  transition:all 0.2s;
+  transition:all 0.3s;
 }
 .social-links a:hover {
   background:var(--red);
@@ -666,7 +652,6 @@ footer {
 .footer-bottom strong { color:#fff; }
 .footer-bottom a { color:var(--red-light); }
 
-/* CART DRAWER */
 .cart-overlay {
   position:fixed;
   inset:0;
@@ -758,28 +743,6 @@ footer {
   font-size:15px;
   margin-bottom:8px;
 }
-.qty-mini {
-  display:inline-flex;
-  align-items:center;
-  border:1px solid var(--border);
-  border-radius:4px;
-  overflow:hidden;
-}
-.qty-mini button {
-  width:28px;
-  height:28px;
-  border:none;
-  background:#fff;
-  cursor:pointer;
-  font-size:14px;
-}
-.qty-mini button:hover { background:var(--light-gray); color:var(--red); }
-.qty-mini span {
-  min-width:32px;
-  text-align:center;
-  font-size:13px;
-  font-weight:700;
-}
 .cart-footer {
   padding:22px 20px;
   border-top:1px solid var(--border);
@@ -812,7 +775,6 @@ footer {
 .checkout-btn:hover { background:var(--green-dark); }
 .checkout-btn:disabled { background:#ccc; cursor:not-allowed; }
 
-/* RESPONSIVE */
 @media (max-width:960px) {
   .contact-cards { grid-template-columns:1fr; }
   .contact-main { grid-template-columns:1fr; }
@@ -845,7 +807,6 @@ footer {
   .page-header h1 { font-size:28px; }
   .form-box { padding:28px 22px; }
   .form-row { grid-template-columns:1fr; }
-  .map-wrap { height:300px; }
 }
 @media (max-width:500px) {
   .footer-inner { grid-template-columns:1fr; gap:24px; }
@@ -857,13 +818,11 @@ footer {
 </head>
 <body>
 
-<!-- ANNOUNCEMENT -->
 <div class="announcement">
   <i class="fa-brands fa-whatsapp"></i>
   Free shipping on orders above ₹999 — Order directly on WhatsApp
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="header-inner">
     <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
@@ -888,7 +847,6 @@ footer {
   </div>
 </header>
 
-<!-- PAGE HEADER -->
 <section class="page-header">
   <div class="page-header-inner">
     <h1>Get in <span>Touch</span></h1>
@@ -903,7 +861,6 @@ footer {
 
 <div class="container">
 
-  <!-- CONTACT CARDS -->
   <div class="contact-cards">
     <div class="contact-card">
       <div class="contact-card-icon icon-whatsapp">
@@ -942,10 +899,8 @@ footer {
     </div>
   </div>
 
-  <!-- MAIN: FORM + INFO -->
   <div class="contact-main">
 
-    <!-- FORM -->
     <div class="form-box">
       <h2>Send us a <span>Message</span></h2>
       <p>Fill the form below and we'll get back to you on WhatsApp immediately.</p>
@@ -993,10 +948,7 @@ footer {
       </form>
     </div>
 
-    <!-- INFO PANEL -->
     <div class="info-panel">
-
-      <!-- Store Info -->
       <div class="info-box">
         <h3><i class="fa-solid fa-store"></i> Store Information</h3>
         <ul class="info-list">
@@ -1015,51 +967,18 @@ footer {
             </div>
           </li>
           <li>
-            <i class="fa-solid fa-envelope"></i>
+            <i class="fa-solid fa-phone"></i>
             <div>
-              <strong>Email</strong>
-              <a href="mailto:hello@1947clothingstore.com">hello@1947clothingstore.com</a>
+              <strong>Phone</strong>
+              <a href="tel:+918590988090">+91 85909 88090</a>
             </div>
           </li>
         </ul>
       </div>
-
-      <!-- Hours -->
-      <div class="info-box">
-        <h3><i class="fa-solid fa-clock"></i> Store Hours</h3>
-        <ul class="hours-list">
-          <li>
-            <span class="day">Monday - Friday</span>
-            <span class="time">10:00 AM - 9:00 PM</span>
-          </li>
-          <li>
-            <span class="day">Saturday</span>
-            <span class="time">10:00 AM - 9:30 PM</span>
-          </li>
-          <li>
-            <span class="day">Sunday</span>
-            <span class="time">11:00 AM - 8:00 PM</span>
-          </li>
-        </ul>
-      </div>
-
     </div>
+
   </div>
 
-  <!-- MAP -->
-  <div class="map-section">
-    <h2>Find Us on Map</h2>
-    <div class="map-wrap">
-      <iframe 
-        src="https://www.google.com/maps?q=MG+Road+Ernakulam+Kerala&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-
-  <!-- FAQ -->
   <div class="faq-section">
     <h2>Frequently Asked Questions</h2>
 
@@ -1099,7 +1018,7 @@ footer {
         <i class="fa-solid fa-chevron-down"></i>
       </button>
       <div class="faq-answer">
-        <p>We offer a 7-day return policy on all products (except pre-orders and personalized items). The product must be in original condition with tags intact. Contact us on WhatsApp to initiate a return.</p>
+        <p>We offer a 2-day return policy on all products (except pre-orders and personalized items). The product must be in original condition with tags intact. Contact us on WhatsApp to initiate a return.</p>
       </div>
     </div>
 
@@ -1109,7 +1028,7 @@ footer {
         <i class="fa-solid fa-chevron-down"></i>
       </button>
       <div class="faq-answer">
-        <p>Absolutely. We deal exclusively in premium and luxury products from authentic brands. Every item is verified and sourced directly. We've been trusted by the Indian film industry for our commitment to authenticity.</p>
+        <p>Absolutely. We deal exclusively in premium and imported products from authentic brands. Every item is verified and sourced directly. We've been trusted by the Indian film industry for our commitment to authenticity.</p>
       </div>
     </div>
 
@@ -1117,7 +1036,6 @@ footer {
 
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
@@ -1125,7 +1043,7 @@ footer {
         <span class="footer-brand-badge">1947</span>
         <span class="footer-brand-text">Clothing<span>Store</span></span>
       </div>
-      <p>Your trusted fashion destination since our journey began. Premium quality clothing at the best prices.</p>
+      <p>Your trusted fashion destination since 2013. Premium and imported clothing at the best prices. Worldwide customers.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -1169,7 +1087,6 @@ footer {
   </div>
 </footer>
 
-<!-- CART DRAWER -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-header">
@@ -1188,7 +1105,6 @@ footer {
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script>
@@ -1196,13 +1112,11 @@ footer {
     document.getElementById('navLinks').classList.toggle('open');
   }
 
-  /* FAQ Toggle */
   function toggleFaq(btn) {
     const item = btn.parentElement;
     item.classList.toggle('open');
   }
 
-  /* Contact Form → WhatsApp */
   function sendContactWhatsApp(e) {
     e.preventDefault();
 
@@ -1217,26 +1131,22 @@ footer {
       return;
     }
 
-    // Get WhatsApp number from products.js (or use fixed)
     const waNumber = (typeof WHATSAPP_NUMBER !== 'undefined') ? WHATSAPP_NUMBER : '918590988090';
 
-    const msg =
-`📩 *New Contact Message*
+    const msg = `New Contact Message - 1947 Clothing Store
 
-👤 *Name:* ${name}
-📱 *Phone:* ${phone}
-${email ? `📧 *Email:* ${email}\n` : ''}📌 *Subject:* ${subject}
+Name: ${name}
+Phone: ${phone}${email ? '\nEmail: ' + email : ''}
+Subject: ${subject}
 
-💬 *Messagee:*
+Message:
 ${message}
 
-—
 Sent from 1947 Clothing Store website`;
 
     const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
 
-    // Reset form
     document.getElementById('contactForm').reset();
   }
 </script>
