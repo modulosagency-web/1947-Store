@@ -23,7 +23,7 @@
   --light-gray: #f7f7f7;
   --border: #e5e5e5;
 
-  /* FIX 1: Consistent Type Scale (8 sizes only) */
+  /* FIX 1: Consistent Type Scale */
   --fs-xs: 11px;
   --fs-sm: 13px;
   --fs-base: 15px;
@@ -33,7 +33,7 @@
   --fs-2xl: 42px;
   --fs-3xl: 52px;
 
-  /* FIX 2: Consistent Corner Radii (5 radii only) */
+  /* FIX 2: Consistent Corner Radii */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
@@ -290,7 +290,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 }
 .hero-text { animation: slideInLeft 0.9s ease-out both; }
 
-/* FIX 4: Hero tag - sentence case, not uppercase */
 .hero-tag {
   display: inline-flex;
   align-items: center;
@@ -334,7 +333,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   animation: fadeInUp 0.9s ease-out 0.45s both;
 }
 
-/* FIX 3 & 11: Reduced button styles, hierarchy clear */
 .hero-btn {
   display: inline-flex;
   align-items: center;
@@ -356,7 +354,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   box-shadow: 0 12px 28px rgba(211,47,47,0.4);
 }
 
-/* FIX 11: Secondary button clearly less prominent */
 .hero-btn-outline {
   background: transparent;
   border: 2px solid rgba(255,255,255,0.25);
@@ -388,8 +385,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   color: #fff;
   box-shadow: 0 12px 30px rgba(198, 40, 40, 0.25);
 }
-
-/* FIX 12: Reduced glow on New Arrivals card */
 .hero-visual-card:nth-child(1) {
   width: 200px;
   height: 250px;
@@ -398,8 +393,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   background: linear-gradient(135deg, #c62828, #8e0000);
   animation: floatCard1 5s ease-in-out infinite;
 }
-
-/* FIX 13: Cards aligned better */
 .hero-visual-card:nth-child(2) {
   width: 220px;
   height: 270px;
@@ -416,7 +409,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   margin-bottom: 18px;
   display: block;
 }
-/* FIX 5: Changed to p tag in HTML below */
 .hero-visual-title {
   font-size: var(--fs-lg);
   font-weight: 800;
@@ -430,7 +422,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   margin: 0;
 }
 
-/* FIX 7: Badge position adjusted — no overlap */
 .hero-visual-badge {
   position: absolute;
   bottom: 10px;
@@ -494,12 +485,13 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 .feature-text h4 { font-size: var(--fs-sm); font-weight: 700; color: var(--dark); margin-bottom: 2px; }
 .feature-text p { font-size: var(--fs-xs); color: var(--gray); }
 
+/* UPDATED: 3 categories now, 3-column grid */
 .categories {
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 .category-card {
@@ -515,7 +507,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 .category-card:nth-child(1) { animation-delay: 0.1s; }
 .category-card:nth-child(2) { animation-delay: 0.2s; }
 .category-card:nth-child(3) { animation-delay: 0.3s; }
-.category-card:nth-child(4) { animation-delay: 0.4s; }
 .category-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 15px 40px rgba(0,0,0,0.1);
@@ -541,7 +532,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   padding: 50px 20px 40px;
 }
 
-/* FIX 15: Aligned baseline */
 .section-head {
   display: flex;
   align-items: baseline;
@@ -582,7 +572,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   gap: 24px;
 }
 
-/* FIX 6 & 14: Loader for empty featured section */
 #featuredGrid:empty {
   grid-column: 1 / -1;
   min-height: 220px;
@@ -727,7 +716,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   gap: 8px;
 }
 
-/* FIX 3: Unified button style for cards */
 .btn-card {
   padding: 10px;
   border: none;
@@ -851,7 +839,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   font-size: var(--fs-base);
 }
 
-/* FIX 8 & 10: Reduced newsletter input/button heights */
 .newsletter-form {
   max-width: 480px;
   margin: 0 auto;
@@ -892,8 +879,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(211,47,47,0.3);
 }
-
-/* FIX 16: Icon size balanced */
 .newsletter-form button i {
   font-size: 13px;
 }
@@ -958,7 +943,6 @@ footer {
 }
 .footer-col ul a:hover { color: var(--red-light); }
 
-/* FIX 17: Social icons aligned to left edge */
 .social-links {
   display: flex;
   gap: 10px;
@@ -998,7 +982,6 @@ footer {
 }
 .footer-bottom a { color: var(--red-light); }
 
-/* FIX 9: Larger payment icons */
 .payment-icons {
   display: flex;
   gap: 14px;
@@ -1157,7 +1140,7 @@ footer {
   .hero-buttons { justify-content: center; }
   .hero-visual { height: 340px; }
   .features { grid-template-columns: repeat(2, 1fr); }
-  .categories { grid-template-columns: repeat(2, 1fr); }
+  .categories { grid-template-columns: repeat(3, 1fr); }
   .footer-inner { grid-template-columns: 1fr 1fr; }
 }
 
@@ -1198,7 +1181,7 @@ footer {
 
 @media (max-width: 500px) {
   .features { grid-template-columns: 1fr; }
-  .categories { grid-template-columns: 1fr 1fr; }
+  .categories { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 24px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .card-body { padding: 12px; }
@@ -1320,14 +1303,11 @@ footer {
   </div>
 </div>
 
+<!-- UPDATED: 3 categories — Women's Wear removed -->
 <div class="categories">
   <div class="category-card" onclick="location.href='shop.html'">
     <i class="fa-solid fa-shirt"></i>
     <h4>Men's Wear</h4>
-  </div>
-  <div class="category-card" onclick="location.href='shop.html'">
-    <i class="fa-solid fa-person-dress"></i>
-    <h4>Women's Wear</h4>
   </div>
   <div class="category-card" onclick="location.href='shop.html'">
     <i class="fa-solid fa-shoe-prints"></i>
