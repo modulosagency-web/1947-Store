@@ -1,0 +1,18 @@
+{
+  "id": 1790835354254,
+  "folder": "PRODUCT_1790835354254",
+  "name": "THE MAN TEST",
+  "description": "THE MAN TEST only for 1993",
+  "price": 1993,
+  "oldPrice": 2999,
+  "category": "Clothing",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790835354254/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790835354254/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790835354254/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790835354254/3.jpg"
+  ],
+  "photoCount": 3,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-10-01T06:16:02.378Z"
+}
