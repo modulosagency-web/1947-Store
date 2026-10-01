@@ -110,7 +110,7 @@ header { background: #fff; border-bottom: 1px solid var(--border); position: sti
 .filter-list input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--red); cursor: pointer; }
 .filter-list .count { margin-left: auto; font-size: 12px; color: #999; }
 .price-range { padding: 8px 0; }
-.price-range input[type="range"] { width: 100%; accent-color: var(--red); margin-bottom: 12px; }
+.price-range input[type="range"] { width: 100%; accent-color: var(--red); margin-bottom: 12px; cursor: pointer; }
 .price-labels { display: flex; justify-content: space-between; font-size: 13px; color: var(--gray); }
 .price-labels strong { color: var(--red); font-size: 14px; }
 .filter-btn {
@@ -150,11 +150,6 @@ header { background: #fff; border-bottom: 1px solid var(--border); position: sti
 .results-count { font-size: 14px; color: var(--gray); }
 .results-count strong { color: var(--dark); }
 .toolbar-right { display: flex; align-items: center; gap: 12px; }
-.sort-select {
-  padding: 9px 14px; border: 1px solid var(--border); border-radius: 6px;
-  background: #fff; font-size: 13px; font-weight: 500; color: var(--dark); cursor: pointer; outline: none;
-}
-.sort-select:focus { border-color: var(--red); }
 .view-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fff; }
 .view-toggle button {
   width: 36px; height: 36px; border: none; background: #fff;
@@ -435,13 +430,6 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
       <div class="results-count">Showing <strong id="resultCount">0</strong> products</div>
       <div class="toolbar-right">
         <button class="mobile-filter-btn" onclick="openFilterDrawer()"><i class="fa-solid fa-filter"></i> Filters</button>
-        <select class="sort-select" id="sortSelect" onchange="applyFilters()">
-          <option value="default">Sort: Default</option>
-          <option value="price-low">Price: Low to High</option>
-          <option value="price-high">Price: High to Low</option>
-          <option value="name">Name: A to Z</option>
-          <option value="discount">Highest Discount</option>
-        </select>
         <div class="view-toggle">
           <button id="gridView" class="active" onclick="setView('grid')"><i class="fa-solid fa-grip"></i></button>
           <button id="listView" onclick="setView('list')"><i class="fa-solid fa-list"></i></button>
@@ -549,7 +537,7 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
 <script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script>
-/* ═══ SHOP LOGIC — Clean, No Logs ═══ */
+/* ═══ SHOP LOGIC — Full Working ═══ */
 var allProducts = [];
 var filteredProducts = [];
 var currentPage = 1;
@@ -569,9 +557,11 @@ function initShop() {
   var list = getProducts();
   allProducts = list.slice();
   filteredProducts = allProducts.slice();
+
   buildCategoryFilter();
   bindPriceRange();
   renderShopProducts();
+
   if (typeof updateCartCount === 'function') updateCartCount();
   if (typeof renderCart === 'function') renderCart();
 }
@@ -582,26 +572,53 @@ if (document.readyState === 'loading') {
   initShop();
 }
 
+/* ─── BUILD CATEGORY CHECKBOXES (from admin panel data) ─── */
 function buildCategoryFilter() {
   var map = {};
   allProducts.forEach(function(p) {
     var c = p.category || 'General';
     map[c] = (map[c] || 0) + 1;
   });
-  var html = Object.keys(map).map(function(cat) {
-    return '<li><label><input type="checkbox" class="cat-checkbox" value="' + cat + '"><span>' + cat + '</span><span class="count">' + map[cat] + '</span></label></li>';
+
+  var cats = Object.keys(map).sort();
+
+  var html = cats.map(function(cat) {
+    return '<li><label>' +
+      '<input type="checkbox" class="cat-checkbox" value="' + cat + '" onchange="applyFilters()">' +
+      '<span>' + cat + '</span>' +
+      '<span class="count">' + map[cat] + '</span>' +
+      '</label></li>';
   }).join('');
+
+  if (cats.length === 0) {
+    html = '<li style="padding:10px;color:#999;font-size:13px;">No categories yet</li>';
+  }
+
   var el1 = document.getElementById('categoryFilter');
   var el2 = document.getElementById('categoryFilterMobile');
   if (el1) el1.innerHTML = html;
   if (el2) el2.innerHTML = html;
 }
 
+/* ─── PRICE RANGE — WORKING ─── */
 function bindPriceRange() {
   var d = document.getElementById('priceRange');
   var m = document.getElementById('priceRangeMobile');
   var ld = document.getElementById('priceValue');
   var lm = document.getElementById('priceValueMobile');
+
+  // Calculate max price from products
+  var maxP = 100000;
+  allProducts.forEach(function(p) {
+    if (p.price > maxP) maxP = p.price;
+  });
+  maxP = Math.ceil(maxP / 1000) * 1000;
+
+  if (d) { d.max = maxP; d.value = maxP; }
+  if (m) { m.max = maxP; m.value = maxP; }
+  if (ld) ld.textContent = '₹' + maxP;
+  if (lm) lm.textContent = '₹' + maxP;
+
   function sync(src, tgt, ls, lt) {
     if (!src || !tgt) return;
     src.addEventListener('input', function(e) {
@@ -614,28 +631,27 @@ function bindPriceRange() {
   sync(m, d, lm, ld);
 }
 
+/* ─── APPLY FILTERS (categories + price) ─── */
 function applyFilters() {
   var checked = [];
   document.querySelectorAll('#categoryFilter .cat-checkbox:checked').forEach(function(cb) {
     checked.push(cb.value);
   });
-  var maxPrice = parseInt((document.getElementById('priceRange') || {}).value || 99999);
-  var sortEl = document.getElementById('sortSelect');
-  var sort = sortEl ? sortEl.value : 'default';
+
+  var maxPrice = parseInt((document.getElementById('priceRange') || {}).value || 999999);
 
   var result = allProducts.slice();
-  if (checked.length > 0) {
-    result = result.filter(function(p) { return checked.indexOf(p.category || 'General') !== -1; });
-  }
-  result = result.filter(function(p) { return p.price <= maxPrice; });
 
-  if (sort === 'price-low') result.sort(function(a,b){ return a.price - b.price; });
-  else if (sort === 'price-high') result.sort(function(a,b){ return b.price - a.price; });
-  else if (sort === 'name') result.sort(function(a,b){ return a.name.localeCompare(b.name); });
-  else if (sort === 'discount') result.sort(function(a,b){
-    var da = a.oldPrice ? (a.oldPrice - a.price) : 0;
-    var db = b.oldPrice ? (b.oldPrice - b.price) : 0;
-    return db - da;
+  // Filter by category
+  if (checked.length > 0) {
+    result = result.filter(function(p) {
+      return checked.indexOf(p.category || 'General') !== -1;
+    });
+  }
+
+  // Filter by price
+  result = result.filter(function(p) {
+    return p.price <= maxPrice;
   });
 
   filteredProducts = result;
@@ -643,18 +659,24 @@ function applyFilters() {
   renderShopProducts();
 }
 
+/* ─── CLEAR FILTERS ─── */
 function clearFilters() {
   document.querySelectorAll('.cat-checkbox').forEach(function(cb) { cb.checked = false; });
+
+  var maxP = 100000;
+  allProducts.forEach(function(p) { if (p.price > maxP) maxP = p.price; });
+  maxP = Math.ceil(maxP / 1000) * 1000;
+
   var p1 = document.getElementById('priceRange');
   var p2 = document.getElementById('priceRangeMobile');
-  if (p1) p1.value = 100000;
-  if (p2) p2.value = 100000;
+  if (p1) p1.value = maxP;
+  if (p2) p2.value = maxP;
+
   var l1 = document.getElementById('priceValue');
   var l2 = document.getElementById('priceValueMobile');
-  if (l1) l1.textContent = '₹100000';
-  if (l2) l2.textContent = '₹100000';
-  var sortSelect = document.getElementById('sortSelect');
-  if (sortSelect) sortSelect.value = 'default';
+  if (l1) l1.textContent = '₹' + maxP;
+  if (l2) l2.textContent = '₹' + maxP;
+
   filteredProducts = allProducts.slice();
   currentPage = 1;
   renderShopProducts();
