@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Contact 1947 Clothing Store — MG Road, Ernakulam. WhatsApp: +91 85909 88090">
+<meta name="description" content="Contact 1947 Clothing Store — WhatsApp: +91 85909 88090">
 <title>Contact Us — 1947 Clothing Store</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -39,10 +39,6 @@ button { font-family:inherit; cursor:pointer; }
 @keyframes fadeInUp {
   from { opacity:0; transform:translateY(30px); }
   to { opacity:1; transform:translateY(0); }
-}
-@keyframes pulse {
-  0%, 100% { transform:scale(1); }
-  50% { transform:scale(1.05); }
 }
 @keyframes shimmer {
   0% { left:-100%; }
@@ -249,12 +245,15 @@ header {
 
 .contact-cards {
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
+  grid-template-columns:repeat(2, 1fr);
   gap:24px;
   margin-bottom:60px;
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
 }
 .contact-card {
-  padding:32px 26px;
+  padding:36px 26px;
   background:#fff;
   border:1px solid var(--border);
   border-radius:14px;
@@ -298,10 +297,9 @@ header {
 .contact-card:hover .contact-card-icon { transform:scale(1.1) rotate(-5deg); }
 .icon-whatsapp { background:linear-gradient(135deg,#25D366,#128C7E); }
 .icon-phone { background:linear-gradient(135deg,var(--red),var(--red-dark)); }
-.icon-location { background:linear-gradient(135deg,#1a1a1a,#2a2a2a); }
 
 .contact-card h3 {
-  font-size:18px;
+  font-size:20px;
   font-weight:800;
   color:var(--dark);
   margin-bottom:8px;
@@ -310,7 +308,7 @@ header {
 .contact-card p {
   font-size:14px;
   color:var(--gray);
-  margin-bottom:16px;
+  margin-bottom:18px;
   line-height:1.6;
 }
 .contact-card-link {
@@ -320,7 +318,7 @@ header {
   font-size:13px;
   font-weight:700;
   color:var(--red);
-  padding:10px 20px;
+  padding:10px 22px;
   border-radius:8px;
   border:2px solid var(--red);
   transition:all 0.2s;
@@ -776,7 +774,7 @@ footer {
 .checkout-btn:disabled { background:#ccc; cursor:not-allowed; }
 
 @media (max-width:960px) {
-  .contact-cards { grid-template-columns:1fr; }
+  .contact-cards { grid-template-columns:1fr; max-width:400px; }
   .contact-main { grid-template-columns:1fr; }
   .footer-inner { grid-template-columns:1fr 1fr; }
 }
@@ -811,7 +809,7 @@ footer {
 @media (max-width:500px) {
   .footer-inner { grid-template-columns:1fr; gap:24px; }
   .footer-bottom { flex-direction:column; }
-  .contact-card { padding:26px 20px; }
+  .contact-card { padding:28px 20px; }
   .info-box { padding:22px; }
 }
 </style>
@@ -850,7 +848,7 @@ footer {
 <section class="page-header">
   <div class="page-header-inner">
     <h1>Get in <span>Touch</span></h1>
-    <p>We'd love to hear from you. Reach out via WhatsApp, phone, or visit our store.</p>
+    <p>We'd love to hear from you. Reach out via WhatsApp or phone.</p>
     <div class="breadcrumb">
       <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
       <i class="fa-solid fa-chevron-right"></i>
@@ -883,18 +881,6 @@ footer {
       <a href="tel:+918590988090" class="contact-card-link">
         <i class="fa-solid fa-phone-volume"></i>
         +91 85909 88090
-      </a>
-    </div>
-
-    <div class="contact-card">
-      <div class="contact-card-icon icon-location">
-        <i class="fa-solid fa-location-dot"></i>
-      </div>
-      <h3>Visit Store</h3>
-      <p>MG Road, Ernakulam<br>Kerala, India</p>
-      <a href="https://maps.google.com/?q=MG+Road+Ernakulam" target="_blank" rel="noopener" class="contact-card-link">
-        <i class="fa-solid fa-directions"></i>
-        Get Directions
       </a>
     </div>
   </div>
@@ -950,15 +936,8 @@ footer {
 
     <div class="info-panel">
       <div class="info-box">
-        <h3><i class="fa-solid fa-store"></i> Store Information</h3>
+        <h3><i class="fa-solid fa-headset"></i> Get in Touch</h3>
         <ul class="info-list">
-          <li>
-            <i class="fa-solid fa-location-dot"></i>
-            <div>
-              <strong>Address</strong>
-              MG Road, Ernakulam<br>Kerala, India - 682035
-            </div>
-          </li>
           <li>
             <i class="fa-brands fa-whatsapp"></i>
             <div>
@@ -1080,7 +1059,7 @@ footer {
   </div>
 
   <div class="footer-bottom">
-    <p>© 2025 <strong>1947 Clothing Store</strong>. All rights reserved. | MG Road, Ernakulam</p>
+    <p>© 2025 <strong>1947 Clothing Store</strong>. All rights reserved.</p>
     <p>
       WhatsApp: <a href="https://wa.me/918590988090">+91 85909 88090</a>
     </p>
