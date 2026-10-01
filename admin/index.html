@@ -9,7 +9,7 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
 :root {
-  --red:#d32f2f; --red-dark:#b71c1c; --red-light:#f44336;
+  --red:#d32f2f; --red-dark:#b71c1c;
   --green:#25D366; --green-dark:#128C7E;
   --dark:#1a1a1a; --gray:#666; --light-gray:#f7f7f7; --border:#e5e5e5;
 }
@@ -17,6 +17,7 @@ body { background:var(--light-gray); color:#333; line-height:1.6; font-size:15px
 button { font-family:inherit; cursor:pointer; }
 img { max-width:100%; display:block; }
 
+/* LOGIN */
 .login-wrap {
   min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
   background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
@@ -61,6 +62,7 @@ img { max-width:100%; display:block; }
 .btn-green { background:var(--green); }
 .btn-green:hover:not(:disabled) { background:var(--green-dark); }
 
+/* PANEL */
 .panel-wrap { display:none; }
 .panel-wrap.active { display:block; }
 .topbar {
@@ -73,11 +75,18 @@ img { max-width:100%; display:block; }
   background:var(--red); color:#fff; padding:4px 10px; border-radius:5px;
   font-size:13px; letter-spacing:1px; font-weight:900;
 }
+.topbar-actions { display:flex; gap:10px; }
 .btn-logout {
   padding:9px 16px; background:#ef4444; color:#fff; border:none; border-radius:6px;
   font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:6px;
 }
 .btn-logout:hover { background:#b91c1c; }
+.btn-settings {
+  padding:9px 16px; background:#f7f7f7; color:#333; border:1px solid var(--border);
+  border-radius:6px; font-size:13px; font-weight:600;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.btn-settings:hover { background:#eee; }
 
 .container { max-width:1100px; margin:0 auto; padding:24px 20px 60px; }
 .section {
@@ -115,6 +124,7 @@ img { max-width:100%; display:block; }
   font-size:12px; color:#999; margin-top:5px;
   display:flex; align-items:flex-start; gap:5px; line-height:1.5;
 }
+.help-text a { color:var(--red); text-decoration:underline; }
 
 .upload-zone {
   border:2px dashed var(--border); border-radius:10px; padding:30px 20px;
@@ -201,17 +211,47 @@ img { max-width:100%; display:block; }
 }
 .badge-red { background:rgba(211,47,47,0.1); color:var(--red); }
 
+/* TOKEN SETUP SECTION */
+.setup-section {
+  background:linear-gradient(135deg,#fff9e6,#fff);
+  border:2px solid #f0c14b;
+  border-radius:12px;
+  padding:24px;
+  margin-bottom:20px;
+  display:none;
+}
+.setup-section.show { display:block; }
+.setup-section h3 {
+  color:#856404; font-size:15px; font-weight:800;
+  margin-bottom:10px; display:flex; align-items:center; gap:8px;
+}
+.setup-section p { font-size:13px; color:#856404; margin-bottom:14px; line-height:1.6; }
+.setup-section .form-input { font-family:monospace; font-size:12px; }
+.setup-section a { color:#856404; text-decoration:underline; }
+
+/* TOKEN STATUS */
+.token-status {
+  background:#dcfce7; border:1px solid #86efac; padding:14px 18px;
+  border-radius:10px; margin-bottom:20px;
+  display:flex; align-items:center; gap:10px;
+  color:#166534; font-weight:700; font-size:14px;
+}
+.token-status.missing { background:#fee2e2; border-color:#fecaca; color:#991b1b; }
+.token-status i { font-size:18px; }
+
 @media (max-width:600px) {
   .container { padding:16px 12px 40px; }
   .section { padding:20px; }
   .login-box { padding:32px 24px; }
   .upload-zone { padding:24px 16px; }
   .preview-grid { grid-template-columns:repeat(auto-fill,minmax(85px,1fr)); }
+  .btn-settings span { display:none; }
 }
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <div class="login-wrap" id="loginWrap">
   <div class="login-box">
     <div class="login-icon"><i class="fa-solid fa-shield-halved"></i></div>
@@ -241,19 +281,50 @@ img { max-width:100%; display:block; }
   </div>
 </div>
 
+<!-- PANEL -->
 <div class="panel-wrap" id="panelWrap">
   <div class="topbar">
     <div class="brand">
       <span class="brand-badge">1947</span>
       <span>Admin</span>
     </div>
-    <button class="btn-logout" onclick="logout()">
-      <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
-    </button>
+    <div class="topbar-actions">
+      <button class="btn-settings" onclick="toggleSetup()">
+        <i class="fa-solid fa-key"></i><span>Token Setup</span>
+      </button>
+      <button class="btn-logout" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+      </button>
+    </div>
   </div>
 
   <div class="container">
 
+    <!-- TOKEN STATUS -->
+    <div id="tokenStatusBox"></div>
+
+    <!-- TOKEN SETUP -->
+    <div class="setup-section" id="setupSection">
+      <h3><i class="fa-solid fa-key"></i> GitHub Token Setup (Ek Baar)</h3>
+      <p>
+        Ye token <strong>sirf aapke browser me</strong> save hoga. GitHub pe kabhi nahi jayega.
+        Ek baar daalo, hamesha kaam karega. Kabhi revoke nahi hoga.
+      </p>
+      <div class="form-group">
+        <label class="form-label">Personal Access Token (github_pat_...)</label>
+        <input type="password" id="ghToken" class="form-input" placeholder="github_pat_xxxxx...">
+        <p class="help-text">
+          <i class="fa-solid fa-circle-info"></i>
+          Token banao: <a href="https://github.com/settings/tokens?type=beta" target="_blank">GitHub → Settings → Tokens</a>
+          <br>Permissions: <strong>Contents: Read and write</strong> on <strong>1947-Store</strong>
+        </p>
+      </div>
+      <button class="btn-primary btn-green" onclick="saveToken()">
+        <i class="fa-solid fa-floppy-disk"></i><span>Save Token</span>
+      </button>
+    </div>
+
+    <!-- ADD PRODUCT -->
     <div class="section">
       <div class="section-title">
         <i class="fa-solid fa-plus"></i><span>Add New Product</span>
@@ -321,6 +392,7 @@ img { max-width:100%; display:block; }
       </div>
     </div>
 
+    <!-- PRODUCTS LIST -->
     <div class="section">
       <div class="section-title">
         <i class="fa-solid fa-box"></i><span>Products</span>
@@ -334,35 +406,34 @@ img { max-width:100%; display:block; }
 
 <script>
 /* ═══════════════════════════════════════════════════════
-   🔧 CONFIG — SAB YAHIN SET HAI
+   🔧 CONFIG — Token NAHI hai yahan
+   Token localStorage me save hoga (admin panel se)
 ═══════════════════════════════════════════════════════ */
 const CONFIG = {
-  // 🔐 Admin login
   adminUser: "admin",
   adminPass: "1947@store",
-
-  // 📱 WhatsApp number (country code without +)
-  whatsappNumber: "918590988090",  // ✅ Updated to your real number
-
-  // 🐙 GitHub
+  whatsappNumber: "918590988090",
   githubUser: "modulosagency-web",
   githubRepo: "1947-Store",
   githubBranch: "main",
-  githubToken: "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",  // ⚠️ SECURITY: kabhi kisi ko na do
-
-  // 📁 File paths
   productsFilePath: "js/products.js",
   imagesFolder: "images",
-
-  // 🔐 Security
   maxAttempts: 3,
   lockTime: 5 * 60 * 1000,
   sessionTime: 30 * 60 * 1000,
-  storageKey: 'adminSession_v6'
+  storageKey: 'adminSession_v9',
+  tokenKey: 'ghToken_v9'
 };
 
 let productsData = [];
 let selectedPhotos = [];
+
+/* ═══════════════════════════════════════════════════════
+   🔑 TOKEN MANAGEMENT
+═══════════════════════════════════════════════════════ */
+function getToken() { return localStorage.getItem(CONFIG.tokenKey) || ''; }
+function setToken(t) { localStorage.setItem(CONFIG.tokenKey, t); }
+function hasToken() { return getToken().length > 10; }
 
 /* ═══════════════════════════════════════════════════════
    🔐 AUTH
@@ -384,8 +455,8 @@ function isLoggedIn() {
   } catch { return false; }
 }
 
-function getAttempts() { return parseInt(localStorage.getItem('adminAtt_v6') || '0'); }
-function getLockUntil() { return parseInt(localStorage.getItem('adminLock_v6') || '0'); }
+function getAttempts() { return parseInt(localStorage.getItem('adminAtt_v9') || '0'); }
+function getLockUntil() { return parseInt(localStorage.getItem('adminLock_v9') || '0'); }
 
 function showAlertBox(id, textId, msg) {
   const el = document.getElementById(id);
@@ -422,15 +493,15 @@ async function login() {
       auth: true,
       expires: Date.now() + CONFIG.sessionTime
     }));
-    localStorage.removeItem('adminAtt_v6');
-    localStorage.removeItem('adminLock_v6');
+    localStorage.removeItem('adminAtt_v9');
+    localStorage.removeItem('adminLock_v9');
     showPanel();
   } else {
     const attempts = getAttempts() + 1;
-    localStorage.setItem('adminAtt_v6', attempts);
+    localStorage.setItem('adminAtt_v9', attempts);
     if (attempts >= CONFIG.maxAttempts) {
-      localStorage.setItem('adminLock_v6', Date.now() + CONFIG.lockTime);
-      localStorage.removeItem('adminAtt_v6');
+      localStorage.setItem('adminLock_v9', Date.now() + CONFIG.lockTime);
+      localStorage.removeItem('adminAtt_v9');
       showAlertBox('loginLock', 'loginLockText', `${CONFIG.maxAttempts} galat attempts. 5 min lock.`);
     } else {
       showAlertBox('loginError', 'loginErrorText', `Galat! ${CONFIG.maxAttempts - attempts} attempts bache.`);
@@ -449,7 +520,14 @@ function logout() {
 function showPanel() {
   document.getElementById('loginWrap').style.display = 'none';
   document.getElementById('panelWrap').classList.add('active');
-  loadProducts();
+  updateTokenStatus();
+
+  if (!hasToken()) {
+    document.getElementById('setupSection').classList.add('show');
+  } else {
+    loadProducts();
+  }
+
   setTimeout(() => {
     if (!isLoggedIn()) return;
     alert('Session expired.');
@@ -458,7 +536,50 @@ function showPanel() {
 }
 
 /* ═══════════════════════════════════════════════════════
-   📸 PHOTO UPLOAD UI
+   🔑 TOKEN SETUP UI
+═══════════════════════════════════════════════════════ */
+function updateTokenStatus() {
+  const box = document.getElementById('tokenStatusBox');
+  if (hasToken()) {
+    box.innerHTML = `
+      <div class="token-status">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>GitHub Token Active — Product upload ready!</span>
+        <button onclick="toggleSetup()" style="margin-left:auto;background:none;border:none;color:#166534;font-weight:700;cursor:pointer;text-decoration:underline;font-size:13px;">Change</button>
+      </div>`;
+  } else {
+    box.innerHTML = `
+      <div class="token-status missing">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>GitHub Token set nahi hai. Niche token daalo.</span>
+      </div>`;
+  }
+}
+
+function toggleSetup() {
+  document.getElementById('setupSection').classList.toggle('show');
+}
+
+function saveToken() {
+  const token = document.getElementById('ghToken').value.trim();
+  if (!token || token.length < 20) {
+    alert('Sahi token daalo (github_pat_...)');
+    return;
+  }
+  if (!token.startsWith('github_pat_') && !token.startsWith('ghp_')) {
+    alert('Token github_pat_ ya ghp_ se start hona chahiye.');
+    return;
+  }
+  setToken(token);
+  alert('✅ Token save ho gaya! Ab products add kar sakte ho.');
+  document.getElementById('ghToken').value = '';
+  document.getElementById('setupSection').classList.remove('show');
+  updateTokenStatus();
+  loadProducts();
+}
+
+/* ═══════════════════════════════════════════════════════
+   📸 PHOTO UPLOAD
 ═══════════════════════════════════════════════════════ */
 document.getElementById('photoInput').addEventListener('change', handleFiles);
 
@@ -487,8 +608,7 @@ function handleFiles(e) {
         file,
         dataUrl: ev.target.result,
         name: file.name,
-        uploaded: false,
-        url: null
+        uploaded: false
       });
       renderPreview();
     };
@@ -519,11 +639,11 @@ function removePhoto(i) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   🐙 GITHUB API
+   🐙 GITHUB API (Token localStorage se)
 ═══════════════════════════════════════════════════════ */
 function ghHeaders() {
   return {
-    'Authorization': `token ${CONFIG.githubToken}`,
+    'Authorization': `token ${getToken()}`,
     'Accept': 'application/vnd.github.v3+json',
     'Content-Type': 'application/json'
   };
@@ -555,6 +675,9 @@ async function uploadFileToGitHub(path, base64Content, message, sha = null) {
 
   if (!res.ok) {
     const err = await res.json();
+    if (res.status === 401) {
+      throw new Error('Token galat ya expire. Upar "Token Setup" se naya daalo.');
+    }
     throw new Error(err.message || 'GitHub upload failed');
   }
   return await res.json();
@@ -594,6 +717,8 @@ function dataUrlToBase64(dataUrl) {
    📦 LOAD PRODUCTS
 ═══════════════════════════════════════════════════════ */
 async function loadProducts() {
+  if (!hasToken()) { renderProductList(); return; }
+
   try {
     const url = `${apiBase()}/${CONFIG.productsFilePath}?ref=${CONFIG.githubBranch}&t=${Date.now()}`;
     const res = await fetch(url, { headers: ghHeaders() });
@@ -685,11 +810,14 @@ function setProgress(percent, text) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   🚀 ADD PRODUCT — GROUP ID SYSTEM
-   File naming: {productId}.{number}.jpg
-   Example: 1789037550081.1.jpg, 1789037550081.2.jpg
+   🚀 ADD PRODUCT
 ═══════════════════════════════════════════════════════ */
 async function addProduct() {
+  if (!hasToken()) {
+    showStatus('error', 'Pehle GitHub token daalo (upar "Token Setup" click karo).');
+    return;
+  }
+
   const name = document.getElementById('pName').value.trim();
   const desc = document.getElementById('pDesc').value.trim();
   const price = parseInt(document.getElementById('pPrice').value);
@@ -708,7 +836,6 @@ async function addProduct() {
   const btn = document.getElementById('publishBtn');
   btn.disabled = true;
 
-  // 🎯 UNIQUE GROUP ID
   const productId = Date.now();
   const totalSteps = selectedPhotos.length + 1;
   let doneSteps = 0;
@@ -716,7 +843,6 @@ async function addProduct() {
   try {
     const photoUrls = [];
 
-    // STEP 1: Upload each photo
     for (let i = 0; i < selectedPhotos.length; i++) {
       const photo = selectedPhotos[i];
       showStatus('loading', `Photo ${i + 1}/${selectedPhotos.length} upload ho raha hai...`);
@@ -724,7 +850,6 @@ async function addProduct() {
       const compressedDataUrl = await compressImage(photo.file, 800, 0.82);
       const base64 = dataUrlToBase64(compressedDataUrl);
 
-      // 🎯 NAMING: {productId}.{number}.jpg
       const photoNumber = i + 1;
       const fileName = `${productId}.${photoNumber}.jpg`;
       const filePath = `${CONFIG.imagesFolder}/${fileName}`;
@@ -745,7 +870,6 @@ async function addProduct() {
       setProgress((doneSteps / totalSteps) * 100, `Photo ${photoNumber}/${selectedPhotos.length} uploaded`);
     }
 
-    // STEP 2: Save to products.js
     showStatus('loading', 'Product details save ho rahi hain...');
 
     const newProduct = {
@@ -755,8 +879,8 @@ async function addProduct() {
       price,
       oldPrice,
       category,
-      image: photoUrls[0],       // Main image
-      images: photoUrls,          // All images
+      image: photoUrls[0],
+      images: photoUrls,
       photoCount: photoUrls.length,
       date: new Date().toISOString()
     };
@@ -792,7 +916,6 @@ const products = window.PRODUCTS_DATA;
 
     showStatus('success', `"${name}" with ${photoUrls.length} photos live ho gaya! 1-2 min me website pe ayega.`);
 
-    // Reset
     document.getElementById('pName').value = '';
     document.getElementById('pDesc').value = '';
     document.getElementById('pPrice').value = '';
@@ -815,7 +938,8 @@ const products = window.PRODUCTS_DATA;
    🗑️ DELETE PRODUCT
 ═══════════════════════════════════════════════════════ */
 async function deleteProduct(id) {
-  if (!confirm('Ye product delete karna hai? (Photos GitHub pe rahengi)')) return;
+  if (!hasToken()) { alert('Token set nahi hai.'); return; }
+  if (!confirm('Ye product delete karna hai?')) return;
 
   const updated = productsData.filter(p => p.id !== id);
   if (updated.length === productsData.length) return;
