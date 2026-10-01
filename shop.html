@@ -24,7 +24,6 @@
 }
 
 html { scroll-behavior: smooth; }
-
 body { background: #fff; color: #333; line-height: 1.6; font-size: 15px; }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
@@ -105,7 +104,7 @@ header { background: #fff; border-bottom: 1px solid var(--border); position: sti
 .filter-list li { margin-bottom: 4px; }
 .filter-list label {
   display: flex; align-items: center; gap: 10px; padding: 8px 10px;
-  border-radius: 6px; cursor: pointer; font-size: 14px; color: #555; transition: all 0.2s;
+  border-radius: 6px; cursor: pointer; font-size: 14px; color: #555;
 }
 .filter-list label:hover { background: var(--light-gray); color: var(--dark); }
 .filter-list input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--red); cursor: pointer; }
@@ -139,8 +138,7 @@ header { background: #fff; border-bottom: 1px solid var(--border); position: sti
 .sidebar-promo p { font-size: 13px; opacity: 0.9; margin-bottom: 14px; position: relative; }
 .sidebar-promo a {
   display: inline-block; background: #fff; color: var(--red);
-  padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 700;
-  position: relative;
+  padding: 9px 20px; border-radius: 6px; font-size: 13px; font-weight: 700; position: relative;
 }
 
 .products-area { min-width: 0; }
@@ -415,10 +413,10 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
     <div class="filter-box">
       <h3><i class="fa-solid fa-indian-rupee-sign"></i> Price Range</h3>
       <div class="price-range">
-        <input type="range" id="priceRange" min="0" max="50000" value="50000" step="100">
+        <input type="range" id="priceRange" min="0" max="100000" value="100000" step="100">
         <div class="price-labels">
           <span>₹0</span>
-          <strong id="priceValue">₹50000</strong>
+          <strong id="priceValue">₹100000</strong>
         </div>
       </div>
     </div>
@@ -469,10 +467,10 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
   <div class="filter-box" style="border:none;padding:0;margin-bottom:20px;">
     <h3><i class="fa-solid fa-indian-rupee-sign"></i> Max Price</h3>
     <div class="price-range">
-      <input type="range" id="priceRangeMobile" min="0" max="50000" value="50000" step="100">
+      <input type="range" id="priceRangeMobile" min="0" max="100000" value="100000" step="100">
       <div class="price-labels">
         <span>₹0</span>
-        <strong id="priceValueMobile">₹50000</strong>
+        <strong id="priceValueMobile">₹100000</strong>
       </div>
     </div>
   </div>
@@ -551,79 +549,92 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
 <script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script>
-/* ═══ SHOP PAGE LOGIC ═══ */
-let allProducts = [];
-let filteredProducts = [];
-let currentPage = 1;
-const PER_PAGE = 8;
+/* ═══ SHOP LOGIC — Clean, No Logs ═══ */
+var allProducts = [];
+var filteredProducts = [];
+var currentPage = 1;
+var PER_PAGE = 8;
+
+function getProducts() {
+  if (typeof window.PRODUCTS_DATA !== 'undefined' && Array.isArray(window.PRODUCTS_DATA)) {
+    return window.PRODUCTS_DATA;
+  }
+  if (typeof window.products !== 'undefined' && Array.isArray(window.products)) {
+    return window.products;
+  }
+  return [];
+}
 
 function initShop() {
-  if (typeof products === 'undefined' || !Array.isArray(products)) {
-    console.error('❌ products not found, retrying...');
-    setTimeout(initShop, 500);
-    return;
-  }
-
-  allProducts = products.slice();
+  var list = getProducts();
+  allProducts = list.slice();
   filteredProducts = allProducts.slice();
-  console.log('✅ Products loaded:', allProducts.length);
-
   buildCategoryFilter();
   bindPriceRange();
   renderShopProducts();
-
   if (typeof updateCartCount === 'function') updateCartCount();
   if (typeof renderCart === 'function') renderCart();
 }
 
-window.addEventListener('load', initShop);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initShop);
+} else {
+  initShop();
+}
 
 function buildCategoryFilter() {
-  const categories = [...new Set(allProducts.map(p => p.category || 'General'))];
-  const html = categories.map(cat => {
-    const count = allProducts.filter(p => (p.category || 'General') === cat).length;
-    return `<li><label><input type="checkbox" class="cat-checkbox" value="${cat}"><span>${cat}</span><span class="count">${count}</span></label></li>`;
+  var map = {};
+  allProducts.forEach(function(p) {
+    var c = p.category || 'General';
+    map[c] = (map[c] || 0) + 1;
+  });
+  var html = Object.keys(map).map(function(cat) {
+    return '<li><label><input type="checkbox" class="cat-checkbox" value="' + cat + '"><span>' + cat + '</span><span class="count">' + map[cat] + '</span></label></li>';
   }).join('');
-
-  const el1 = document.getElementById('categoryFilter');
-  const el2 = document.getElementById('categoryFilterMobile');
+  var el1 = document.getElementById('categoryFilter');
+  var el2 = document.getElementById('categoryFilterMobile');
   if (el1) el1.innerHTML = html;
   if (el2) el2.innerHTML = html;
 }
 
 function bindPriceRange() {
-  const desktop = document.getElementById('priceRange');
-  const mobile = document.getElementById('priceRangeMobile');
-  const labelD = document.getElementById('priceValue');
-  const labelM = document.getElementById('priceValueMobile');
-
-  function sync(source, target, labelSource, labelTarget) {
-    if (!source || !target) return;
-    source.addEventListener('input', e => {
-      target.value = e.target.value;
-      if (labelSource) labelSource.textContent = '₹' + e.target.value;
-      if (labelTarget) labelTarget.textContent = '₹' + e.target.value;
+  var d = document.getElementById('priceRange');
+  var m = document.getElementById('priceRangeMobile');
+  var ld = document.getElementById('priceValue');
+  var lm = document.getElementById('priceValueMobile');
+  function sync(src, tgt, ls, lt) {
+    if (!src || !tgt) return;
+    src.addEventListener('input', function(e) {
+      tgt.value = e.target.value;
+      if (ls) ls.textContent = '₹' + e.target.value;
+      if (lt) lt.textContent = '₹' + e.target.value;
     });
   }
-  sync(desktop, mobile, labelD, labelM);
-  sync(mobile, desktop, labelM, labelD);
+  sync(d, m, ld, lm);
+  sync(m, d, lm, ld);
 }
 
 function applyFilters() {
-  const checked = [...document.querySelectorAll('#categoryFilter .cat-checkbox:checked')].map(cb => cb.value);
-  const maxPrice = parseInt(document.getElementById('priceRange')?.value || 99999);
-  const sort = document.getElementById('sortSelect')?.value || 'default';
+  var checked = [];
+  document.querySelectorAll('#categoryFilter .cat-checkbox:checked').forEach(function(cb) {
+    checked.push(cb.value);
+  });
+  var maxPrice = parseInt((document.getElementById('priceRange') || {}).value || 99999);
+  var sortEl = document.getElementById('sortSelect');
+  var sort = sortEl ? sortEl.value : 'default';
 
-  let result = allProducts.slice();
-  if (checked.length > 0) result = result.filter(p => checked.includes(p.category || 'General'));
-  result = result.filter(p => p.price <= maxPrice);
+  var result = allProducts.slice();
+  if (checked.length > 0) {
+    result = result.filter(function(p) { return checked.indexOf(p.category || 'General') !== -1; });
+  }
+  result = result.filter(function(p) { return p.price <= maxPrice; });
 
-  if (sort === 'price-low') result.sort((a, b) => a.price - b.price);
-  else if (sort === 'price-high') result.sort((a, b) => b.price - a.price);
-  else if (sort === 'name') result.sort((a, b) => a.name.localeCompare(b.name));
-  else if (sort === 'discount') result.sort((a, b) => {
-    const da = a.oldPrice ? (a.oldPrice - a.price) : 0;
-    const db = b.oldPrice ? (b.oldPrice - b.price) : 0;
+  if (sort === 'price-low') result.sort(function(a,b){ return a.price - b.price; });
+  else if (sort === 'price-high') result.sort(function(a,b){ return b.price - a.price; });
+  else if (sort === 'name') result.sort(function(a,b){ return a.name.localeCompare(b.name); });
+  else if (sort === 'discount') result.sort(function(a,b){
+    var da = a.oldPrice ? (a.oldPrice - a.price) : 0;
+    var db = b.oldPrice ? (b.oldPrice - b.price) : 0;
     return db - da;
   });
 
@@ -633,96 +644,102 @@ function applyFilters() {
 }
 
 function clearFilters() {
-  document.querySelectorAll('.cat-checkbox').forEach(cb => cb.checked = false);
-  const p1 = document.getElementById('priceRange');
-  const p2 = document.getElementById('priceRangeMobile');
-  if (p1) p1.value = 50000;
-  if (p2) p2.value = 50000;
-  const l1 = document.getElementById('priceValue');
-  const l2 = document.getElementById('priceValueMobile');
-  if (l1) l1.textContent = '₹50000';
-  if (l2) l2.textContent = '₹50000';
-  const sortSelect = document.getElementById('sortSelect');
+  document.querySelectorAll('.cat-checkbox').forEach(function(cb) { cb.checked = false; });
+  var p1 = document.getElementById('priceRange');
+  var p2 = document.getElementById('priceRangeMobile');
+  if (p1) p1.value = 100000;
+  if (p2) p2.value = 100000;
+  var l1 = document.getElementById('priceValue');
+  var l2 = document.getElementById('priceValueMobile');
+  if (l1) l1.textContent = '₹100000';
+  if (l2) l2.textContent = '₹100000';
+  var sortSelect = document.getElementById('sortSelect');
   if (sortSelect) sortSelect.value = 'default';
   filteredProducts = allProducts.slice();
   currentPage = 1;
   renderShopProducts();
 }
 
+function getProductImage(p) {
+  if (p.image) return p.image;
+  if (p.images && p.images.length) return p.images[0];
+  return '';
+}
+
+function getPhotoCount(p) {
+  if (p.images && p.images.length) return p.images.length;
+  if (p.photoCount) return p.photoCount;
+  return 1;
+}
+
 function renderShopProducts() {
-  const grid = document.getElementById('shopGrid');
-  const countEl = document.getElementById('resultCount');
+  var grid = document.getElementById('shopGrid');
+  var countEl = document.getElementById('resultCount');
   if (!grid) return;
 
   if (countEl) countEl.textContent = filteredProducts.length;
 
   if (filteredProducts.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state" style="grid-column:1/-1;">
-        <i class="fa-solid fa-box-open"></i>
-        <h3>No products found</h3>
-        <p>Try changing filters or clear them.</p>
-        <button onclick="clearFilters()"><i class="fa-solid fa-rotate-left"></i> Clear Filters</button>
-      </div>`;
-    const pag = document.getElementById('pagination');
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">' +
+      '<i class="fa-solid fa-box-open"></i>' +
+      '<h3>No products found</h3>' +
+      '<p>Try changing filters or clear them.</p>' +
+      '<button onclick="clearFilters()"><i class="fa-solid fa-rotate-left"></i> Clear Filters</button>' +
+      '</div>';
+    var pag = document.getElementById('pagination');
     if (pag) pag.innerHTML = '';
     return;
   }
 
-  const totalPages = Math.ceil(filteredProducts.length / PER_PAGE);
-  const start = (currentPage - 1) * PER_PAGE;
-  const pageItems = filteredProducts.slice(start, start + PER_PAGE);
-  const fallback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23f7f7f7' width='100' height='100'/><text x='50' y='60' text-anchor='middle' fill='%23ccc' font-size='40'>IMG</text></svg>";
+  var totalPages = Math.ceil(filteredProducts.length / PER_PAGE);
+  var start = (currentPage - 1) * PER_PAGE;
+  var pageItems = filteredProducts.slice(start, start + PER_PAGE);
 
-  grid.innerHTML = pageItems.map(p => {
-    const discount = p.oldPrice && p.oldPrice > p.price
+  var fallback = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23f7f7f7' width='100' height='100'/><text x='50' y='60' text-anchor='middle' fill='%23ccc' font-size='14'>NO IMG</text></svg>";
+
+  grid.innerHTML = pageItems.map(function(p) {
+    var discount = (p.oldPrice && p.oldPrice > p.price)
       ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
-    const photoCount = (p.images && p.images.length) ? p.images.length : 1;
+    var photoCount = getPhotoCount(p);
+    var img = getProductImage(p);
 
-    return `
-      <div class="card">
-        <div class="card-img-wrap">
-          ${discount > 0 ? `<span class="card-badge">-${discount}%</span>` : ''}
-          ${photoCount > 1 ? `<span class="card-photo-count"><i class="fa-solid fa-images"></i> ${photoCount} photos</span>` : ''}
-          <button class="card-wish" onclick="event.stopPropagation(); this.classList.toggle('active')">
-            <i class="fa-regular fa-heart"></i>
-          </button>
-          <img src="${p.image}" alt="${p.name}" onerror="this.src='${fallback}'">
-        </div>
-        <div class="card-body">
-          <div class="card-category">${p.category || 'General'}</div>
-          <h3 class="card-title">${p.name}</h3>
-          <p class="card-desc">${p.description}</p>
-          <div class="card-price">
-            <span class="price-new">₹${p.price}</span>
-            ${p.oldPrice ? `<span class="price-old">₹${p.oldPrice}</span>` : ''}
-            ${discount > 0 ? `<span class="price-off">-${discount}%</span>` : ''}
-          </div>
-          <div class="card-actions">
-            <button class="btn-card btn-view" onclick="location.href='product.html?id=${p.id}'">
-              <i class="fa-solid fa-eye"></i> View
-            </button>
-            <button class="btn-card btn-order" onclick="orderOnWhatsApp(${p.id})">
-              <i class="fa-brands fa-whatsapp"></i> Order
-            </button>
-          </div>
-        </div>
-      </div>`;
+    return '<div class="card">' +
+      '<div class="card-img-wrap">' +
+        (discount > 0 ? '<span class="card-badge">-' + discount + '%</span>' : '') +
+        (photoCount > 1 ? '<span class="card-photo-count"><i class="fa-solid fa-images"></i> ' + photoCount + ' photos</span>' : '') +
+        '<button class="card-wish" onclick="event.stopPropagation(); this.classList.toggle(\'active\')"><i class="fa-regular fa-heart"></i></button>' +
+        '<img src="' + img + '" alt="' + p.name + '" onerror="this.src=\'' + fallback + '\'">' +
+      '</div>' +
+      '<div class="card-body">' +
+        '<div class="card-category">' + (p.category || 'General') + '</div>' +
+        '<h3 class="card-title">' + p.name + '</h3>' +
+        '<p class="card-desc">' + (p.description || '') + '</p>' +
+        '<div class="card-price">' +
+          '<span class="price-new">₹' + p.price + '</span>' +
+          (p.oldPrice ? '<span class="price-old">₹' + p.oldPrice + '</span>' : '') +
+          (discount > 0 ? '<span class="price-off">-' + discount + '%</span>' : '') +
+        '</div>' +
+        '<div class="card-actions">' +
+          '<button class="btn-card btn-view" onclick="location.href=\'product.html?id=' + p.id + '\'"><i class="fa-solid fa-eye"></i> View</button>' +
+          '<button class="btn-card btn-order" onclick="orderOnWhatsApp(' + p.id + ')"><i class="fa-brands fa-whatsapp"></i> Order</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
   }).join('');
 
   renderPagination(totalPages);
 }
 
 function renderPagination(totalPages) {
-  const pag = document.getElementById('pagination');
+  var pag = document.getElementById('pagination');
   if (!pag) return;
   if (totalPages <= 1) { pag.innerHTML = ''; return; }
 
-  let html = `<button ${currentPage === 1 ? 'disabled' : ''} onclick="goToPage(${currentPage - 1})"><i class="fa-solid fa-chevron-left"></i></button>`;
-  for (let i = 1; i <= totalPages; i++) {
-    html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+  var html = '<button ' + (currentPage === 1 ? 'disabled' : '') + ' onclick="goToPage(' + (currentPage - 1) + ')"><i class="fa-solid fa-chevron-left"></i></button>';
+  for (var i = 1; i <= totalPages; i++) {
+    html += '<button class="' + (i === currentPage ? 'active' : '') + '" onclick="goToPage(' + i + ')">' + i + '</button>';
   }
-  html += `<button ${currentPage === totalPages ? 'disabled' : ''} onclick="goToPage(${currentPage + 1})"><i class="fa-solid fa-chevron-right"></i></button>`;
+  html += '<button ' + (currentPage === totalPages ? 'disabled' : '') + ' onclick="goToPage(' + (currentPage + 1) + ')"><i class="fa-solid fa-chevron-right"></i></button>';
   pag.innerHTML = html;
 }
 
@@ -733,30 +750,36 @@ function goToPage(page) {
 }
 
 function setView(view) {
-  const grid = document.getElementById('shopGrid');
-  const gv = document.getElementById('gridView');
-  const lv = document.getElementById('listView');
+  var grid = document.getElementById('shopGrid');
+  var gv = document.getElementById('gridView');
+  var lv = document.getElementById('listView');
+  if (!grid) return;
   if (view === 'list') {
     grid.classList.add('list-view');
-    lv.classList.add('active');
-    gv.classList.remove('active');
+    if (lv) lv.classList.add('active');
+    if (gv) gv.classList.remove('active');
   } else {
     grid.classList.remove('list-view');
-    gv.classList.add('active');
-    lv.classList.remove('active');
+    if (gv) gv.classList.add('active');
+    if (lv) lv.classList.remove('active');
   }
 }
 
 function openFilterDrawer() {
-  document.getElementById('filterDrawer')?.classList.add('open');
-  document.getElementById('filterOverlay')?.classList.add('open');
+  var d = document.getElementById('filterDrawer');
+  var o = document.getElementById('filterOverlay');
+  if (d) d.classList.add('open');
+  if (o) o.classList.add('open');
 }
 function closeFilterDrawer() {
-  document.getElementById('filterDrawer')?.classList.remove('open');
-  document.getElementById('filterOverlay')?.classList.remove('open');
+  var d = document.getElementById('filterDrawer');
+  var o = document.getElementById('filterOverlay');
+  if (d) d.classList.remove('open');
+  if (o) o.classList.remove('open');
 }
 function toggleMenu() {
-  document.getElementById('navLinks').classList.toggle('open');
+  var n = document.getElementById('navLinks');
+  if (n) n.classList.toggle('open');
 }
 </script>
 
