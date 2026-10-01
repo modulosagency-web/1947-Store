@@ -18,14 +18,12 @@ a { text-decoration:none; color:inherit; }
 img { max-width:100%; display:block; }
 button { font-family:inherit; cursor:pointer; }
 
-/* ANNOUNCEMENT */
 .announcement {
   background:var(--dark); color:#fff; text-align:center;
   padding:10px 15px; font-size:13px;
 }
 .announcement i { color:var(--red-light); margin-right:6px; }
 
-/* HEADER */
 header { background:#fff; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
 .header-inner {
   max-width:1200px; margin:0 auto; padding:18px 20px;
@@ -58,7 +56,6 @@ header { background:#fff; border-bottom:1px solid var(--border); position:sticky
 }
 .mobile-toggle { display:none; background:none; border:none; font-size:22px; color:var(--dark); cursor:pointer; }
 
-/* BREADCRUMB */
 .breadcrumb-bar { background:var(--light-gray); padding:14px 20px; border-bottom:1px solid var(--border); }
 .breadcrumb-inner {
   max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:10px;
@@ -69,13 +66,11 @@ header { background:#fff; border-bottom:1px solid var(--border); position:sticky
 .breadcrumb-inner i { font-size:10px; }
 .breadcrumb-inner .current { color:var(--dark); font-weight:600; }
 
-/* PRODUCT LAYOUT */
 .product-page {
   max-width:1200px; margin:0 auto; padding:40px 20px;
   display:grid; grid-template-columns:1fr 1fr; gap:50px;
 }
 
-/* GALLERY */
 .gallery {
   display:grid; grid-template-columns:80px 1fr; gap:16px;
   align-items:start; position:sticky; top:100px; align-self:start;
@@ -127,7 +122,6 @@ header { background:#fff; border-bottom:1px solid var(--border); position:sticky
 }
 .gallery-dot.active { background:#fff; width:20px; border-radius:3px; }
 
-/* PRODUCT INFO */
 .product-info { padding-top:8px; }
 .category-tag {
   display:inline-flex; align-items:center; gap:6px;
@@ -210,7 +204,6 @@ header { background:#fff; border-bottom:1px solid var(--border); position:sticky
   color:var(--red); font-size:14px; box-shadow:0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* RELATED */
 .related-section { max-width:1200px; margin:0 auto; padding:20px 20px 60px; }
 .related-title {
   font-size:24px; font-weight:800; color:var(--dark);
@@ -238,7 +231,6 @@ header { background:#fff; border-bottom:1px solid var(--border); position:sticky
 .related-price .new { font-size:17px; font-weight:800; color:var(--red); }
 .related-price .old { font-size:13px; color:var(--gray); text-decoration:line-through; }
 
-/* FOOTER */
 footer { background:var(--dark); color:#bbb; padding:60px 20px 20px; margin-top:20px; }
 .footer-inner {
   max-width:1200px; margin:0 auto; display:grid;
@@ -267,7 +259,6 @@ footer { background:var(--dark); color:#bbb; padding:60px 20px 20px; margin-top:
 }
 .footer-bottom strong { color:#fff; }
 
-/* CART DRAWER */
 .cart-overlay {
   position:fixed; inset:0; background:rgba(0,0,0,0.5);
   opacity:0; visibility:hidden; transition:opacity 0.3s; z-index:150;
@@ -297,7 +288,6 @@ footer { background:var(--dark); color:#bbb; padding:60px 20px 20px; margin-top:
   display:flex; align-items:center; justify-content:center; gap:10px;
 }
 
-/* RESPONSIVE */
 @media (max-width:960px) {
   .product-page { grid-template-columns:1fr; gap:30px; padding:24px 16px; }
   .gallery { position:static; display:flex; flex-direction:column; gap:12px; }
@@ -344,7 +334,7 @@ footer { background:var(--dark); color:#bbb; padding:60px 20px 20px; margin-top:
     <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
     <a href="index.html" class="logo">
       <span class="logo-badge">1947</span>
-      <span class="logo-text">Clothing<span>Store</span></span>
+      <span class="logo-text">Premium<span>Clothing</span></span>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
@@ -385,9 +375,9 @@ footer { background:var(--dark); color:#bbb; padding:60px 20px 20px; margin-top:
     <div class="footer-col">
       <div class="footer-brand">
         <span class="footer-brand-badge">1947</span>
-        <span class="footer-brand-text">Clothing<span>Store</span></span>
+        <span class="footer-brand-text">Premium<span>Clothing</span></span>
       </div>
-      <p>Your trusted fashion destination since 1947. Premium quality clothing at the best prices.</p>
+      <p>Your trusted fashion destination since 2013. Premium and imported clothing at the best prices. Worldwide customers.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -421,7 +411,7 @@ footer { background:var(--dark); color:#bbb; padding:60px 20px 20px; margin-top:
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 <strong>1947 Clothing Store</strong>. All rights reserved.</p>
+    <p>© 2025 <strong>1947 PremiumClothing</strong>. All rights reserved.</p>
   </div>
 </footer>
 
@@ -452,7 +442,7 @@ let currentImageIndex = 0;
 
 function initProduct() {
   if (typeof products === 'undefined' || !Array.isArray(products)) {
-    console.error('❌ products not found, retrying...');
+    console.error('products not found, retrying...');
     setTimeout(initProduct, 500);
     return;
   }
@@ -466,7 +456,7 @@ function initProduct() {
       <div style="grid-column:1/-1;text-align:center;padding:80px 20px;">
         <i class="fa-solid fa-box-open" style="font-size:60px;color:#ddd;margin-bottom:16px;display:block;"></i>
         <h2 style="font-size:22px;margin-bottom:8px;">Product not found</h2>
-        <p style="color:#666;margin-bottom:20px;">Ye product exist nahi karta.</p>
+        <p style="color:#666;margin-bottom:20px;">This product does not exist.</p>
         <a href="shop.html" style="background:#d32f2f;color:#fff;padding:12px 26px;border-radius:6px;display:inline-flex;align-items:center;gap:8px;font-weight:600;">
           <i class="fa-solid fa-arrow-left"></i> Back to Shop
         </a>
@@ -483,7 +473,7 @@ function initProduct() {
     currentImages = ['data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23f7f7f7" width="100" height="100"/></svg>'];
   }
 
-  document.title = product.name + ' — 1947 Clothing Store';
+  document.title = product.name + ' — 1947 PremiumClothing';
   document.getElementById('breadcrumbName').textContent = product.name;
 
   renderProduct(product);
@@ -610,7 +600,7 @@ function renderProduct(p) {
         </div>
         <div class="trust-item">
           <i class="fa-solid fa-rotate-left"></i>
-          <span>7-Day Return</span>
+          <span>2-Day Return</span>
         </div>
         <div class="trust-item">
           <i class="fa-solid fa-headset"></i>
