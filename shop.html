@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Shop all products at 1947 Clothing Store — Premium clothing at best prices.">
+<meta name="description" content="Shop all products at 1947 PremiumClothing — Premium and imported clothing at best prices.">
 <title>Shop — 1947 PremiumClothing</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -369,7 +369,7 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
     <button class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
     <a href="index.html" class="logo">
       <span class="logo-badge">1947</span>
-      <span class="logo-text">Clothing<span>Store</span></span>
+      <span class="logo-text">Premium<span>Clothing</span></span>
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
@@ -471,9 +471,9 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
     <div class="footer-col">
       <div class="footer-brand">
         <span class="footer-brand-badge">1947</span>
-        <span class="footer-brand-text">Clothing<span>Store</span></span>
+        <span class="footer-brand-text">Premium<span>Clothing</span></span>
       </div>
-      <p>Your trusted fashion destination since 1947. Premium quality clothing at the best prices.</p>
+      <p>Your trusted fashion destination since 2013. Premium and imported clothing at the best prices. Worldwide customers.</p>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -507,7 +507,7 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 <strong style="color:#fff;">1947 Clothing Store</strong>. All rights reserved.</p>
+    <p>© 2025 <strong style="color:#fff;">1947 PremiumClothing</strong>. All rights reserved.</p>
     <div class="payment-icons">
       <i class="fa-brands fa-cc-visa"></i>
       <i class="fa-brands fa-cc-mastercard"></i>
@@ -572,7 +572,6 @@ if (document.readyState === 'loading') {
   initShop();
 }
 
-/* ─── BUILD CATEGORY CHECKBOXES (from admin panel data) ─── */
 function buildCategoryFilter() {
   var map = {};
   allProducts.forEach(function(p) {
@@ -600,14 +599,12 @@ function buildCategoryFilter() {
   if (el2) el2.innerHTML = html;
 }
 
-/* ─── PRICE RANGE — WORKING ─── */
 function bindPriceRange() {
   var d = document.getElementById('priceRange');
   var m = document.getElementById('priceRangeMobile');
   var ld = document.getElementById('priceValue');
   var lm = document.getElementById('priceValueMobile');
 
-  // Calculate max price from products
   var maxP = 100000;
   allProducts.forEach(function(p) {
     if (p.price > maxP) maxP = p.price;
@@ -631,7 +628,6 @@ function bindPriceRange() {
   sync(m, d, lm, ld);
 }
 
-/* ─── APPLY FILTERS (categories + price) ─── */
 function applyFilters() {
   var checked = [];
   document.querySelectorAll('#categoryFilter .cat-checkbox:checked').forEach(function(cb) {
@@ -642,14 +638,12 @@ function applyFilters() {
 
   var result = allProducts.slice();
 
-  // Filter by category
   if (checked.length > 0) {
     result = result.filter(function(p) {
       return checked.indexOf(p.category || 'General') !== -1;
     });
   }
 
-  // Filter by price
   result = result.filter(function(p) {
     return p.price <= maxPrice;
   });
@@ -659,7 +653,6 @@ function applyFilters() {
   renderShopProducts();
 }
 
-/* ─── CLEAR FILTERS ─── */
 function clearFilters() {
   document.querySelectorAll('.cat-checkbox').forEach(function(cb) { cb.checked = false; });
 
