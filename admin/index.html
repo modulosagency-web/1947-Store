@@ -17,7 +17,6 @@ body { background:var(--light-gray); color:#333; line-height:1.6; font-size:15px
 button { font-family:inherit; cursor:pointer; }
 img { max-width:100%; display:block; }
 
-/* LOGIN */
 .login-wrap {
   min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
   background:linear-gradient(135deg,#1a1a1a 0%,#2a1010 100%);
@@ -62,7 +61,6 @@ img { max-width:100%; display:block; }
 .btn-green { background:var(--green); }
 .btn-green:hover:not(:disabled) { background:var(--green-dark); }
 
-/* PANEL */
 .panel-wrap { display:none; }
 .panel-wrap.active { display:block; }
 .topbar {
@@ -80,13 +78,11 @@ img { max-width:100%; display:block; }
   padding:9px 16px; background:#ef4444; color:#fff; border:none; border-radius:6px;
   font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:6px;
 }
-.btn-logout:hover { background:#b91c1c; }
 .btn-settings {
   padding:9px 16px; background:#f7f7f7; color:#333; border:1px solid var(--border);
   border-radius:6px; font-size:13px; font-weight:600;
   display:inline-flex; align-items:center; gap:6px;
 }
-.btn-settings:hover { background:#eee; }
 
 .container { max-width:1100px; margin:0 auto; padding:24px 20px 60px; }
 .section {
@@ -155,7 +151,6 @@ img { max-width:100%; display:block; }
   background:rgba(239,68,68,0.9); color:#fff; border:none; border-radius:50%;
   font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center;
 }
-.preview-item .remove:hover { background:#b91c1c; }
 .preview-item .primary-tag {
   position:absolute; bottom:5px; left:5px; background:var(--green);
   color:#fff; font-size:10px; font-weight:700; padding:2px 6px; border-radius:3px;
@@ -195,15 +190,18 @@ img { max-width:100%; display:block; }
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:3px;
 }
 .product-row-info p { font-size:12px; color:var(--gray); }
+.product-row-info .folder-name {
+  font-family:monospace; font-size:10px; color:#999;
+  background:#fff; padding:1px 5px; border-radius:3px; display:inline-block;
+  margin-top:3px;
+}
 .btn-delete {
   padding:8px 12px; background:#ef4444; color:#fff; border:none; border-radius:6px;
   font-size:12px; font-weight:600; display:inline-flex; align-items:center; gap:5px;
 }
-.btn-delete:hover { background:#b91c1c; }
 
 .empty-state { text-align:center; padding:50px 20px; color:var(--gray); }
 .empty-state i { font-size:46px; color:#ddd; margin-bottom:12px; display:block; }
-.empty-state p { font-size:14px; }
 
 .badge {
   display:inline-flex; align-items:center; gap:4px; padding:3px 10px;
@@ -211,14 +209,10 @@ img { max-width:100%; display:block; }
 }
 .badge-red { background:rgba(211,47,47,0.1); color:var(--red); }
 
-/* TOKEN SETUP SECTION */
 .setup-section {
   background:linear-gradient(135deg,#fff9e6,#fff);
-  border:2px solid #f0c14b;
-  border-radius:12px;
-  padding:24px;
-  margin-bottom:20px;
-  display:none;
+  border:2px solid #f0c14b; border-radius:12px;
+  padding:24px; margin-bottom:20px; display:none;
 }
 .setup-section.show { display:block; }
 .setup-section h3 {
@@ -229,7 +223,6 @@ img { max-width:100%; display:block; }
 .setup-section .form-input { font-family:monospace; font-size:12px; }
 .setup-section a { color:#856404; text-decoration:underline; }
 
-/* TOKEN STATUS */
 .token-status {
   background:#dcfce7; border:1px solid #86efac; padding:14px 18px;
   border-radius:10px; margin-bottom:20px;
@@ -243,7 +236,6 @@ img { max-width:100%; display:block; }
   .container { padding:16px 12px 40px; }
   .section { padding:20px; }
   .login-box { padding:32px 24px; }
-  .upload-zone { padding:24px 16px; }
   .preview-grid { grid-template-columns:repeat(auto-fill,minmax(85px,1fr)); }
   .btn-settings span { display:none; }
 }
@@ -251,7 +243,6 @@ img { max-width:100%; display:block; }
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login-wrap" id="loginWrap">
   <div class="login-box">
     <div class="login-icon"><i class="fa-solid fa-shield-halved"></i></div>
@@ -281,7 +272,6 @@ img { max-width:100%; display:block; }
   </div>
 </div>
 
-<!-- PANEL -->
 <div class="panel-wrap" id="panelWrap">
   <div class="topbar">
     <div class="brand">
@@ -300,15 +290,13 @@ img { max-width:100%; display:block; }
 
   <div class="container">
 
-    <!-- TOKEN STATUS -->
     <div id="tokenStatusBox"></div>
 
-    <!-- TOKEN SETUP -->
     <div class="setup-section" id="setupSection">
       <h3><i class="fa-solid fa-key"></i> GitHub Token Setup (Ek Baar)</h3>
       <p>
         Ye token <strong>sirf aapke browser me</strong> save hoga. GitHub pe kabhi nahi jayega.
-        Ek baar daalo, hamesha kaam karega. Kabhi revoke nahi hoga.
+        Ek baar daalo, hamesha kaam karega.
       </p>
       <div class="form-group">
         <label class="form-label">Personal Access Token (github_pat_...)</label>
@@ -324,7 +312,6 @@ img { max-width:100%; display:block; }
       </button>
     </div>
 
-    <!-- ADD PRODUCT -->
     <div class="section">
       <div class="section-title">
         <i class="fa-solid fa-plus"></i><span>Add New Product</span>
@@ -379,7 +366,7 @@ img { max-width:100%; display:block; }
 
       <p class="help-text">
         <i class="fa-solid fa-circle-info"></i>
-        Pehli photo "MAIN" hogi. Baaki gallery me slide hongi (Amazon style).
+        Sab photos ek folder me jayengi: <strong>images/PRODUCT_ID/1.jpg, 2.jpg...</strong>
       </p>
 
       <button class="btn-primary btn-green" id="publishBtn" style="margin-top:16px;" onclick="addProduct()">
@@ -392,7 +379,6 @@ img { max-width:100%; display:block; }
       </div>
     </div>
 
-    <!-- PRODUCTS LIST -->
     <div class="section">
       <div class="section-title">
         <i class="fa-solid fa-box"></i><span>Products</span>
@@ -406,8 +392,7 @@ img { max-width:100%; display:block; }
 
 <script>
 /* ═══════════════════════════════════════════════════════
-   🔧 CONFIG — Token NAHI hai yahan
-   Token localStorage me save hoga (admin panel se)
+   🔧 CONFIG
 ═══════════════════════════════════════════════════════ */
 const CONFIG = {
   adminUser: "admin",
@@ -421,23 +406,19 @@ const CONFIG = {
   maxAttempts: 3,
   lockTime: 5 * 60 * 1000,
   sessionTime: 30 * 60 * 1000,
-  storageKey: 'adminSession_v9',
-  tokenKey: 'ghToken_v9'
+  storageKey: 'adminSession_v10',
+  tokenKey: 'ghToken_v10'
 };
 
 let productsData = [];
 let selectedPhotos = [];
 
-/* ═══════════════════════════════════════════════════════
-   🔑 TOKEN MANAGEMENT
-═══════════════════════════════════════════════════════ */
+/* ═══ TOKEN ═══ */
 function getToken() { return localStorage.getItem(CONFIG.tokenKey) || ''; }
 function setToken(t) { localStorage.setItem(CONFIG.tokenKey, t); }
 function hasToken() { return getToken().length > 10; }
 
-/* ═══════════════════════════════════════════════════════
-   🔐 AUTH
-═══════════════════════════════════════════════════════ */
+/* ═══ AUTH ═══ */
 async function sha256(text) {
   const buf = new TextEncoder().encode(text);
   const hash = await crypto.subtle.digest('SHA-256', buf);
@@ -447,16 +428,13 @@ async function sha256(text) {
 function isLoggedIn() {
   try {
     const s = JSON.parse(localStorage.getItem(CONFIG.storageKey) || '{}');
-    if (!s.expires || Date.now() > s.expires) {
-      localStorage.removeItem(CONFIG.storageKey);
-      return false;
-    }
+    if (!s.expires || Date.now() > s.expires) { localStorage.removeItem(CONFIG.storageKey); return false; }
     return s.auth === true;
   } catch { return false; }
 }
 
-function getAttempts() { return parseInt(localStorage.getItem('adminAtt_v9') || '0'); }
-function getLockUntil() { return parseInt(localStorage.getItem('adminLock_v9') || '0'); }
+function getAttempts() { return parseInt(localStorage.getItem('adminAtt_v10') || '0'); }
+function getLockUntil() { return parseInt(localStorage.getItem('adminLock_v10') || '0'); }
 
 function showAlertBox(id, textId, msg) {
   const el = document.getElementById(id);
@@ -490,18 +468,17 @@ async function login() {
 
   if (inputHash === expectedHash) {
     localStorage.setItem(CONFIG.storageKey, JSON.stringify({
-      auth: true,
-      expires: Date.now() + CONFIG.sessionTime
+      auth: true, expires: Date.now() + CONFIG.sessionTime
     }));
-    localStorage.removeItem('adminAtt_v9');
-    localStorage.removeItem('adminLock_v9');
+    localStorage.removeItem('adminAtt_v10');
+    localStorage.removeItem('adminLock_v10');
     showPanel();
   } else {
     const attempts = getAttempts() + 1;
-    localStorage.setItem('adminAtt_v9', attempts);
+    localStorage.setItem('adminAtt_v10', attempts);
     if (attempts >= CONFIG.maxAttempts) {
-      localStorage.setItem('adminLock_v9', Date.now() + CONFIG.lockTime);
-      localStorage.removeItem('adminAtt_v9');
+      localStorage.setItem('adminLock_v10', Date.now() + CONFIG.lockTime);
+      localStorage.removeItem('adminAtt_v10');
       showAlertBox('loginLock', 'loginLockText', `${CONFIG.maxAttempts} galat attempts. 5 min lock.`);
     } else {
       showAlertBox('loginError', 'loginErrorText', `Galat! ${CONFIG.maxAttempts - attempts} attempts bache.`);
@@ -521,13 +498,11 @@ function showPanel() {
   document.getElementById('loginWrap').style.display = 'none';
   document.getElementById('panelWrap').classList.add('active');
   updateTokenStatus();
-
   if (!hasToken()) {
     document.getElementById('setupSection').classList.add('show');
   } else {
     loadProducts();
   }
-
   setTimeout(() => {
     if (!isLoggedIn()) return;
     alert('Session expired.');
@@ -535,9 +510,6 @@ function showPanel() {
   }, CONFIG.sessionTime);
 }
 
-/* ═══════════════════════════════════════════════════════
-   🔑 TOKEN SETUP UI
-═══════════════════════════════════════════════════════ */
 function updateTokenStatus() {
   const box = document.getElementById('tokenStatusBox');
   if (hasToken()) {
@@ -562,54 +534,34 @@ function toggleSetup() {
 
 function saveToken() {
   const token = document.getElementById('ghToken').value.trim();
-  if (!token || token.length < 20) {
-    alert('Sahi token daalo (github_pat_...)');
-    return;
-  }
+  if (!token || token.length < 20) { alert('Sahi token daalo (github_pat_...)'); return; }
   if (!token.startsWith('github_pat_') && !token.startsWith('ghp_')) {
-    alert('Token github_pat_ ya ghp_ se start hona chahiye.');
-    return;
+    alert('Token github_pat_ ya ghp_ se start hona chahiye.'); return;
   }
   setToken(token);
-  alert('✅ Token save ho gaya! Ab products add kar sakte ho.');
+  alert('✅ Token save ho gaya!');
   document.getElementById('ghToken').value = '';
   document.getElementById('setupSection').classList.remove('show');
   updateTokenStatus();
   loadProducts();
 }
 
-/* ═══════════════════════════════════════════════════════
-   📸 PHOTO UPLOAD
-═══════════════════════════════════════════════════════ */
+/* ═══ PHOTO UPLOAD ═══ */
 document.getElementById('photoInput').addEventListener('change', handleFiles);
-
 const uploadZone = document.getElementById('uploadZone');
-['dragenter', 'dragover'].forEach(ev => {
-  uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.add('dragging'); });
-});
-['dragleave', 'drop'].forEach(ev => {
-  uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.remove('dragging'); });
-});
-uploadZone.addEventListener('drop', e => {
-  handleFiles({ target: { files: e.dataTransfer.files } });
-});
+['dragenter', 'dragover'].forEach(ev => uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.add('dragging'); }));
+['dragleave', 'drop'].forEach(ev => uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.remove('dragging'); }));
+uploadZone.addEventListener('drop', e => handleFiles({ target: { files: e.dataTransfer.files } }));
 
 function handleFiles(e) {
   const files = Array.from(e.target.files);
   const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'image/gif'];
-
   files.forEach(file => {
-    if (!validTypes.includes(file.type)) { alert(`"${file.name}" is not a valid image.`); return; }
-    if (file.size > 5 * 1024 * 1024) { alert(`"${file.name}" > 5MB.`); return; }
-
+    if (!validTypes.includes(file.type)) { alert(`"${file.name}" invalid`); return; }
+    if (file.size > 5 * 1024 * 1024) { alert(`"${file.name}" > 5MB`); return; }
     const reader = new FileReader();
     reader.onload = ev => {
-      selectedPhotos.push({
-        file,
-        dataUrl: ev.target.result,
-        name: file.name,
-        uploaded: false
-      });
+      selectedPhotos.push({ file, dataUrl: ev.target.result, name: file.name, uploaded: false });
       renderPreview();
     };
     reader.readAsDataURL(file);
@@ -620,27 +572,19 @@ function handleFiles(e) {
 function renderPreview() {
   const grid = document.getElementById('previewGrid');
   if (selectedPhotos.length === 0) { grid.innerHTML = ''; return; }
-
   grid.innerHTML = selectedPhotos.map((p, i) => `
     <div class="preview-item">
       <img src="${p.dataUrl}" alt="">
       ${i === 0 ? '<span class="primary-tag">MAIN</span>' : ''}
       ${p.uploaded ? '<div class="upload-status"><i class="fa-solid fa-circle-check" style="color:#10b981;"></i></div>' : ''}
-      <button class="remove" onclick="removePhoto(${i})">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <button class="remove" onclick="removePhoto(${i})"><i class="fa-solid fa-xmark"></i></button>
     </div>
   `).join('');
 }
 
-function removePhoto(i) {
-  selectedPhotos.splice(i, 1);
-  renderPreview();
-}
+function removePhoto(i) { selectedPhotos.splice(i, 1); renderPreview(); }
 
-/* ═══════════════════════════════════════════════════════
-   🐙 GITHUB API (Token localStorage se)
-═══════════════════════════════════════════════════════ */
+/* ═══ GITHUB API ═══ */
 function ghHeaders() {
   return {
     'Authorization': `token ${getToken()}`,
@@ -658,8 +602,7 @@ async function getFileSHA(path) {
     const url = `${apiBase()}/${path}?ref=${CONFIG.githubBranch}&t=${Date.now()}`;
     const res = await fetch(url, { headers: ghHeaders() });
     if (!res.ok) return null;
-    const data = await res.json();
-    return data.sha;
+    return (await res.json()).sha;
   } catch { return null; }
 }
 
@@ -675,9 +618,7 @@ async function uploadFileToGitHub(path, base64Content, message, sha = null) {
 
   if (!res.ok) {
     const err = await res.json();
-    if (res.status === 401) {
-      throw new Error('Token galat ya expire. Upar "Token Setup" se naya daalo.');
-    }
+    if (res.status === 401) throw new Error('Token galat/expire. Setup se naya daalo.');
     throw new Error(err.message || 'GitHub upload failed');
   }
   return await res.json();
@@ -691,14 +632,9 @@ function compressImage(file, maxWidth = 800, quality = 0.82) {
       img.onload = () => {
         const canvas = document.createElement('canvas');
         let { width, height } = img;
-        if (width > maxWidth) {
-          height = Math.round((height * maxWidth) / width);
-          width = maxWidth;
-        }
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
+        if (width > maxWidth) { height = Math.round((height * maxWidth) / width); width = maxWidth; }
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
         resolve(canvas.toDataURL('image/jpeg', quality));
       };
       img.onerror = reject;
@@ -709,24 +645,15 @@ function compressImage(file, maxWidth = 800, quality = 0.82) {
   });
 }
 
-function dataUrlToBase64(dataUrl) {
-  return dataUrl.split(',')[1];
-}
+function dataUrlToBase64(dataUrl) { return dataUrl.split(',')[1]; }
 
-/* ═══════════════════════════════════════════════════════
-   📦 LOAD PRODUCTS
-═══════════════════════════════════════════════════════ */
+/* ═══ LOAD PRODUCTS ═══ */
 async function loadProducts() {
   if (!hasToken()) { renderProductList(); return; }
-
   try {
     const url = `${apiBase()}/${CONFIG.productsFilePath}?ref=${CONFIG.githubBranch}&t=${Date.now()}`;
     const res = await fetch(url, { headers: ghHeaders() });
-    if (!res.ok) {
-      productsData = window.PRODUCTS_DATA || [];
-      renderProductList();
-      return;
-    }
+    if (!res.ok) { productsData = window.PRODUCTS_DATA || []; renderProductList(); return; }
     const data = await res.json();
     const content = decodeURIComponent(escape(atob(data.content)));
     const match = content.match(/window\.PRODUCTS_DATA\s*=\s*(\[[\s\S]*?\]);/);
@@ -750,19 +677,13 @@ function renderProductList() {
   document.getElementById('prodCount').textContent = productsData.length;
 
   if (productsData.length === 0) {
-    box.innerHTML = `
-      <div class="empty-state">
-        <i class="fa-solid fa-box-open"></i>
-        <p>Koi product nahi. Upar form se add karo!</p>
-      </div>`;
+    box.innerHTML = `<div class="empty-state"><i class="fa-solid fa-box-open"></i><p>Koi product nahi. Upar form se add karo!</p></div>`;
     return;
   }
 
   box.innerHTML = productsData.map(p => {
     const imgs = (p.images && p.images.length) ? p.images : [p.image].filter(Boolean);
-    const thumbs = imgs.slice(0, 2).map(src =>
-      `<img src="${escapeHtml(src)}" alt="">`
-    ).join('');
+    const thumbs = imgs.slice(0, 2).map(src => `<img src="${escapeHtml(src)}" alt="">`).join('');
     const extra = imgs.length > 2 ? `<div class="thumb-count">+${imgs.length - 2}</div>` : '';
 
     return `
@@ -771,6 +692,7 @@ function renderProductList() {
         <div class="product-row-info">
           <h4>${escapeHtml(p.name)}</h4>
           <p>₹${p.price} ${p.oldPrice ? `<s>₹${p.oldPrice}</s>` : ''} • ${escapeHtml(p.category || 'General')} • ${imgs.length} photos</p>
+          ${p.folder ? `<span class="folder-name">📁 ${escapeHtml(p.folder)}</span>` : ''}
         </div>
         <button class="btn-delete" onclick="deleteProduct(${p.id})">
           <i class="fa-solid fa-trash"></i><span>Delete</span>
@@ -780,9 +702,7 @@ function renderProductList() {
   }).join('');
 }
 
-/* ═══════════════════════════════════════════════════════
-   📊 STATUS + PROGRESS
-═══════════════════════════════════════════════════════ */
+/* ═══ STATUS ═══ */
 function showStatus(type, msg) {
   const iconMap = {
     'error': 'fa-circle-exclamation',
@@ -810,7 +730,8 @@ function setProgress(percent, text) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   🚀 ADD PRODUCT
+   🚀 ADD PRODUCT — FOLDER-BASED UPLOAD
+   Structure: images/PRODUCT_{id}/1.jpg, 2.jpg, ..., data.json
 ═══════════════════════════════════════════════════════ */
 async function addProduct() {
   if (!hasToken()) {
@@ -836,13 +757,19 @@ async function addProduct() {
   const btn = document.getElementById('publishBtn');
   btn.disabled = true;
 
+  // 🎯 UNIQUE ID + FOLDER
   const productId = Date.now();
-  const totalSteps = selectedPhotos.length + 1;
+  const folderName = `PRODUCT_${productId}`;
+  const totalSteps = selectedPhotos.length + 2; // photos + data.json + products.js
   let doneSteps = 0;
 
   try {
     const photoUrls = [];
 
+    // ═══════════════════════════════════════════
+    // STEP 1: Upload each photo into the folder
+    // images/PRODUCT_{id}/1.jpg, 2.jpg, 3.jpg
+    // ═══════════════════════════════════════════
     for (let i = 0; i < selectedPhotos.length; i++) {
       const photo = selectedPhotos[i];
       showStatus('loading', `Photo ${i + 1}/${selectedPhotos.length} upload ho raha hai...`);
@@ -850,14 +777,15 @@ async function addProduct() {
       const compressedDataUrl = await compressImage(photo.file, 800, 0.82);
       const base64 = dataUrlToBase64(compressedDataUrl);
 
+      // 🎯 FOLDER-BASED PATH
       const photoNumber = i + 1;
-      const fileName = `${productId}.${photoNumber}.jpg`;
-      const filePath = `${CONFIG.imagesFolder}/${fileName}`;
+      const fileName = `${photoNumber}.jpg`;
+      const filePath = `${CONFIG.imagesFolder}/${folderName}/${fileName}`;
 
       await uploadFileToGitHub(
         filePath,
         base64,
-        `Upload photo ${photoNumber} for product ${productId}`
+        `Add photo ${photoNumber} to ${folderName}`
       );
 
       const rawUrl = `https://raw.githubusercontent.com/${CONFIG.githubUser}/${CONFIG.githubRepo}/${CONFIG.githubBranch}/${filePath}`;
@@ -870,10 +798,48 @@ async function addProduct() {
       setProgress((doneSteps / totalSteps) * 100, `Photo ${photoNumber}/${selectedPhotos.length} uploaded`);
     }
 
-    showStatus('loading', 'Product details save ho rahi hain...');
+    // ═══════════════════════════════════════════
+    // STEP 2: Create data.json INSIDE the folder
+    // images/PRODUCT_{id}/data.json
+    // ═══════════════════════════════════════════
+    showStatus('loading', 'Product data.json ban raha hai...');
+
+    const productData = {
+      id: productId,
+      folder: folderName,
+      name,
+      description: desc,
+      price,
+      oldPrice,
+      category,
+      image: photoUrls[0],
+      images: photoUrls,
+      photoCount: photoUrls.length,
+      whatsapp: CONFIG.whatsappNumber,
+      createdAt: new Date().toISOString()
+    };
+
+    const jsonContent = JSON.stringify(productData, null, 2);
+    const jsonBase64 = btoa(unescape(encodeURIComponent(jsonContent)));
+    const jsonPath = `${CONFIG.imagesFolder}/${folderName}/data.json`;
+
+    await uploadFileToGitHub(
+      jsonPath,
+      jsonBase64,
+      `Add data.json for ${folderName}`
+    );
+
+    doneSteps++;
+    setProgress((doneSteps / totalSteps) * 100, 'data.json created');
+
+    // ═══════════════════════════════════════════
+    // STEP 3: Update products.js (lightweight list)
+    // ═══════════════════════════════════════════
+    showStatus('loading', 'products.js update ho raha hai...');
 
     const newProduct = {
       id: productId,
+      folder: folderName,
       name,
       description: desc,
       price,
@@ -904,7 +870,7 @@ const products = window.PRODUCTS_DATA;
     await uploadFileToGitHub(
       CONFIG.productsFilePath,
       encoded,
-      `Add product: ${name} (${productId}) with ${photoUrls.length} photos`,
+      `Add product: ${name} (folder: ${folderName})`,
       existingSHA
     );
 
@@ -914,8 +880,9 @@ const products = window.PRODUCTS_DATA;
     productsData = updatedProducts;
     renderProductList();
 
-    showStatus('success', `"${name}" with ${photoUrls.length} photos live ho gaya! 1-2 min me website pe ayega.`);
+    showStatus('success', `"${name}" folder "${folderName}" me upload ho gaya! ${photoUrls.length} photos + data.json`);
 
+    // Reset form
     document.getElementById('pName').value = '';
     document.getElementById('pDesc').value = '';
     document.getElementById('pPrice').value = '';
@@ -939,7 +906,7 @@ const products = window.PRODUCTS_DATA;
 ═══════════════════════════════════════════════════════ */
 async function deleteProduct(id) {
   if (!hasToken()) { alert('Token set nahi hai.'); return; }
-  if (!confirm('Ye product delete karna hai?')) return;
+  if (!confirm('Ye product delete karna hai? (Folder GitHub pe rahega)')) return;
 
   const updated = productsData.filter(p => p.id !== id);
   if (updated.length === productsData.length) return;
@@ -970,15 +937,13 @@ const products = window.PRODUCTS_DATA;
 
     productsData = updated;
     renderProductList();
-    showStatus('success', 'Product delete ho gaya!');
+    showStatus('success', 'Product delete ho gaya! (Folder GitHub pe rahega)');
   } catch (e) {
     showStatus('error', 'Delete fail: ' + e.message);
   }
 }
 
-/* ═══════════════════════════════════════════════════════
-   🚀 INIT
-═══════════════════════════════════════════════════════ */
+/* ═══ INIT ═══ */
 document.addEventListener('DOMContentLoaded', () => {
   if (isLoggedIn()) {
     showPanel();
