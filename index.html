@@ -3,16 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="1947 Clothing Store — Premium clothing at best prices. Order directly on WhatsApp.">
-<title>1947 Clothing Store — Premium Fashion</title>
+<meta name="description" content="1947 Clothing Store — Premium and imported clothing at best prices. Order directly on WhatsApp.">
+<title>1947 Clothing Store — Premium and Imported Fashion Since 2013</title>
 
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ═══════════════════════════════════════════════
-   RESET & VARIABLES
-═══════════════════════════════════════════════ */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
 :root {
@@ -35,15 +31,51 @@ body {
   color: #333;
   line-height: 1.6;
   font-size: 15px;
+  overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 button { font-family: inherit; }
 
-/* ═══════════════════════════════════════════════
-   ANNOUNCEMENT BAR
-═══════════════════════════════════════════════ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes floatCard1 {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-14px) rotate(-6deg); }
+}
+@keyframes floatCard2 {
+  0%, 100% { transform: translateY(0) rotate(6deg); }
+  50% { transform: translateY(-18px) rotate(6deg); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  60% { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
 .announcement {
   background: var(--dark);
   color: #fff;
@@ -51,19 +83,32 @@ button { font-family: inherit; }
   padding: 10px 15px;
   font-size: 13px;
   letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
+.announcement::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shimmer 5s infinite;
 }
 .announcement i { color: var(--red-light); margin-right: 6px; }
 
-/* ═══════════════════════════════════════════════
-   HEADER
-═══════════════════════════════════════════════ */
 header {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: box-shadow 0.3s;
 }
+header.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 
 .header-inner {
   max-width: 1200px;
@@ -83,7 +128,9 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: transform 0.3s;
 }
+.logo:hover { transform: scale(1.03); }
 .logo-badge {
   background: var(--red);
   color: #fff;
@@ -96,25 +143,31 @@ header {
 .logo-text { font-weight: 800; }
 .logo-text span { color: var(--red); }
 
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-}
+.nav-links { display: flex; list-style: none; gap: 32px; }
 .nav-links a {
   font-size: 14px;
   font-weight: 500;
   color: #555;
   transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
 }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
 .nav-links a:hover,
 .nav-links a.active { color: var(--red); }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.header-actions { display: flex; align-items: center; gap: 12px; }
 
 .icon-btn {
   background: none;
@@ -128,9 +181,9 @@ header {
   cursor: pointer;
   color: var(--dark);
   font-size: 16px;
-  transition: background 0.2s;
+  transition: all 0.3s;
 }
-.icon-btn:hover { background: var(--light-gray); }
+.icon-btn:hover { background: var(--light-gray); transform: scale(1.08); }
 
 .cart-btn {
   position: relative;
@@ -145,9 +198,13 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: background 0.2s;
+  transition: all 0.3s;
 }
-.cart-btn:hover { background: var(--red); }
+.cart-btn:hover {
+  background: var(--red);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(211,47,47,0.3);
+}
 
 .cart-count {
   position: absolute;
@@ -175,13 +232,10 @@ header {
   cursor: pointer;
 }
 
-/* ═══════════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════════ */
 .hero {
   background: linear-gradient(135deg, #1a1a1a 0%, #2a1010 100%);
   color: #fff;
-  padding: 80px 20px;
+  padding: 90px 20px;
   position: relative;
   overflow: hidden;
 }
@@ -190,10 +244,22 @@ header {
   position: absolute;
   top: -50%;
   right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(211, 47, 47, 0.3) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(211, 47, 47, 0.35) 0%, transparent 70%);
   border-radius: 50%;
+  animation: pulse 6s ease-in-out infinite;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -50%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(244, 67, 54, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 8s ease-in-out infinite;
 }
 .hero-inner {
   max-width: 1200px;
@@ -205,6 +271,7 @@ header {
   position: relative;
   z-index: 1;
 }
+.hero-text { animation: slideInLeft 0.9s ease-out both; }
 .hero-tag {
   display: inline-flex;
   align-items: center;
@@ -219,6 +286,7 @@ header {
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: 20px;
+  animation: fadeIn 1s ease-out both;
 }
 .hero h1 {
   font-size: 52px;
@@ -226,6 +294,7 @@ header {
   line-height: 1.1;
   margin-bottom: 18px;
   letter-spacing: -1.5px;
+  animation: fadeInUp 0.9s ease-out 0.15s both;
 }
 .hero h1 .accent {
   color: var(--red-light);
@@ -237,11 +306,13 @@ header {
   color: #bbb;
   margin-bottom: 32px;
   max-width: 480px;
+  animation: fadeInUp 0.9s ease-out 0.3s both;
 }
 .hero-buttons {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  animation: fadeInUp 0.9s ease-out 0.45s both;
 }
 .hero-btn {
   display: inline-flex;
@@ -253,11 +324,15 @@ header {
   border-radius: 6px;
   font-size: 15px;
   font-weight: 600;
-  transition: background 0.2s;
+  transition: all 0.3s;
   border: none;
   cursor: pointer;
 }
-.hero-btn:hover { background: var(--red-dark); }
+.hero-btn:hover {
+  background: var(--red-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(211,47,47,0.4);
+}
 
 .hero-btn-outline {
   background: transparent;
@@ -266,15 +341,17 @@ header {
 }
 .hero-btn-outline:hover {
   background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.5);
+  border-color: rgba(255,255,255,0.6);
+  transform: translateY(-3px);
 }
 
 .hero-visual {
   position: relative;
-  height: 400px;
+  height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: slideInRight 0.9s ease-out both;
 }
 .hero-visual-card {
   position: absolute;
@@ -283,15 +360,23 @@ header {
   padding: 30px;
   color: #fff;
   box-shadow: 0 20px 60px rgba(211, 47, 47, 0.4);
-  transform: rotate(-6deg);
 }
-.hero-visual-card:nth-child(1) { width: 200px; height: 260px; top: 40px; left: 40px; }
+.hero-visual-card:nth-child(1) {
+  width: 200px;
+  height: 260px;
+  top: 40px;
+  left: 40px;
+  animation: floatCard1 5s ease-in-out infinite;
+}
 .hero-visual-card:nth-child(2) {
-  width: 220px; height: 280px; top: 80px; right: 40px;
-  transform: rotate(6deg);
+  width: 220px;
+  height: 280px;
+  top: 80px;
+  right: 40px;
   background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
   border: 1px solid rgba(211, 47, 47, 0.3);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: floatCard2 6s ease-in-out infinite;
 }
 .hero-visual-card i {
   font-size: 60px;
@@ -306,7 +391,7 @@ header {
 }
 .hero-visual-card p {
   font-size: 13px;
-  opacity: 0.8;
+  opacity: 0.85;
   color: inherit;
   margin: 0;
 }
@@ -326,16 +411,14 @@ header {
   gap: 8px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   z-index: 2;
+  animation: bounceIn 1s ease-out 0.6s both;
 }
 .hero-visual-badge i { color: var(--red); }
 
-/* ═══════════════════════════════════════════════
-   FEATURES BAR
-═══════════════════════════════════════════════ */
 .features {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 50px 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -344,12 +427,22 @@ header {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 18px;
+  padding: 20px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  transition: border-color 0.2s;
+  border-radius: 10px;
+  transition: all 0.3s;
+  background: #fff;
+  animation: fadeInUp 0.7s ease-out both;
 }
-.feature:hover { border-color: var(--red); }
+.feature:nth-child(1) { animation-delay: 0.1s; }
+.feature:nth-child(2) { animation-delay: 0.2s; }
+.feature:nth-child(3) { animation-delay: 0.3s; }
+.feature:nth-child(4) { animation-delay: 0.4s; }
+.feature:hover {
+  border-color: var(--red);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(211,47,47,0.1);
+}
 .feature i {
   font-size: 22px;
   color: var(--red);
@@ -365,9 +458,6 @@ header {
 .feature-text h4 { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
 .feature-text p { font-size: 12px; color: var(--gray); }
 
-/* ═══════════════════════════════════════════════
-   CATEGORY STRIP
-═══════════════════════════════════════════════ */
 .categories {
   max-width: 1200px;
   margin: 20px auto;
@@ -381,29 +471,34 @@ header {
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s;
   background: var(--light-gray);
   border: 1px solid var(--border);
+  animation: fadeInUp 0.7s ease-out both;
 }
+.category-card:nth-child(1) { animation-delay: 0.1s; }
+.category-card:nth-child(2) { animation-delay: 0.2s; }
+.category-card:nth-child(3) { animation-delay: 0.3s; }
+.category-card:nth-child(4) { animation-delay: 0.4s; }
 .category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
   border-color: var(--red);
+  background: #fff;
 }
 .category-card i {
-  font-size: 32px;
+  font-size: 34px;
   color: var(--red);
   margin-bottom: 12px;
+  transition: transform 0.3s;
 }
+.category-card:hover i { transform: scale(1.15); }
 .category-card h4 {
   font-size: 15px;
   font-weight: 700;
   color: var(--dark);
 }
 
-/* ═══════════════════════════════════════════════
-   CONTAINER
-═══════════════════════════════════════════════ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -438,12 +533,10 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  transition: all 0.2s;
 }
-.section-head a:hover { color: var(--red-dark); }
+.section-head a:hover { color: var(--red-dark); gap: 10px; }
 
-/* ═══════════════════════════════════════════════
-   PRODUCT GRID
-═══════════════════════════════════════════════ */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -453,16 +546,17 @@ header {
 .card {
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
-  transition: box-shadow 0.25s, transform 0.25s;
+  transition: all 0.3s;
   display: flex;
   flex-direction: column;
+  animation: fadeInUp 0.6s ease-out both;
 }
 .card:hover {
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-  transform: translateY(-3px);
-  border-color: #ddd;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  transform: translateY(-6px);
+  border-color: transparent;
 }
 
 .card-img-wrap {
@@ -476,9 +570,9 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition: transform 0.6s;
 }
-.card:hover .card-img-wrap img { transform: scale(1.06); }
+.card:hover .card-img-wrap img { transform: scale(1.08); }
 
 .card-badge {
   position: absolute;
@@ -510,9 +604,9 @@ header {
   color: var(--gray);
   font-size: 14px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
-.card-wish:hover { color: var(--red); transform: scale(1.1); }
+.card-wish:hover { color: var(--red); transform: scale(1.15); }
 
 .card-body {
   padding: 16px;
@@ -561,16 +655,8 @@ header {
   margin-bottom: 14px;
   margin-top: auto;
 }
-.price-new {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--red);
-}
-.price-old {
-  font-size: 14px;
-  color: var(--gray);
-  text-decoration: line-through;
-}
+.price-new { font-size: 20px; font-weight: 800; color: var(--red); }
+.price-old { font-size: 14px; color: var(--gray); text-decoration: line-through; }
 .price-off {
   font-size: 12px;
   color: #fff;
@@ -597,7 +683,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  transition: all 0.2s;
+  transition: all 0.25s;
   white-space: nowrap;
 }
 
@@ -610,27 +696,26 @@ header {
   background: var(--light-gray);
   border-color: var(--red);
   color: var(--red);
+  transform: translateY(-1px);
 }
 
-.btn-order {
-  background: var(--green);
-  color: #fff;
+.btn-order { background: var(--green); color: #fff; }
+.btn-order:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(37,211,102,0.3);
 }
-.btn-order:hover { background: var(--green-dark); }
 
-/* ═══════════════════════════════════════════════
-   PROMO BANNER
-═══════════════════════════════════════════════ */
 .promo-banner {
   max-width: 1200px;
-  margin: 30px auto;
+  margin: 40px auto;
   padding: 0 20px;
 }
 .promo-inner {
   background: linear-gradient(135deg, var(--red-dark), var(--red));
   color: #fff;
-  padding: 45px;
-  border-radius: 12px;
+  padding: 50px 45px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -638,6 +723,7 @@ header {
   flex-wrap: wrap;
   position: relative;
   overflow: hidden;
+  animation: fadeIn 1s ease-out both;
 }
 .promo-inner::before {
   content: '1947';
@@ -661,7 +747,7 @@ header {
   background: #fff;
   color: var(--red);
   padding: 14px 30px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 14px;
   border: none;
@@ -670,14 +756,14 @@ header {
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  transition: transform 0.2s;
+  transition: all 0.3s;
   position: relative;
 }
-.promo-btn:hover { transform: scale(1.03); }
+.promo-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
 
-/* ═══════════════════════════════════════════════
-   NEWSLETTER
-═══════════════════════════════════════════════ */
 .newsletter {
   max-width: 1200px;
   margin: 30px auto;
@@ -685,15 +771,17 @@ header {
 }
 .newsletter-inner {
   background: var(--light-gray);
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 50px 40px;
   text-align: center;
   border: 1px solid var(--border);
+  animation: fadeInUp 0.8s ease-out both;
 }
 .newsletter-inner i {
-  font-size: 34px;
+  font-size: 38px;
   color: var(--red);
   margin-bottom: 14px;
+  animation: pulse 2s ease-in-out infinite;
 }
 .newsletter-inner h3 {
   font-size: 24px;
@@ -716,31 +804,35 @@ header {
   flex: 1;
   padding: 14px 18px;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.3s;
 }
-.newsletter-form input:focus { border-color: var(--red); }
+.newsletter-form input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px rgba(211,47,47,0.1);
+}
 .newsletter-form button {
   background: var(--dark);
   color: #fff;
   border: none;
   padding: 14px 26px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: background 0.2s;
+  transition: all 0.3s;
 }
-.newsletter-form button:hover { background: var(--red); }
+.newsletter-form button:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(211,47,47,0.3);
+}
 
-/* ═══════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════ */
 footer {
   background: var(--dark);
   color: #bbb;
@@ -810,18 +902,18 @@ footer {
   width: 38px;
   height: 38px;
   background: #2a2a2a;
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #bbb;
   font-size: 14px;
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 .social-links a:hover {
   background: var(--red);
   color: #fff;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .footer-bottom {
@@ -844,9 +936,6 @@ footer {
   color: #666;
 }
 
-/* ═══════════════════════════════════════════════
-   CART DRAWER
-═══════════════════════════════════════════════ */
 .cart-overlay {
   position: fixed;
   inset: 0;
@@ -867,7 +956,7 @@ footer {
   height: 100%;
   background: #fff;
   z-index: 200;
-  transition: right 0.35s ease;
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
 }
@@ -901,11 +990,7 @@ footer {
 }
 .cart-close:hover { background: var(--light-gray); color: var(--red); }
 
-.cart-items {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-}
+.cart-items { flex: 1; overflow-y: auto; padding: 20px; }
 
 .cart-empty {
   text-align: center;
@@ -945,33 +1030,6 @@ footer {
   font-size: 15px;
   margin-bottom: 8px;
 }
-
-.qty-control {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-}
-.qty-control button {
-  width: 28px;
-  height: 28px;
-  border: none;
-  background: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  color: var(--dark);
-  transition: background 0.2s;
-}
-.qty-control button:hover { background: var(--light-gray); color: var(--red); }
-.qty-control span {
-  min-width: 32px;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 0 4px;
-}
-
 .cart-remove {
   background: none;
   border: none;
@@ -1004,7 +1062,7 @@ footer {
   background: var(--green);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -1012,14 +1070,15 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  transition: background 0.2s;
+  transition: all 0.3s;
 }
-.checkout-btn:hover { background: var(--green-dark); }
+.checkout-btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(37,211,102,0.3);
+}
 .checkout-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════ */
 @media (max-width: 960px) {
   .hero-inner { grid-template-columns: 1fr; text-align: center; }
   .hero h1 { font-size: 40px; }
@@ -1081,17 +1140,11 @@ footer {
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-     ANNOUNCEMENT
-═══════════════════════════════════════════════ -->
 <div class="announcement">
   <i class="fa-brands fa-whatsapp"></i>
   Free shipping on orders above ₹999 — Order directly on WhatsApp
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     HEADER
-═══════════════════════════════════════════════ -->
 <header>
   <div class="header-inner">
     <button class="mobile-toggle" onclick="toggleMenu()">
@@ -1123,18 +1176,15 @@ footer {
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
       <span class="hero-tag">
         <i class="fa-solid fa-star"></i>
-        Premium Fashion 2025
+        Premium and Imported
       </span>
-      <h1>Style That Speaks <span class="accent">Since 1947</span></h1>
-      <p>Discover premium clothing crafted with quality. Order in seconds on WhatsApp — no signup, no hassle.</p>
+      <h1>Style That Speaks <span class="accent">Since 2013</span></h1>
+      <p>Discover premium and imported clothing crafted with quality. Order in seconds on WhatsApp — no signup, no hassle.</p>
       <div class="hero-buttons">
         <a href="shop.html" class="hero-btn">
           <i class="fa-solid fa-bag-shopping"></i>
@@ -1156,7 +1206,7 @@ footer {
       <div class="hero-visual-card">
         <i class="fa-solid fa-crown"></i>
         <h3>Premium</h3>
-        <p>Top quality fabric</p>
+        <p>Imported collection</p>
       </div>
       <div class="hero-visual-badge">
         <i class="fa-solid fa-truck-fast"></i>
@@ -1166,15 +1216,12 @@ footer {
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-     FEATURES
-═══════════════════════════════════════════════ -->
 <div class="features">
   <div class="feature">
     <i class="fa-solid fa-truck-fast"></i>
     <div class="feature-text">
       <h4>Fast Delivery</h4>
-      <p>Nationwide shipping</p>
+      <p>Worldwide shipping</p>
     </div>
   </div>
   <div class="feature">
@@ -1188,7 +1235,7 @@ footer {
     <i class="fa-solid fa-rotate-left"></i>
     <div class="feature-text">
       <h4>Easy Returns</h4>
-      <p>7-day policy</p>
+      <p>2-day policy</p>
     </div>
   </div>
   <div class="feature">
@@ -1200,9 +1247,6 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     CATEGORIES
-═══════════════════════════════════════════════ -->
 <div class="categories">
   <div class="category-card" onclick="location.href='shop.html'">
     <i class="fa-solid fa-shirt"></i>
@@ -1222,9 +1266,6 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     FEATURED PRODUCTS
-═══════════════════════════════════════════════ -->
 <div class="container">
   <div class="section-head">
     <div class="section-head-left">
@@ -1238,9 +1279,6 @@ footer {
   <div class="grid" id="featuredGrid"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     PROMO BANNER
-═══════════════════════════════════════════════ -->
 <div class="promo-banner">
   <div class="promo-inner">
     <div>
@@ -1254,9 +1292,6 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     NEWSLETTER
-═══════════════════════════════════════════════ -->
 <div class="newsletter">
   <div class="newsletter-inner">
     <i class="fa-solid fa-envelope-open-text"></i>
@@ -1272,9 +1307,6 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
     <div class="footer-col">
@@ -1282,7 +1314,7 @@ footer {
         <span class="footer-brand-badge">1947</span>
         <span class="footer-brand-text">Clothing<span>Store</span></span>
       </div>
-      <p>Your trusted fashion destination since 1947. Premium quality clothing at the best prices. Order directly on WhatsApp for a fast and easy shopping experience.</p>
+      <p>Your trusted fashion destination since 2013. Premium and imported clothing at the best prices. We have worldwide customers. Order directly on WhatsApp for a fast and easy shopping experience.</p>
       <div class="social-links">
         <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
         <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -1332,9 +1364,6 @@ footer {
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════════════
-     CART DRAWER
-═══════════════════════════════════════════════ -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 
 <div class="cart-drawer" id="cartDrawer">
@@ -1357,9 +1386,6 @@ footer {
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════════════════ -->
 <script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script>
@@ -1370,6 +1396,13 @@ footer {
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
   }
+
+  // Add scroll shadow on header
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 20) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
 </script>
 
 </body>
