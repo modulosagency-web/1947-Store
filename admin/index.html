@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>404 Not Found</title>
+<title>Admin Panel | 1947 PremiumClothing</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; }
@@ -223,6 +223,86 @@ img { max-width:100%; display:block; }
 .setup-section .form-input { font-family:monospace; font-size:12px; }
 .setup-section a { color:#856404; text-decoration:underline; }
 
+/* ===== FULL GUIDE STYLES ===== */
+.guide-section {
+  background:#f0f9ff; border:2px solid #0ea5e9;
+  border-radius:12px; padding:26px; margin-bottom:20px;
+}
+.guide-section h3 {
+  font-size:16px; font-weight:800; color:#0c4a6e;
+  margin-bottom:6px; display:flex; align-items:center; gap:10px;
+}
+.guide-section h3 i {
+  width:32px; height:32px; background:#0ea5e9; color:#fff;
+  border-radius:8px; display:flex; align-items:center;
+  justify-content:center; font-size:14px;
+}
+.guide-intro {
+  font-size:13px; color:#0c4a6e; margin-bottom:20px;
+  padding-bottom:16px; border-bottom:1px solid #bae6fd;
+  line-height:1.7;
+}
+.guide-steps {
+  display:grid; grid-template-columns:1fr; gap:14px;
+}
+.guide-step {
+  display:flex; gap:14px; padding:14px;
+  background:#fff; border-radius:10px;
+  border:1px solid #bae6fd; transition:all 0.2s;
+}
+.guide-step:hover {
+  border-color:#0ea5e9;
+  box-shadow:0 4px 12px rgba(14,165,233,0.1);
+}
+.step-num {
+  width:32px; height:32px; flex-shrink:0;
+  background:linear-gradient(135deg,#0ea5e9,#0284c7);
+  color:#fff; border-radius:8px; display:flex;
+  align-items:center; justify-content:center;
+  font-weight:800; font-size:14px;
+}
+.step-content { flex:1; min-width:0; }
+.step-content h4 {
+  font-size:14px; font-weight:700; color:#0c4a6e;
+  margin-bottom:5px;
+}
+.step-content p {
+  font-size:13px; color:#475569;
+  line-height:1.65; margin-bottom:8px;
+}
+.step-content a {
+  color:#0284c7; font-weight:600;
+  text-decoration:none; border-bottom:1px solid #7dd3fc;
+  transition:all 0.2s;
+}
+.step-content a:hover {
+  color:#0c4a6e; border-bottom-color:#0c4a6e;
+}
+.step-content code {
+  background:#f1f5f9; color:#0c4a6e;
+  padding:2px 6px; border-radius:4px;
+  font-size:12px; font-family:monospace;
+  font-weight:600;
+}
+.step-note {
+  display:flex; gap:8px; align-items:flex-start;
+  background:#fef3c7; border-left:3px solid #f59e0b;
+  padding:10px 12px; border-radius:6px;
+  font-size:12px; color:#78350f; margin-top:8px;
+  line-height:1.55;
+}
+.step-note i { color:#f59e0b; flex-shrink:0; margin-top:2px; }
+.step-warning {
+  background:#fee2e2; border-left-color:#ef4444; color:#7f1d1d;
+}
+.step-warning i { color:#ef4444; }
+.guide-footer {
+  margin-top:20px; padding-top:16px;
+  border-top:1px solid #bae6fd;
+  font-size:12px; color:#0c4a6e; line-height:1.65;
+}
+.guide-footer strong { color:#0c4a6e; }
+
 .token-status {
   background:#dcfce7; border:1px solid #86efac; padding:14px 18px;
   border-radius:10px; margin-bottom:20px;
@@ -238,16 +318,22 @@ img { max-width:100%; display:block; }
   .login-box { padding:32px 24px; }
   .preview-grid { grid-template-columns:repeat(auto-fill,minmax(85px,1fr)); }
   .btn-settings span { display:none; }
+  .guide-section { padding:20px; }
+  .guide-step { padding:12px; gap:10px; }
+  .step-num { width:28px; height:28px; font-size:13px; }
 }
 </style>
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════
+     LOGIN SCREEN
+═══════════════════════════════════════════ -->
 <div class="login-wrap" id="loginWrap">
   <div class="login-box">
     <div class="login-icon"><i class="fa-solid fa-shield-halved"></i></div>
     <h1 class="login-title">Admin Access</h1>
-    <p class="login-subtitle">1947 Clothing Store</p>
+    <p class="login-subtitle">1947 PremiumClothing</p>
 
     <div class="alert alert-error" id="loginError">
       <i class="fa-solid fa-circle-exclamation"></i><span id="loginErrorText"></span>
@@ -272,11 +358,14 @@ img { max-width:100%; display:block; }
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════
+     ADMIN PANEL
+═══════════════════════════════════════════ -->
 <div class="panel-wrap" id="panelWrap">
   <div class="topbar">
     <div class="brand">
       <span class="brand-badge">1947</span>
-      <span>Admin</span>
+      <span>Admin Panel</span>
     </div>
     <div class="topbar-actions">
       <button class="btn-settings" onclick="toggleSetup()">
@@ -292,19 +381,181 @@ img { max-width:100%; display:block; }
 
     <div id="tokenStatusBox"></div>
 
+    <!-- ═══════════════════════════════════════════
+         GITHUB TOKEN SETUP SECTION
+    ═══════════════════════════════════════════ -->
     <div class="setup-section" id="setupSection">
-      <h3><i class="fa-solid fa-key"></i> GitHub Token Setup (Ek Baar)</h3>
+      <h3><i class="fa-solid fa-key"></i> GitHub Token Setup (One-Time Setup)</h3>
       <p>
-        Ye token <strong>sirf aapke browser me</strong> save hoga. GitHub pe kabhi nahi jayega.
-        Ek baar daalo, hamesha kaam karega.
+        This token is saved <strong>only in your browser</strong> and is never sent to any server.
+        You only need to set it up once. After that, you can upload products anytime.
       </p>
+
+      <!-- FULL STEP-BY-STEP GUIDE -->
+      <div class="guide-section" style="margin-bottom:20px;">
+        <h3><i class="fa-solid fa-book-open"></i> Complete Guide: How to Get Your GitHub Token</h3>
+        <p class="guide-intro">
+          Follow these steps carefully to generate a personal access token. This token allows
+          the admin panel to upload products and images directly to your GitHub repository.
+          <strong>Do not share this token with anyone.</strong>
+        </p>
+
+        <div class="guide-steps">
+
+          <!-- STEP 1 -->
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Log in to GitHub</h4>
+              <p>
+                Open <a href="https://github.com/login" target="_blank" rel="noopener">github.com/login</a>
+                and sign in with the GitHub account that owns the <code>1947-Store</code> repository.
+              </p>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Open Developer Settings</h4>
+              <p>
+                Click your profile picture (top-right) → <strong>Settings</strong> → scroll down
+                to the bottom of the left sidebar → <strong>Developer settings</strong>.
+              </p>
+              <p>
+                Or open this direct link:
+                <a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener">
+                  github.com/settings/tokens
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Generate a New Token</h4>
+              <p>
+                Click <strong>"Generate new token"</strong> → choose
+                <strong>"Generate new token (fine-grained)"</strong>.
+              </p>
+              <div class="step-note">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>
+                  Use <strong>Fine-grained tokens</strong> — they are more secure than classic tokens.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Fill in Token Details</h4>
+              <p><strong>Token name:</strong> <code>1947-Admin-Panel</code></p>
+              <p><strong>Expiration:</strong> Choose <code>90 days</code> or <code>No expiration</code> (your choice)</p>
+              <p><strong>Description:</strong> <code>Token for admin panel to upload products</code></p>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="guide-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Select Repository Access</h4>
+              <p>
+                Under <strong>Repository access</strong>, choose
+                <strong>"Only select repositories"</strong>.
+              </p>
+              <p>
+                Then select <code>1947-Store</code> from the dropdown list.
+              </p>
+            </div>
+          </div>
+
+          <!-- STEP 6 -->
+          <div class="guide-step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <h4>Set Permissions</h4>
+              <p>
+                Under <strong>Permissions</strong> → <strong>Repository permissions</strong>,
+                find <strong>Contents</strong> and set it to <strong>"Read and write"</strong>.
+              </p>
+              <div class="step-note step-warning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>
+                  <strong>Important:</strong> Without "Contents: Read and write" permission,
+                  the admin panel cannot upload images or update products.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 7 -->
+          <div class="guide-step">
+            <div class="step-num">7</div>
+            <div class="step-content">
+              <h4>Generate the Token</h4>
+              <p>
+                Scroll down and click the green <strong>"Generate token"</strong> button.
+              </p>
+            </div>
+          </div>
+
+          <!-- STEP 8 -->
+          <div class="guide-step">
+            <div class="step-num">8</div>
+            <div class="step-content">
+              <h4>Copy Your Token</h4>
+              <p>
+                A token starting with <code>github_pat_</code> will appear at the top.
+                Click <strong>"Copy"</strong> to copy it.
+              </p>
+              <div class="step-note step-warning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>
+                  <strong>Copy it now!</strong> GitHub only shows this token once.
+                  If you close the page without copying, you'll need to generate a new one.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 9 -->
+          <div class="guide-step">
+            <div class="step-num">9</div>
+            <div class="step-content">
+              <h4>Paste the Token Below</h4>
+              <p>
+                Come back to this page and paste the token in the input field below.
+                Click <strong>"Save Token"</strong> — it will be stored securely in your browser only.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="guide-footer">
+          <strong>Security Notes:</strong><br>
+          • Your token is stored only in your browser's local storage.<br>
+          • It is never transmitted to any server other than GitHub's API.<br>
+          • If you ever suspect your token is compromised, revoke it immediately at
+          <a href="https://github.com/settings/tokens" target="_blank" rel="noopener" style="color:#0284c7;">github.com/settings/tokens</a> and generate a new one.<br>
+          • Never share your token with anyone, including in screenshots or messages.
+        </div>
+      </div>
+
+      <!-- TOKEN INPUT -->
       <div class="form-group">
         <label class="form-label">Personal Access Token (github_pat_...)</label>
-        <input type="password" id="ghToken" class="form-input" placeholder="github_pat_xxxxx...">
+        <input type="password" id="ghToken" class="form-input" placeholder="github_pat_xxxxxxxxxxxxxxxxxxxxx">
         <p class="help-text">
           <i class="fa-solid fa-circle-info"></i>
-          Token banao: <a href="https://github.com/settings/tokens?type=beta" target="_blank">GitHub → Settings → Tokens</a>
-          <br>Permissions: <strong>Contents: Read and write</strong> on <strong>1947-Store</strong>
+          Paste the token you copied in Step 8 above.
         </p>
       </div>
       <button class="btn-primary btn-green" onclick="saveToken()">
@@ -312,6 +563,9 @@ img { max-width:100%; display:block; }
       </button>
     </div>
 
+    <!-- ═══════════════════════════════════════════
+         ADD PRODUCT SECTION
+    ═══════════════════════════════════════════ -->
     <div class="section">
       <div class="section-title">
         <i class="fa-solid fa-plus"></i><span>Add New Product</span>
@@ -329,7 +583,7 @@ img { max-width:100%; display:block; }
 
       <div class="form-group">
         <label class="form-label">Description *</label>
-        <textarea id="pDesc" class="form-textarea" placeholder="Premium quality fabric, perfect fit..."></textarea>
+        <textarea id="pDesc" class="form-textarea" placeholder="Premium quality fabric, perfect fit for all seasons..."></textarea>
       </div>
 
       <div class="row-2">
@@ -351,7 +605,7 @@ img { max-width:100%; display:block; }
       <div class="form-group">
         <label class="form-label">
           Product Photos *
-          <span style="color:var(--gray);font-weight:400;text-transform:none;">(Multiple select karo)</span>
+          <span style="color:var(--gray);font-weight:400;text-transform:none;">(Select multiple files)</span>
         </label>
 
         <div class="upload-zone" id="uploadZone">
@@ -366,7 +620,7 @@ img { max-width:100%; display:block; }
 
       <p class="help-text">
         <i class="fa-solid fa-circle-info"></i>
-        Sab photos ek folder me jayengi: <strong>images/PRODUCT_ID/1.jpg, 2.jpg...</strong>
+        All photos will be saved in one folder: <strong>images/PRODUCT_ID/1.jpg, 2.jpg...</strong>
       </p>
 
       <button class="btn-primary btn-green" id="publishBtn" style="margin-top:16px;" onclick="addProduct()">
@@ -379,6 +633,9 @@ img { max-width:100%; display:block; }
       </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════
+         PRODUCTS LIST
+    ═══════════════════════════════════════════ -->
     <div class="section">
       <div class="section-title">
         <i class="fa-solid fa-box"></i><span>Products</span>
@@ -392,7 +649,7 @@ img { max-width:100%; display:block; }
 
 <script>
 /* ═══════════════════════════════════════════════════════
-   🔧 CONFIG
+   CONFIG
 ═══════════════════════════════════════════════════════ */
 const CONFIG = {
   adminUser: "admin",
@@ -451,12 +708,12 @@ async function login() {
   const lockUntil = getLockUntil();
   if (lockUntil > Date.now()) {
     const mins = Math.ceil((lockUntil - Date.now()) / 60000);
-    showAlertBox('loginLock', 'loginLockText', `Locked. Try again in ${mins} min.`);
+    showAlertBox('loginLock', 'loginLockText', `Account locked. Please try again in ${mins} minute(s).`);
     return;
   }
 
   if (!user || !pass) {
-    showAlertBox('loginError', 'loginErrorText', 'Username aur password daalo.');
+    showAlertBox('loginError', 'loginErrorText', 'Please enter both username and password.');
     return;
   }
 
@@ -479,9 +736,9 @@ async function login() {
     if (attempts >= CONFIG.maxAttempts) {
       localStorage.setItem('adminLock_v10', Date.now() + CONFIG.lockTime);
       localStorage.removeItem('adminAtt_v10');
-      showAlertBox('loginLock', 'loginLockText', `${CONFIG.maxAttempts} galat attempts. 5 min lock.`);
+      showAlertBox('loginLock', 'loginLockText', `Too many failed attempts. Account locked for 5 minutes.`);
     } else {
-      showAlertBox('loginError', 'loginErrorText', `Galat! ${CONFIG.maxAttempts - attempts} attempts bache.`);
+      showAlertBox('loginError', 'loginErrorText', `Incorrect credentials. ${CONFIG.maxAttempts - attempts} attempt(s) remaining.`);
     }
     document.getElementById('adminPass').value = '';
     btn.disabled = false;
@@ -505,7 +762,7 @@ function showPanel() {
   }
   setTimeout(() => {
     if (!isLoggedIn()) return;
-    alert('Session expired.');
+    alert('Your session has expired. Please log in again.');
     logout();
   }, CONFIG.sessionTime);
 }
@@ -516,14 +773,14 @@ function updateTokenStatus() {
     box.innerHTML = `
       <div class="token-status">
         <i class="fa-solid fa-circle-check"></i>
-        <span>GitHub Token Active — Product upload ready!</span>
+        <span>GitHub Token Active — Product upload is ready.</span>
         <button onclick="toggleSetup()" style="margin-left:auto;background:none;border:none;color:#166534;font-weight:700;cursor:pointer;text-decoration:underline;font-size:13px;">Change</button>
       </div>`;
   } else {
     box.innerHTML = `
       <div class="token-status missing">
         <i class="fa-solid fa-triangle-exclamation"></i>
-        <span>GitHub Token set nahi hai. Niche token daalo.</span>
+        <span>GitHub Token is not set. Please follow the guide below to add it.</span>
       </div>`;
   }
 }
@@ -534,12 +791,16 @@ function toggleSetup() {
 
 function saveToken() {
   const token = document.getElementById('ghToken').value.trim();
-  if (!token || token.length < 20) { alert('Sahi token daalo (github_pat_...)'); return; }
+  if (!token || token.length < 20) {
+    alert('Please enter a valid token (starts with github_pat_ or ghp_).');
+    return;
+  }
   if (!token.startsWith('github_pat_') && !token.startsWith('ghp_')) {
-    alert('Token github_pat_ ya ghp_ se start hona chahiye.'); return;
+    alert('Token must start with github_pat_ or ghp_. Please check and try again.');
+    return;
   }
   setToken(token);
-  alert('✅ Token save ho gaya!');
+  alert('Token saved successfully! You can now upload products.');
   document.getElementById('ghToken').value = '';
   document.getElementById('setupSection').classList.remove('show');
   updateTokenStatus();
@@ -557,8 +818,8 @@ function handleFiles(e) {
   const files = Array.from(e.target.files);
   const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'image/gif'];
   files.forEach(file => {
-    if (!validTypes.includes(file.type)) { alert(`"${file.name}" invalid`); return; }
-    if (file.size > 5 * 1024 * 1024) { alert(`"${file.name}" > 5MB`); return; }
+    if (!validTypes.includes(file.type)) { alert(`"${file.name}" is not a supported image format.`); return; }
+    if (file.size > 5 * 1024 * 1024) { alert(`"${file.name}" is larger than 5MB.`); return; }
     const reader = new FileReader();
     reader.onload = ev => {
       selectedPhotos.push({ file, dataUrl: ev.target.result, name: file.name, uploaded: false });
@@ -618,8 +879,8 @@ async function uploadFileToGitHub(path, base64Content, message, sha = null) {
 
   if (!res.ok) {
     const err = await res.json();
-    if (res.status === 401) throw new Error('Token galat/expire. Setup se naya daalo.');
-    throw new Error(err.message || 'GitHub upload failed');
+    if (res.status === 401) throw new Error('Token is invalid or expired. Please generate a new token.');
+    throw new Error(err.message || 'GitHub upload failed.');
   }
   return await res.json();
 }
@@ -677,7 +938,7 @@ function renderProductList() {
   document.getElementById('prodCount').textContent = productsData.length;
 
   if (productsData.length === 0) {
-    box.innerHTML = `<div class="empty-state"><i class="fa-solid fa-box-open"></i><p>Koi product nahi. Upar form se add karo!</p></div>`;
+    box.innerHTML = `<div class="empty-state"><i class="fa-solid fa-box-open"></i><p>No products yet. Add your first product using the form above.</p></div>`;
     return;
   }
 
@@ -692,7 +953,7 @@ function renderProductList() {
         <div class="product-row-info">
           <h4>${escapeHtml(p.name)}</h4>
           <p>₹${p.price} ${p.oldPrice ? `<s>₹${p.oldPrice}</s>` : ''} • ${escapeHtml(p.category || 'General')} • ${imgs.length} photos</p>
-          ${p.folder ? `<span class="folder-name">📁 ${escapeHtml(p.folder)}</span>` : ''}
+          ${p.folder ? `<span class="folder-name">Folder: ${escapeHtml(p.folder)}</span>` : ''}
         </div>
         <button class="btn-delete" onclick="deleteProduct(${p.id})">
           <i class="fa-solid fa-trash"></i><span>Delete</span>
@@ -730,12 +991,12 @@ function setProgress(percent, text) {
 }
 
 /* ═══════════════════════════════════════════════════════
-   🚀 ADD PRODUCT — FOLDER-BASED UPLOAD
+   ADD PRODUCT — FOLDER-BASED UPLOAD
    Structure: images/PRODUCT_{id}/1.jpg, 2.jpg, ..., data.json
 ═══════════════════════════════════════════════════════ */
 async function addProduct() {
   if (!hasToken()) {
-    showStatus('error', 'Pehle GitHub token daalo (upar "Token Setup" click karo).');
+    showStatus('error', 'Please set your GitHub token first (click "Token Setup" at the top).');
     return;
   }
 
@@ -746,38 +1007,32 @@ async function addProduct() {
   const category = document.getElementById('pCategory').value.trim() || 'Clothing';
 
   if (!name || !desc || !price) {
-    showStatus('error', 'Title, Description aur Price required hain!');
+    showStatus('error', 'Title, Description, and Price are required fields.');
     return;
   }
   if (selectedPhotos.length === 0) {
-    showStatus('error', 'Kam se kam 1 photo upload karo!');
+    showStatus('error', 'Please upload at least one product photo.');
     return;
   }
 
   const btn = document.getElementById('publishBtn');
   btn.disabled = true;
 
-  // 🎯 UNIQUE ID + FOLDER
   const productId = Date.now();
   const folderName = `PRODUCT_${productId}`;
-  const totalSteps = selectedPhotos.length + 2; // photos + data.json + products.js
+  const totalSteps = selectedPhotos.length + 2;
   let doneSteps = 0;
 
   try {
     const photoUrls = [];
 
-    // ═══════════════════════════════════════════
-    // STEP 1: Upload each photo into the folder
-    // images/PRODUCT_{id}/1.jpg, 2.jpg, 3.jpg
-    // ═══════════════════════════════════════════
     for (let i = 0; i < selectedPhotos.length; i++) {
       const photo = selectedPhotos[i];
-      showStatus('loading', `Photo ${i + 1}/${selectedPhotos.length} upload ho raha hai...`);
+      showStatus('loading', `Uploading photo ${i + 1} of ${selectedPhotos.length}...`);
 
       const compressedDataUrl = await compressImage(photo.file, 800, 0.82);
       const base64 = dataUrlToBase64(compressedDataUrl);
 
-      // 🎯 FOLDER-BASED PATH
       const photoNumber = i + 1;
       const fileName = `${photoNumber}.jpg`;
       const filePath = `${CONFIG.imagesFolder}/${folderName}/${fileName}`;
@@ -795,14 +1050,10 @@ async function addProduct() {
       renderPreview();
 
       doneSteps++;
-      setProgress((doneSteps / totalSteps) * 100, `Photo ${photoNumber}/${selectedPhotos.length} uploaded`);
+      setProgress((doneSteps / totalSteps) * 100, `Photo ${photoNumber} of ${selectedPhotos.length} uploaded`);
     }
 
-    // ═══════════════════════════════════════════
-    // STEP 2: Create data.json INSIDE the folder
-    // images/PRODUCT_{id}/data.json
-    // ═══════════════════════════════════════════
-    showStatus('loading', 'Product data.json ban raha hai...');
+    showStatus('loading', 'Creating product data.json...');
 
     const productData = {
       id: productId,
@@ -832,10 +1083,7 @@ async function addProduct() {
     doneSteps++;
     setProgress((doneSteps / totalSteps) * 100, 'data.json created');
 
-    // ═══════════════════════════════════════════
-    // STEP 3: Update products.js (lightweight list)
-    // ═══════════════════════════════════════════
-    showStatus('loading', 'products.js update ho raha hai...');
+    showStatus('loading', 'Updating products.js...');
 
     const newProduct = {
       id: productId,
@@ -854,7 +1102,7 @@ async function addProduct() {
     const updatedProducts = [newProduct, ...productsData];
 
     const fileContent =
-`// ⚠️ Auto-generated by 1947 Admin Panel
+`// Auto-generated by 1947 Admin Panel
 // Last update: ${new Date().toISOString()}
 
 const WHATSAPP_NUMBER = "${CONFIG.whatsappNumber}";
@@ -880,9 +1128,8 @@ const products = window.PRODUCTS_DATA;
     productsData = updatedProducts;
     renderProductList();
 
-    showStatus('success', `"${name}" folder "${folderName}" me upload ho gaya! ${photoUrls.length} photos + data.json`);
+    showStatus('success', `"${name}" has been published successfully! ${photoUrls.length} photos + data.json saved in folder ${folderName}.`);
 
-    // Reset form
     document.getElementById('pName').value = '';
     document.getElementById('pDesc').value = '';
     document.getElementById('pPrice').value = '';
@@ -894,7 +1141,7 @@ const products = window.PRODUCTS_DATA;
 
   } catch (e) {
     console.error(e);
-    showStatus('error', 'Upload fail: ' + e.message);
+    showStatus('error', 'Upload failed: ' + e.message);
     setProgress(0);
   } finally {
     btn.disabled = false;
@@ -902,20 +1149,20 @@ const products = window.PRODUCTS_DATA;
 }
 
 /* ═══════════════════════════════════════════════════════
-   🗑️ DELETE PRODUCT
+   DELETE PRODUCT
 ═══════════════════════════════════════════════════════ */
 async function deleteProduct(id) {
-  if (!hasToken()) { alert('Token set nahi hai.'); return; }
-  if (!confirm('Ye product delete karna hai? (Folder GitHub pe rahega)')) return;
+  if (!hasToken()) { alert('Please set your GitHub token first.'); return; }
+  if (!confirm('Are you sure you want to delete this product? (The folder will remain on GitHub)')) return;
 
   const updated = productsData.filter(p => p.id !== id);
   if (updated.length === productsData.length) return;
 
   try {
-    showStatus('loading', 'Delete ho raha hai...');
+    showStatus('loading', 'Deleting product...');
 
     const fileContent =
-`// ⚠️ Auto-generated by 1947 Admin Panel
+`// Auto-generated by 1947 Admin Panel
 // Last update: ${new Date().toISOString()}
 
 const WHATSAPP_NUMBER = "${CONFIG.whatsappNumber}";
@@ -937,9 +1184,9 @@ const products = window.PRODUCTS_DATA;
 
     productsData = updated;
     renderProductList();
-    showStatus('success', 'Product delete ho gaya! (Folder GitHub pe rahega)');
+    showStatus('success', 'Product deleted successfully.');
   } catch (e) {
-    showStatus('error', 'Delete fail: ' + e.message);
+    showStatus('error', 'Delete failed: ' + e.message);
   }
 }
 
@@ -951,7 +1198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lockUntil = getLockUntil();
     if (lockUntil > Date.now()) {
       const mins = Math.ceil((lockUntil - Date.now()) / 60000);
-      showAlertBox('loginLock', 'loginLockText', `Locked. Try again in ${mins} min.`);
+      showAlertBox('loginLock', 'loginLockText', `Account locked. Please try again in ${mins} minute(s).`);
     }
   }
 });
