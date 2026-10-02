@@ -1,0 +1,20 @@
+{
+  "id": 1790954082224,
+  "folder": "PRODUCT_1790954082224",
+  "name": "TEST",
+  "description": "TEST",
+  "price": 999,
+  "oldPrice": 1999,
+  "category": "Clothing",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790954082224/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790954082224/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790954082224/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790954082224/3.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790954082224/4.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1790954082224/5.jpg"
+  ],
+  "photoCount": 5,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-10-02T15:15:01.860Z"
+}
