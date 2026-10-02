@@ -1,1 +1,13 @@
+User-agent: *
+Allow: /
 
+# Admin / Private areas block karo
+Disallow: /admin/
+Disallow: /config/
+Disallow: /js/
+Disallow: /css/
+Disallow: /cart/
+Disallow: /checkout/
+
+# Sitemap location
+Sitemap: https://1947premiumclothing.store/sitemap.xml
