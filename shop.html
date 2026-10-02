@@ -4,12 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Shop all products at 1947 PremiumClothing — Premium and imported clothing at best prices.">
-<meta name="robots" content="index, follow">
-<title>Shop Collection | 1947 PremiumClothing</title>
+<title>Shop — 1947 PremiumClothing</title>
 
-<link rel="canonical" href="https://1947premiumclothing.store/shop.html">
-<link rel="icon" type="image/png" href="/images/logo.png">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
@@ -31,7 +27,7 @@ html { scroll-behavior: smooth; }
 body { background: #fff; color: #333; line-height: 1.6; font-size: 15px; }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
-button { font-family: inherit; cursor: pointer; }
+button { font-family: inherit; }
 
 .announcement {
   background: var(--dark); color: #fff; text-align: center;
@@ -169,12 +165,9 @@ header { background: #fff; border-bottom: 1px solid var(--border); position: sti
 
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; }
 .grid.list-view { grid-template-columns: 1fr; gap: 16px; }
-
-/* CARD — CLICKABLE */
 .card {
   background: #fff; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
   transition: box-shadow 0.25s, transform 0.25s; display: flex; flex-direction: column;
-  cursor: pointer; position: relative;
 }
 .card:hover { box-shadow: 0 12px 30px rgba(0,0,0,0.1); transform: translateY(-3px); border-color: #ddd; }
 .grid.list-view .card { flex-direction: row; }
@@ -198,12 +191,9 @@ header { background: #fff; border-bottom: 1px solid var(--border); position: sti
   background: #fff; border: none; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; color: var(--gray); font-size: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 2; transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 2;
 }
-.card-wish:hover { color: var(--red); transform: scale(1.1); }
-.card-wish.active { color: var(--red); }
-.card-wish.active i { font-weight: 900; }
-
+.card-wish:hover { color: var(--red); }
 .card-body { padding: 16px; display: flex; flex-direction: column; flex: 1; }
 .card-category { font-size: 11px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
 .card-title {
@@ -218,15 +208,15 @@ header { background: #fff; border-bottom: 1px solid var(--border); position: sti
 .price-new { font-size: 20px; font-weight: 800; color: var(--red); }
 .price-old { font-size: 14px; color: var(--gray); text-decoration: line-through; }
 .price-off { font-size: 11px; color: #fff; background: var(--red); padding: 2px 6px; border-radius: 3px; font-weight: 700; }
-
-.card-actions { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.card-actions { display: grid; grid-template-columns: 1fr 1.2fr; gap: 8px; }
 .btn-card {
-  padding: 11px; border: none; border-radius: 6px; font-size: 13px; font-weight: 600;
-  cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  white-space: nowrap; transition: all 0.2s;
+  padding: 10px; border: none; border-radius: 6px; font-size: 13px; font-weight: 600;
+  cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap;
 }
+.btn-view { background: #fff; color: var(--dark); border: 1px solid var(--border); }
+.btn-view:hover { background: var(--light-gray); border-color: var(--red); color: var(--red); }
 .btn-order { background: var(--green); color: #fff; }
-.btn-order:hover { background: var(--green-dark); transform: translateY(-1px); }
+.btn-order:hover { background: var(--green-dark); }
 
 .empty-state { text-align: center; padding: 80px 20px; background: var(--light-gray); border-radius: 10px; }
 .empty-state i { font-size: 60px; color: #ccc; margin-bottom: 16px; display: block; }
@@ -326,32 +316,6 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
 }
 .checkout-btn:hover { background: var(--green-dark); }
 .checkout-btn:disabled { background: #ccc; cursor: not-allowed; }
-
-/* FLOAT WA */
-.float-wa {
-  position: fixed; bottom: 24px; right: 24px;
-  width: 58px; height: 58px;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  color: #fff; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 28px; z-index: 999;
-  box-shadow: 0 10px 30px rgba(37,211,102,0.4);
-  transition: all 0.3s;
-}
-.float-wa:hover { transform: scale(1.1); }
-
-/* SCROLL TOP */
-.scroll-top {
-  position: fixed; bottom: 24px; left: 24px;
-  width: 46px; height: 46px;
-  background: var(--dark); color: #fff; border: none; border-radius: 50%;
-  font-size: 16px; z-index: 999;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; visibility: hidden; transition: all 0.3s;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-}
-.scroll-top.show { opacity: 1; visibility: visible; }
-.scroll-top:hover { background: var(--red); transform: translateY(-3px); }
 
 @media (max-width: 960px) {
   .shop-layout { grid-template-columns: 1fr; }
@@ -511,8 +475,10 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
       </div>
       <p>Your trusted fashion destination since 2013. Premium and imported clothing at the best prices. Worldwide customers.</p>
       <div class="social-links">
-        <a href="https://www.instagram.com/1947clothingstore_" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://wa.me/918590988090" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
       </div>
     </div>
     <div class="footer-col">
@@ -545,18 +511,10 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
     <div class="payment-icons">
       <i class="fa-brands fa-cc-visa"></i>
       <i class="fa-brands fa-cc-mastercard"></i>
-      <i class="fa-brands fa-google-pay"></i>
+      <i class="fa-brands fa-cc-paypal"></i>
     </div>
   </div>
 </footer>
-
-<a href="https://wa.me/918590988090" target="_blank" class="float-wa" aria-label="Order on WhatsApp">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
-
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="fa-solid fa-arrow-up"></i>
-</button>
 
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
@@ -579,6 +537,7 @@ footer { background: var(--dark); color: #bbb; padding: 60px 20px 20px; margin-t
 <script src="js/products.js"></script>
 <script src="js/main.js"></script>
 <script>
+/* ═══ SHOP LOGIC — Full Working ═══ */
 var allProducts = [];
 var filteredProducts = [];
 var currentPage = 1;
@@ -598,18 +557,13 @@ function initShop() {
   var list = getProducts();
   allProducts = list.slice();
   filteredProducts = allProducts.slice();
+
   buildCategoryFilter();
   bindPriceRange();
   renderShopProducts();
+
   if (typeof updateCartCount === 'function') updateCartCount();
   if (typeof renderCart === 'function') renderCart();
-
-  window.addEventListener('scroll', function() {
-    var btn = document.getElementById('scrollTop');
-    if (!btn) return;
-    if (window.scrollY > 500) btn.classList.add('show');
-    else btn.classList.remove('show');
-  });
 }
 
 if (document.readyState === 'loading') {
@@ -624,7 +578,9 @@ function buildCategoryFilter() {
     var c = p.category || 'General';
     map[c] = (map[c] || 0) + 1;
   });
+
   var cats = Object.keys(map).sort();
+
   var html = cats.map(function(cat) {
     return '<li><label>' +
       '<input type="checkbox" class="cat-checkbox" value="' + cat + '" onchange="applyFilters()">' +
@@ -632,9 +588,11 @@ function buildCategoryFilter() {
       '<span class="count">' + map[cat] + '</span>' +
       '</label></li>';
   }).join('');
+
   if (cats.length === 0) {
     html = '<li style="padding:10px;color:#999;font-size:13px;">No categories yet</li>';
   }
+
   var el1 = document.getElementById('categoryFilter');
   var el2 = document.getElementById('categoryFilterMobile');
   if (el1) el1.innerHTML = html;
@@ -646,13 +604,18 @@ function bindPriceRange() {
   var m = document.getElementById('priceRangeMobile');
   var ld = document.getElementById('priceValue');
   var lm = document.getElementById('priceValueMobile');
+
   var maxP = 100000;
-  allProducts.forEach(function(p) { if (p.price > maxP) maxP = p.price; });
+  allProducts.forEach(function(p) {
+    if (p.price > maxP) maxP = p.price;
+  });
   maxP = Math.ceil(maxP / 1000) * 1000;
+
   if (d) { d.max = maxP; d.value = maxP; }
   if (m) { m.max = maxP; m.value = maxP; }
   if (ld) ld.textContent = '₹' + maxP;
   if (lm) lm.textContent = '₹' + maxP;
+
   function sync(src, tgt, ls, lt) {
     if (!src || !tgt) return;
     src.addEventListener('input', function(e) {
@@ -670,14 +633,21 @@ function applyFilters() {
   document.querySelectorAll('#categoryFilter .cat-checkbox:checked').forEach(function(cb) {
     checked.push(cb.value);
   });
+
   var maxPrice = parseInt((document.getElementById('priceRange') || {}).value || 999999);
+
   var result = allProducts.slice();
+
   if (checked.length > 0) {
     result = result.filter(function(p) {
       return checked.indexOf(p.category || 'General') !== -1;
     });
   }
-  result = result.filter(function(p) { return p.price <= maxPrice; });
+
+  result = result.filter(function(p) {
+    return p.price <= maxPrice;
+  });
+
   filteredProducts = result;
   currentPage = 1;
   renderShopProducts();
@@ -685,17 +655,21 @@ function applyFilters() {
 
 function clearFilters() {
   document.querySelectorAll('.cat-checkbox').forEach(function(cb) { cb.checked = false; });
+
   var maxP = 100000;
   allProducts.forEach(function(p) { if (p.price > maxP) maxP = p.price; });
   maxP = Math.ceil(maxP / 1000) * 1000;
+
   var p1 = document.getElementById('priceRange');
   var p2 = document.getElementById('priceRangeMobile');
   if (p1) p1.value = maxP;
   if (p2) p2.value = maxP;
+
   var l1 = document.getElementById('priceValue');
   var l2 = document.getElementById('priceValueMobile');
   if (l1) l1.textContent = '₹' + maxP;
   if (l2) l2.textContent = '₹' + maxP;
+
   filteredProducts = allProducts.slice();
   currentPage = 1;
   renderShopProducts();
@@ -711,11 +685,6 @@ function getPhotoCount(p) {
   if (p.images && p.images.length) return p.images.length;
   if (p.photoCount) return p.photoCount;
   return 1;
-}
-
-/* ═══ PRODUCT CARD — CLICK OPENS PRODUCT PAGE ═══ */
-function goToProduct(id) {
-  window.location.href = 'product.html?id=' + id;
 }
 
 function renderShopProducts() {
@@ -749,12 +718,12 @@ function renderShopProducts() {
     var photoCount = getPhotoCount(p);
     var img = getProductImage(p);
 
-    return '<div class="card" onclick="goToProduct(' + p.id + ')">' +
+    return '<div class="card">' +
       '<div class="card-img-wrap">' +
         (discount > 0 ? '<span class="card-badge">-' + discount + '%</span>' : '') +
-        (photoCount > 1 ? '<span class="card-photo-count"><i class="fa-solid fa-images"></i> ' + photoCount + '</span>' : '') +
-        '<button class="card-wish" onclick="event.stopPropagation(); this.classList.toggle(\'active\'); if(this.classList.contains(\'active\')){this.innerHTML=\'<i class=\\\'fa-solid fa-heart\\\'></i>\';}else{this.innerHTML=\'<i class=\\\'fa-regular fa-heart\\\'></i>\';}"><i class="fa-regular fa-heart"></i></button>' +
-        '<img src="' + img + '" alt="' + p.name + '" loading="lazy" onerror="this.src=\'' + fallback + '\'">' +
+        (photoCount > 1 ? '<span class="card-photo-count"><i class="fa-solid fa-images"></i> ' + photoCount + ' photos</span>' : '') +
+        '<button class="card-wish" onclick="event.stopPropagation(); this.classList.toggle(\'active\')"><i class="fa-regular fa-heart"></i></button>' +
+        '<img src="' + img + '" alt="' + p.name + '" onerror="this.src=\'' + fallback + '\'">' +
       '</div>' +
       '<div class="card-body">' +
         '<div class="card-category">' + (p.category || 'General') + '</div>' +
@@ -763,9 +732,11 @@ function renderShopProducts() {
         '<div class="card-price">' +
           '<span class="price-new">₹' + p.price + '</span>' +
           (p.oldPrice ? '<span class="price-old">₹' + p.oldPrice + '</span>' : '') +
+          (discount > 0 ? '<span class="price-off">-' + discount + '%</span>' : '') +
         '</div>' +
         '<div class="card-actions">' +
-          '<button class="btn-card btn-order" onclick="event.stopPropagation(); orderOnWhatsApp(' + p.id + ')"><i class="fa-brands fa-whatsapp"></i> Order Now</button>' +
+          '<button class="btn-card btn-view" onclick="location.href=\'product.html?id=' + p.id + '\'"><i class="fa-solid fa-eye"></i> View</button>' +
+          '<button class="btn-card btn-order" onclick="orderOnWhatsApp(' + p.id + ')"><i class="fa-brands fa-whatsapp"></i> Order</button>' +
         '</div>' +
       '</div>' +
     '</div>';
@@ -778,6 +749,7 @@ function renderPagination(totalPages) {
   var pag = document.getElementById('pagination');
   if (!pag) return;
   if (totalPages <= 1) { pag.innerHTML = ''; return; }
+
   var html = '<button ' + (currentPage === 1 ? 'disabled' : '') + ' onclick="goToPage(' + (currentPage - 1) + ')"><i class="fa-solid fa-chevron-left"></i></button>';
   for (var i = 1; i <= totalPages; i++) {
     html += '<button class="' + (i === currentPage ? 'active' : '') + '" onclick="goToPage(' + i + ')">' + i + '</button>';
