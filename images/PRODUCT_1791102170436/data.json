@@ -1,0 +1,19 @@
+{
+  "id": 1791102170436,
+  "folder": "PRODUCT_1791102170436",
+  "name": "Carl lagerfeld",
+  "description": "Premium.imported",
+  "price": 4999,
+  "oldPrice": 6499,
+  "category": "Accessories",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791102170436/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791102170436/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791102170436/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791102170436/3.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791102170436/4.jpg"
+  ],
+  "photoCount": 4,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-10-04T08:23:00.010Z"
+}
