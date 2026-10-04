@@ -1,0 +1,18 @@
+{
+  "id": 1791115338896,
+  "folder": "PRODUCT_1791115338896",
+  "name": "Ax shirt",
+  "description": "Premium",
+  "price": 1499,
+  "oldPrice": 1599,
+  "category": "Clothing",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791115338896/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791115338896/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791115338896/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791115338896/3.jpg"
+  ],
+  "photoCount": 3,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-10-04T12:02:27.061Z"
+}
