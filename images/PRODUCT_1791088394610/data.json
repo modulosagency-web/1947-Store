@@ -1,0 +1,17 @@
+{
+  "id": 1791088394610,
+  "folder": "PRODUCT_1791088394610",
+  "name": "Ami shirts",
+  "description": "Premium",
+  "price": 1499,
+  "oldPrice": 1699,
+  "category": "Clothing",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791088394610/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791088394610/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1791088394610/2.jpg"
+  ],
+  "photoCount": 2,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-10-04T04:33:19.272Z"
+}
