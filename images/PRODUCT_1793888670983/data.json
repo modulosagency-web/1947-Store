@@ -1,0 +1,20 @@
+{
+  "id": 1793888670983,
+  "folder": "PRODUCT_1793888670983",
+  "name": "Imported shirt",
+  "description": "Premium quality",
+  "price": 1499,
+  "oldPrice": 1599,
+  "category": "Clothing",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888670983/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888670983/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888670983/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888670983/3.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888670983/4.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888670983/5.jpg"
+  ],
+  "photoCount": 5,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-11-05T14:24:44.344Z"
+}
