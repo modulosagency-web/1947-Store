@@ -1,0 +1,21 @@
+{
+  "id": 1793888793728,
+  "folder": "PRODUCT_1793888793728",
+  "name": "Imported denim",
+  "description": "Premium Denim",
+  "price": 2699,
+  "oldPrice": 2899,
+  "category": "Clothing",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888793728/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888793728/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888793728/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888793728/3.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888793728/4.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888793728/5.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888793728/6.jpg"
+  ],
+  "photoCount": 6,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-11-05T14:26:49.633Z"
+}
