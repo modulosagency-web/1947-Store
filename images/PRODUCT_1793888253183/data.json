@@ -1,0 +1,16 @@
+{
+  "id": 1793888253183,
+  "folder": "PRODUCT_1793888253183",
+  "name": "D&G shirt",
+  "description": "Premium fabric",
+  "price": 1599,
+  "oldPrice": 1699,
+  "category": "Clothing",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888253183/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1793888253183/1.jpg"
+  ],
+  "photoCount": 1,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-11-05T14:17:36.165Z"
+}
