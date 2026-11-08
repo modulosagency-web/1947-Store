@@ -1,0 +1,16 @@
+{
+  "id": 1794145453338,
+  "folder": "PRODUCT_1794145453338",
+  "name": "Premium shirts",
+  "description": "Verry premium shirts",
+  "price": 5999,
+  "oldPrice": 6999,
+  "category": "Shirts",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794145453338/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794145453338/1.jpg"
+  ],
+  "photoCount": 1,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-11-08T13:44:15.935Z"
+}
