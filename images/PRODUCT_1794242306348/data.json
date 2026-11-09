@@ -1,0 +1,22 @@
+{
+  "id": 1794242306348,
+  "folder": "PRODUCT_1794242306348",
+  "name": "Imported Denim",
+  "description": "Imported denim",
+  "price": 1699,
+  "oldPrice": 1799,
+  "category": "Shirt",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/3.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/4.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/5.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/6.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242306348/7.jpg"
+  ],
+  "photoCount": 7,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-11-09T16:38:47.176Z"
+}
