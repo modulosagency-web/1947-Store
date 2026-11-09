@@ -1,0 +1,21 @@
+{
+  "id": 1794242399951,
+  "folder": "PRODUCT_1794242399951",
+  "name": "T shirt",
+  "description": "Imported",
+  "price": 1399,
+  "oldPrice": 1499,
+  "category": "T Shirt",
+  "image": "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242399951/1.jpg",
+  "images": [
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242399951/1.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242399951/2.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242399951/3.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242399951/4.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242399951/5.jpg",
+    "https://raw.githubusercontent.com/modulosagency-web/1947-Store/main/images/PRODUCT_1794242399951/6.jpg"
+  ],
+  "photoCount": 6,
+  "whatsapp": "918590988090",
+  "createdAt": "2026-11-09T16:40:17.536Z"
+}
